@@ -174,7 +174,9 @@ def one_run(arm: str, repo: str, run: int, model: str, max_steps: int) -> dict[s
         extraction="verified",
         max_steps=max_steps,
         # Opus 5 (the original run) keeps grounding/<arm>; other models get their own tree.
-        trace_root=TRACES_DIR / ("grounding" if model == "claude-opus-5" else f"grounding-{model}") / arm,
+        trace_root=TRACES_DIR
+        / ("grounding" if model == "claude-opus-5" else f"grounding-{model}")
+        / arm,
     )
     goal = prompts.repo_goal(repo)
     result = Navigator(cfg).run(goal, "https://github.com", f"{repo}-{run:02d}")
