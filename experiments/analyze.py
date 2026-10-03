@@ -301,12 +301,66 @@ def extraction_report(rows: list[dict[str, Any]]) -> str:
     return "\n".join(lines)
 
 
+def model_comparison(all_rows: list[dict[str, Any]]) -> str:
+    """One table: model x arm, the metrics that decide the grounding question."""
+    models = sorted({r["model"] for r in all_rows})
+    lines = [
+        "# Grounding by model",
+        "",
+        f"_Generated {datetime.now(timezone.utc).isoformat(timespec='minutes')}; "
+        f"{len(all_rows)} runs across {len(models)} model(s). Same harness, prompts, "
+        "repositories and oracle for every cell._",
+        "",
+        "| Model | Arm | Task success | Wrong-target clicks | Detour runs | Click error px, mean (max) | Steps median | Cost/run | Wall s median |",
+        "|---|---|---|---|---|---|---|---|---|",
+    ]
+    for m in models:
+        for a in ("coords", "som"):
+            rs = [r for r in all_rows if r["model"] == m and r["arm"] == a]
+            if not rs:
+                continue
+            clicks = sum(r.get("clicks", 0) for r in rs)
+            errs = [
+                r["mean_click_error_px"] for r in rs if r.get("mean_click_error_px") is not None
+            ]
+            maxes = [r["max_click_error_px"] for r in rs if r.get("max_click_error_px") is not None]
+            lines.append(
+                f"| {m} | {a} | {_rate(rs, 'task_success')} | "
+                f"{fmt_rate(sum(r.get('wrong_target_clicks', 0) for r in rs), clicks)} | "
+                f"{sum(1 for r in rs if r.get('detour'))}/{len(rs)} | "
+                f"{_f(_mean(errs))} ({_f(max(maxes)) if maxes else '–'}) | "
+                f"{_f(median([r['steps'] for r in rs if r.get('steps')]), 0)} | "
+                f"${_f(_mean([r['cost_usd'] for r in rs if r.get('cost_usd') is not None]), 3)} | "
+                f"{_f(median([r['wall_time_s'] for r in rs if r.get('wall_time_s') is not None]))} |"
+            )
+    lines += [
+        "",
+        "Per-model detail: `RESULTS_grounding.md` (Opus 5), `RESULTS_grounding_<model>.md` (others).",
+        "",
+    ]
+    return "\n".join(lines)
+
+
 def main() -> int:
     g = read_jsonl(RESULTS_DIR / "grounding.jsonl")
     e = read_jsonl(RESULTS_DIR / "extraction.jsonl")
     if g:
         (EXP_DIR / "RESULTS_grounding.md").write_text(grounding_report(g))
         print(f"wrote RESULTS_grounding.md ({len(g)} runs)")
+    all_rows = list(g)
+    for extra in sorted(RESULTS_DIR.glob("grounding_*.jsonl")):
+        if extra.name.startswith("grounding_run") or "smoke" in extra.name:
+            continue
+        rows = read_jsonl(extra)
+        if not rows:
+            continue
+        all_rows += rows
+        name = extra.stem.replace("grounding_", "")
+        (EXP_DIR / f"RESULTS_grounding_{name}.md").write_text(grounding_report(rows))
+        print(f"wrote RESULTS_grounding_{name}.md ({len(rows)} runs)")
+    if len({r["model"] for r in all_rows}) > 1:
+        (EXP_DIR / "RESULTS_grounding_by_model.md").write_text(model_comparison(all_rows))
+        print("wrote RESULTS_grounding_by_model.md")
     if e:
         (EXP_DIR / "RESULTS_extraction.md").write_text(extraction_report(e))
         print(f"wrote RESULTS_extraction.md ({len(e)} rows)")
