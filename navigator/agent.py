@@ -5,7 +5,7 @@ handful of named mechanisms so they can be tested and discussed on their own:
 
 * step budget and wall-clock timeout
 * page-change detection (URL, title, scroll, and a pixel diff of the viewport)
-* loop detection (same action on the same URL three times)
+* loop detection (same ineffective action on the same URL three times)
 * a "stuck" hint injected into the prompt after repeated no-op actions
 * grounding errors fed back to the model instead of crashing the run
 """
@@ -296,12 +296,15 @@ class Navigator:
                 last_changed = None if step_error else changed
                 no_change_streak = 0 if changed else no_change_streak + 1
 
-                sig = _signature(action, before.url)
-                signatures[sig] += 1
-                if signatures[sig] >= _LOOP_REPEATS:
-                    status = RunStatus.LOOP_DETECTED
-                    status_detail = f"repeated {history[-1]!r} {_LOOP_REPEATS} times"
-                    break
+                # Only ineffective actions count toward a loop: scrolling a long
+                # page five times is progress, clicking a dead spot three times is not.
+                if not changed:
+                    sig = _signature(action, before.url)
+                    signatures[sig] += 1
+                    if signatures[sig] >= _LOOP_REPEATS:
+                        status = RunStatus.LOOP_DETECTED
+                        status_detail = f"repeated {history[-1]!r} {_LOOP_REPEATS} times"
+                        break
 
             final_url = browser.state().url
 
