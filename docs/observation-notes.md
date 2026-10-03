@@ -70,3 +70,21 @@ at the end. Each entry: what happened, why it matters.
 - **Verification is ~3.5x the extraction cost** on the smoke run ($0.077 vs
   $0.022 per sample): the page text is ~5K tokens and the call runs at high
   effort. Worth trimming the text to the visible region if cost matters.
+- **Grounding experiment result (60 runs, Opus 5).** Both arms 30/30 task
+  success, median 5 steps. Coordinate clicks landed within 0.8 px (mean) of
+  element centres; max error over 90 clicks was 2 px. Set-of-Mark produced 3
+  wrong-target clicks out of 96 (3%): in all three the model wanted "Releases"
+  but answered a nearby badge number (94 vs 92; 82 vs 86) in the dense region
+  where the sidebar's Releases badge sits among file-list rows. Each was
+  recovered in two extra steps. Coords: 0/90. Cost $0.153 vs $0.158, wall time
+  39.5 s vs 43.0 s. Pre-registered rule (PLAN.md §7.3) says: tie on success and
+  cheaper -> switch default to coords. The hypothesis that SoM would be more
+  accurate was wrong for this model on this site. Caveats: one site, large
+  well-spaced targets, one model; SoM's expected advantage (tiny targets,
+  weaker localisers) was never exercised.
+- **Metric lesson.** "Misclick = no page change" missed every real SoM error,
+  because the wrong click *did* navigate. The useful metric was wrong-target:
+  no word overlap between the model's reason and the hit element's text, AND
+  the model's next action went back. First version without the second
+  condition flagged every search-box click (stop-word bug); the two-condition
+  version matches manual review exactly.
