@@ -42,8 +42,11 @@ def build_parser() -> argparse.ArgumentParser:
     model.add_argument(
         "--grounding",
         choices=["som", "coords"],
-        default="som",
-        help="How clicks are grounded: Set-of-Mark labels (default) or raw coordinates.",
+        default="coords",
+        help=(
+            "How clicks are grounded: raw pixel coordinates (default, chosen by experiment) "
+            "or Set-of-Mark numbered labels."
+        ),
     )
     model.add_argument(
         "--extraction",

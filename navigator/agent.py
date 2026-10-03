@@ -57,7 +57,7 @@ _MAX_CONSECUTIVE_MODEL_ERRORS = 2
 @dataclass
 class NavigatorConfig:
     model: str = "claude-opus-5"
-    grounding: GroundingMode = "som"
+    grounding: GroundingMode = "coords"
     extraction: ExtractionMode = "verified"
     max_steps: int = 15
     timeout_s: float = 300.0

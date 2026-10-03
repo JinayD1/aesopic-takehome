@@ -20,6 +20,9 @@ CLICK = ActionType.CLICK
 
 
 def _nav(tmp_path: Path, client: ScriptedClient, browser: FakeBrowser, **cfg: object) -> Navigator:
+    # The scripted happy path clicks by label, so these tests run in Set-of-Mark
+    # mode unless a test says otherwise; coordinate mode has its own class below.
+    cfg.setdefault("grounding", "som")
     config = NavigatorConfig(trace_root=tmp_path, **cfg)  # type: ignore[arg-type]
     return Navigator(config, client=client, browser_factory=lambda: browser)
 
