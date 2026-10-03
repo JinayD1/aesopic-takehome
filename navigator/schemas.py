@@ -116,6 +116,7 @@ class ReleaseInfo(BaseModel):
     consumer can pick, and we say so in the README.
     """
 
+    repository: str | None = None
     version: str | None = None
     tag: str | None = None
     commit: str | None = None

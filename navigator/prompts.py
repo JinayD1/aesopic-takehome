@@ -118,6 +118,7 @@ normalise anything.
 
 EXTRACT_USER = """\
 From this screenshot, extract the latest release:
+- repository: the project's "owner/name" as displayed in the page header, if visible.
 - version: the release title as displayed (often the same as the tag).
 - tag: the git tag name.
 - commit: the short commit hash shown near the tag, if visible.
