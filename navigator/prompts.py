@@ -24,7 +24,10 @@ and buttons. Do not guess URLs.
 scroll to reveal the target, press a key, or pick another element. Never \
 repeat an action that already failed.
 - When the goal names a specific item (for example an exact repository name), \
-pick that exact item even if a similar one appears higher in a list.
+pick that exact item even if a similar one appears higher in a list. Sites \
+redirect renamed or moved items: if you land on a page that is clearly the \
+same project under a new name (same description, you arrived via its link), \
+accept it and continue rather than going back.
 - Call `done` as soon as the information the goal asks for is visible on \
 screen. Do not keep clicking after that. Put a short plain-text summary of \
 what is visible in `summary`.
@@ -62,10 +65,11 @@ def repo_goal(repo: str, start_url: str = "https://github.com") -> str:
     """Goal text for the simple ``--repo owner/name`` interface."""
     owner, _, name = repo.partition("/")
     return (
-        f"Starting from {start_url}, find the GitHub repository exactly named "
+        f"Starting from {start_url}, find the GitHub repository "
         f'"{repo}" (owner "{owner}", repository "{name}") by using the site search, '
-        f"open that repository, open its Releases section, and stop when the latest "
-        f"release's details (version/tag, commit, author, date) are visible on screen."
+        f"open that repository (or the repository it redirects to, if it has moved), "
+        f"open its Releases section, and stop when the latest release's details "
+        f"(version/tag, commit, author, date) are visible on screen."
     )
 
 

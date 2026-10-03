@@ -123,6 +123,13 @@ def repo_from_url(url: str) -> str | None:
     return None
 
 
+def normalise_repo(text: str | None) -> str | None:
+    """'react / react' (as rendered in a page header) -> 'react/react'."""
+    if not text:
+        return None
+    return "/".join(part.strip() for part in text.split("/")).strip() or None
+
+
 _COMPARED_FIELDS = ("repository", "version", "tag", "commit", "author", "published_at")
 
 
@@ -332,8 +339,11 @@ class Navigator:
             browser.close()
 
         release = extraction.release if extraction else None
-        repository = (release.repository if release else None) or (
-            repo_from_url(final_url) if final_url else None
+        if release is not None:
+            release.repository = normalise_repo(release.repository)
+        # The URL is exact; the header text is what the model read off pixels.
+        repository = (repo_from_url(final_url) if final_url else None) or (
+            release.repository if release else None
         )
         result = RunResult(
             repository=repository,

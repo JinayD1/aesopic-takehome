@@ -11,6 +11,7 @@ from navigator.agent import (
     _pixel_change_ratio,
     _signature,
     diff_release,
+    normalise_repo,
     repo_from_url,
 )
 from navigator.schemas import Action, ActionType, ReleaseInfo
@@ -112,3 +113,15 @@ class TestDiffRelease:
         a = ReleaseInfo(release_notes="long text A")
         b = ReleaseInfo(release_notes="long text B")
         assert diff_release(a, b) == []
+
+
+class TestNormaliseRepo:
+    def test_strips_spaces_around_slash(self) -> None:
+        assert normalise_repo("react / react") == "react/react"
+
+    def test_plain_passthrough(self) -> None:
+        assert normalise_repo("openclaw/openclaw") == "openclaw/openclaw"
+
+    def test_empty_is_none(self) -> None:
+        assert normalise_repo("") is None
+        assert normalise_repo(None) is None

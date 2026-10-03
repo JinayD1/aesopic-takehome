@@ -45,3 +45,17 @@ at the end. Each entry: what happened, why it matters.
   rejected under `strict: true`; use `anyOf` with a null branch.
 - **Workspace-scoped API keys.** Org keys not scoped to a workspace need the
   `anthropic-workspace-id` header; the client reads `ANTHROPIC_WORKSPACE_ID`.
+- **Renamed repositories (real failure, found live).** `facebook/react` now
+  301-redirects to `react/react`. With the goal saying "exactly named
+  facebook/react", the model landed on react/react, correctly observed the name
+  mismatch, hit `back`, and spent 11 more steps hunting for a repo that no longer
+  exists under that name, then aborted at the step budget ($0.31). Literal
+  instruction-following was the failure mode, not grounding: every click landed
+  where intended. Fix: the system prompt now says redirected/renamed items are
+  acceptable when it is clearly the same project, and the goal text no longer
+  says "exactly named".
+- **Search overlay trap.** While GitHub's search dialog is open, the occlusion
+  filter correctly labels only the dialog's elements. The model then tried to
+  click a sidebar link *behind* the dialog, emitting a click with no label ->
+  GroundingError fed back as INVALID. Escape should close the dialog; worth a
+  closer look if it recurs in the experiments.
