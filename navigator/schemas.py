@@ -69,7 +69,7 @@ class ActionType(str, Enum):
     TYPE = "type"
     SCROLL = "scroll"
     PRESS = "press"
-    GOTO = "goto"
+    BACK = "back"
     DONE = "done"
     ABORT = "abort"
 
@@ -98,8 +98,6 @@ class Action(BaseModel):
     amount: int | None = None
     # press
     key: str | None = None
-    # goto
-    url: str | None = None
     # done / abort
     summary: str | None = None
 

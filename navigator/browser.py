@@ -19,11 +19,18 @@ import contextlib
 from collections.abc import Iterator
 from typing import Any
 
-from playwright.sync_api import Browser, BrowserContext, Page, Playwright, sync_playwright
+from playwright.sync_api import (
+    Browser,
+    BrowserContext,
+    Page,
+    Playwright,
+    ViewportSize,
+    sync_playwright,
+)
 
 from .schemas import BoundingBox, Interactable, PageState
 
-VIEWPORT = {"width": 1280, "height": 800}
+VIEWPORT: ViewportSize = {"width": 1280, "height": 800}
 USER_AGENT = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
@@ -220,6 +227,11 @@ class BrowserSession:
 
     def press(self, key: str) -> None:
         self.page.keyboard.press(key)
+        self.settle()
+
+    def back(self) -> None:
+        with contextlib.suppress(Exception):
+            self.page.go_back(wait_until="domcontentloaded")
         self.settle()
 
 
