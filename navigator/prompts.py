@@ -68,8 +68,9 @@ def repo_goal(repo: str, start_url: str = "https://github.com") -> str:
         f"Starting from {start_url}, find the GitHub repository "
         f'"{repo}" (owner "{owner}", repository "{name}") by using the site search, '
         f"open that repository (or the repository it redirects to, if it has moved), "
-        f"open its Releases section, and stop when the latest release's details "
-        f"(version/tag, commit, author, date) are visible on screen."
+        f'open its Releases section, and stop when the release marked "Latest" is on '
+        f"screen with its details (version/tag, commit, author, date). If the top entry "
+        f'is a pre-release, scroll or click until the one badged "Latest" is visible.'
     )
 
 
@@ -114,7 +115,10 @@ def step_user_text(
 
 EXTRACT_SYSTEM = """\
 You read a screenshot of a software project's release page and transcribe the \
-details of the LATEST release into structured fields. Only report values you \
+details of the LATEST release into structured fields. "Latest" means the \
+release the site badges as Latest (the newest stable release). If several \
+releases are visible, pick the one with the Latest badge; a Pre-release badge \
+disqualifies an entry unless nothing else is visible. Only report values you \
 can actually see; leave a field null if it is not visible. Copy strings \
 exactly as written, character for character. Do not infer, expand or \
 normalise anything.

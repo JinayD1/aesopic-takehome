@@ -59,3 +59,14 @@ at the end. Each entry: what happened, why it matters.
   click a sidebar link *behind* the dialog, emitting a click with no label ->
   GroundingError fed back as INVALID. Escape should close the dialog; worth a
   closer look if it recurs in the experiments.
+- **"Latest" is a semantic, not a position.** On neovim's releases page the top
+  entry is the nightly *pre-release*; the release GitHub badges "Latest" (0.12.5)
+  is second and off-screen. Both extraction arms transcribed the nightly build,
+  so both were "wrong" against the API, which excludes pre-releases from
+  `/releases/latest`. No amount of text verification fixes a wrong *choice* of
+  release. Fix: the goal and extraction prompts now define latest as the entry
+  badged "Latest" and tell the navigator to scroll/click if the top entry is a
+  pre-release. The fixture stays in the extraction set as a known-hard case.
+- **Verification is ~3.5x the extraction cost** on the smoke run ($0.077 vs
+  $0.022 per sample): the page text is ~5K tokens and the call runs at high
+  effort. Worth trimming the text to the visible region if cost matters.

@@ -105,7 +105,9 @@ def field_correct(field: str, got: str | None, oracle: dict[str, Any]) -> bool |
     if field == "author":
         return norm_author(got) == norm_author(oracle["author"])
     if field == "repository":
-        return norm_text(got) == norm_text(oracle["repository"])
+        # Page headers render "owner / name"; compare without the spaces.
+        g = re.sub(r"\s*/\s*", "/", got.strip()) if got else None
+        return norm_text(g) == norm_text(oracle["repository"])
     return None
 
 
