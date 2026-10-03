@@ -22,7 +22,7 @@ navigate --repo openclaw/openclaw
     "published_at": "18 hours ago",
     "is_prerelease": false
   },
-  "run": { "status": "success", "steps": 5, "cost_usd": 0.17, "wall_time_s": 71.5, "...": "..." }
+  "run": { "status": "success", "steps": 5, "cost_usd": 0.17, "wall_time_s": 41.3, "...": "..." }
 }
 ```
 
@@ -55,20 +55,20 @@ navigate --repo pallets/flask --out flask.json
 navigate --repo openclaw/openclaw --headed --slow-mo 300
 
 # the alternatives kept for comparison
-navigate --repo openclaw/openclaw --grounding coords      # raw pixel coordinates instead of labels
+navigate --repo openclaw/openclaw --grounding som         # Set-of-Mark numbered labels instead of coordinates
 navigate --repo openclaw/openclaw --extraction vision     # skip text verification
 navigate --repo openclaw/openclaw --model claude-sonnet-5 # cheaper model
 ```
 
 JSON goes to stdout, progress to stderr, exit code 0 only on success. Every run
 writes a trace to `runs/<timestamp>_<name>/`: the exact screenshot the model saw
-at each step (`step_NN.png`, badges included), the raw screenshot, a JSON record
+at each step (`step_NN.png`; badges included in Set-of-Mark mode), a JSON record
 per decision, the final page and the page text used by the verifier.
 
 ## How it works
 
 ```
-goal ─► screenshot ─► [generic scan of interactables → numbered badges] ─► model picks ONE action
+goal ─► screenshot ─► model picks ONE action (click at x,y / type / scroll / press / back / done)
                                                                                 │
          ◄──────────── wait for navigation, detect page change, record ─────────┘
                                    (repeat ≤ 15 steps)
@@ -77,13 +77,16 @@ goal ─► screenshot ─► [generic scan of interactables → numbered badges
             vision read of the final page ─► verify strings against page text ─► JSON
 ```
 
-- **Grounding (Set-of-Mark).** The harness runs one site-agnostic query for
-  interactive content (`a[href]`, `button`, inputs, ARIA widget roles), keeps
-  the visible, unoccluded ones, and draws a numbered badge on each. The model
-  answers `click(14)`. It never sees element text in this mode; it reads the
-  page from pixels and picks a number. The code knows nothing about GitHub.
-  Pure pixel coordinates are available with `--grounding coords`.
-  → [ADR 001](docs/adr/001-grounding-set-of-mark.md), [experiment](experiments/RESULTS_grounding.md)
+- **Grounding (pixel coordinates, by experiment).** The model is asked for the
+  centre of the element it wants, in screenshot pixels. The viewport is fixed at
+  1280×800 at 1x so the screenshot maps 1:1 onto the page. This was *not* the
+  plan: the plan was Set-of-Mark (the harness draws a numbered badge on every
+  interactable found by a site-agnostic scan, and the model answers with a
+  number). A pre-registered 60-run experiment found both at 30/30 task success,
+  coordinates within 2 px of element centres on every click, and Set-of-Mark
+  with three wrong-badge clicks in a dense region. The pre-registered rule said
+  switch, so coordinates are the default and Set-of-Mark is `--grounding som`.
+  → [ADR 001](docs/adr/001-grounding-coordinates-over-set-of-mark.md), [experiment](experiments/RESULTS_grounding.md)
 - **Extraction.** Structured-output read of the final screenshot, then a second
   call that checks each string against the page's rendered text and reports any
   correction. Output includes whether the two agreed.
@@ -129,16 +132,15 @@ sample_output.json
 
 ## Limitations
 
-- **Reads the DOM generically.** Set-of-Mark needs a list of interactable
-  boxes, and text verification needs `innerText`. A `<canvas>` app or a
-  cross-origin iframe defeats both; `--grounding coords --extraction vision`
-  is the fallback and is strictly pixel-based.
+- **Text verification reads the DOM generically** (`innerText`, no selectors).
+  A `<canvas>` app or cross-origin iframe defeats it; `--extraction vision` is
+  the strictly pixel-based fallback. Navigation itself is pixel-only by default.
 - **One viewport.** 1280×800 at 1x, chosen so the screenshot maps 1:1 onto the
   page and stays under the API's resize threshold. Smaller screens would push
   GitHub's Releases link (at y≈787) below the fold and cost a scroll.
 - **GitHub bot detection** is not handled beyond a realistic user agent; a
   rate-limit page would end the run with `abort`.
 - **Relative dates.** `published_at` is whatever the page shows ("18 hours ago").
-- **Cost/latency.** ~$0.17 and ~50–70 s per run on Claude Opus 5.
+- **Cost/latency.** ~$0.15–0.18 and ~40–70 s per run on Claude Opus 5 (measured over 60 runs).
 
 See [OBSERVATIONS.md](OBSERVATIONS.md) for the full discussion.
