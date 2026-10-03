@@ -1,0 +1,206 @@
+{
+  "index": 0,
+  "before": {
+    "url": "https://github.com/",
+    "title": "GitHub · Change is constant. GitHub keeps you ahead. · GitHub",
+    "viewport_width": 1280,
+    "viewport_height": 800,
+    "scroll_y": 0.0,
+    "scroll_height": 11198.0
+  },
+  "action": {
+    "type": "click",
+    "reason": "Open site search to find the repository",
+    "label": null,
+    "x": 1060.0,
+    "y": 36.0,
+    "text": null,
+    "submit": false,
+    "direction": null,
+    "amount": null,
+    "key": null,
+    "summary": null
+  },
+  "after": {
+    "url": "https://github.com/",
+    "title": "GitHub · Change is constant. GitHub keeps you ahead. · GitHub",
+    "viewport_width": 1280,
+    "viewport_height": 800,
+    "scroll_y": 0.0,
+    "scroll_height": 11198.0
+  },
+  "screenshot_path": "/Users/jinay/Documents/aesopic-takehome/experiments/traces/grounding-claude-sonnet-5/coords/20261003T233317_openclaw-openclaw-09/step_01.png",
+  "interactables": [
+    {
+      "label": 1,
+      "tag": "a",
+      "role": null,
+      "text": "Homepage",
+      "box": {
+        "x": 32.0,
+        "y": 20.0,
+        "width": 32.0,
+        "height": 32.0
+      }
+    },
+    {
+      "label": 2,
+      "tag": "button",
+      "role": null,
+      "text": "Platform",
+      "box": {
+        "x": 80.0,
+        "y": 16.0,
+        "width": 103.6875,
+        "height": 40.0
+      }
+    },
+    {
+      "label": 3,
+      "tag": "button",
+      "role": null,
+      "text": "Solutions",
+      "box": {
+        "x": 183.6875,
+        "y": 16.0,
+        "width": 109.46875,
+        "height": 40.0
+      }
+    },
+    {
+      "label": 4,
+      "tag": "button",
+      "role": null,
+      "text": "Resources",
+      "box": {
+        "x": 293.15625,
+        "y": 16.0,
+        "width": 118.40625,
+        "height": 40.0
+      }
+    },
+    {
+      "label": 5,
+      "tag": "button",
+      "role": null,
+      "text": "Open Source",
+      "box": {
+        "x": 411.5625,
+        "y": 16.0,
+        "width": 137.453125,
+        "height": 40.0
+      }
+    },
+    {
+      "label": 6,
+      "tag": "button",
+      "role": null,
+      "text": "Enterprise",
+      "box": {
+        "x": 549.015625,
+        "y": 16.0,
+        "width": 115.859375,
+        "height": 40.0
+      }
+    },
+    {
+      "label": 7,
+      "tag": "a",
+      "role": null,
+      "text": "Pricing",
+      "box": {
+        "x": 664.875,
+        "y": 16.0,
+        "width": 70.875,
+        "height": 40.0
+      }
+    },
+    {
+      "label": 8,
+      "tag": "button",
+      "role": null,
+      "text": "Search or jump to, type / to search",
+      "box": {
+        "x": 1040.03125,
+        "y": 20.0,
+        "width": 42.0,
+        "height": 32.0
+      }
+    },
+    {
+      "label": 9,
+      "tag": "a",
+      "role": null,
+      "text": "Sign in",
+      "box": {
+        "x": 1090.03125,
+        "y": 20.0,
+        "width": 72.46875,
+        "height": 32.0
+      }
+    },
+    {
+      "label": 10,
+      "tag": "a",
+      "role": null,
+      "text": "Sign up",
+      "box": {
+        "x": 1170.5,
+        "y": 20.0,
+        "width": 77.5,
+        "height": 32.0
+      }
+    },
+    {
+      "label": 11,
+      "tag": "a",
+      "role": null,
+      "text": "Download GitHub Copilot app",
+      "box": {
+        "x": 741.5625,
+        "y": 480.21875,
+        "width": 271.703125,
+        "height": 56.0
+      }
+    },
+    {
+      "label": 12,
+      "tag": "input",
+      "role": null,
+      "text": "you@domain.com",
+      "box": {
+        "x": 271.734375,
+        "y": 487.71875,
+        "width": 260.0,
+        "height": 41.0
+      }
+    },
+    {
+      "label": 13,
+      "tag": "button",
+      "role": null,
+      "text": "Sign up for GitHub",
+      "box": {
+        "x": 536.734375,
+        "y": 484.21875,
+        "width": 184.828125,
+        "height": 48.0
+      }
+    }
+  ],
+  "clicked_at": [
+    1060.0,
+    36.0
+  ],
+  "clicked_label": 8,
+  "page_changed": true,
+  "model_latency_s": 3.4578737920091953,
+  "usage": {
+    "input_tokens": 1625,
+    "output_tokens": 281,
+    "cache_read_input_tokens": 1486,
+    "cache_creation_input_tokens": 0,
+    "api_calls": 1
+  },
+  "error": null
+}

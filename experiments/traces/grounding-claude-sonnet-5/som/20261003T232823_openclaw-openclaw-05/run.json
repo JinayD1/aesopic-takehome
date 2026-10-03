@@ -1,0 +1,65 @@
+{
+  "repository": "openclaw/openclaw",
+  "latest_release": {
+    "repository": "openclaw/openclaw",
+    "version": "openclaw 2026.9.8",
+    "tag": "v2026.9.8",
+    "commit": "fc23bc8",
+    "author": "github-actions",
+    "published_at": "20 hours ago",
+    "is_prerelease": false,
+    "release_notes": "OpenClaw v2026.9.8\n\n58 commits \\u00b7 43 pull requests \\u00b7 21 contributors\n\nChanges included in this release\n\nThe release notes and changelog contain the same content, presented in two formats:\n\nRelease notes \\u2014 formatted for people, with expandable sections.\nChangelog \\u2014 plain Markdown for AI agents and tools.\n\nThanks\n@609NFT @aniketkrs @aniruddhaadak80 @EndeavorPioneer @ericcaiwx-star @fuller-stack-dev @hailongguo0530-alt",
+    "download_links": []
+  },
+  "extraction": {
+    "release": {
+      "repository": "openclaw/openclaw",
+      "version": "openclaw 2026.9.8",
+      "tag": "v2026.9.8",
+      "commit": "fc23bc8",
+      "author": "github-actions",
+      "published_at": "20 hours ago",
+      "is_prerelease": false,
+      "release_notes": "OpenClaw v2026.9.8\n\n58 commits \\u00b7 43 pull requests \\u00b7 21 contributors\n\nChanges included in this release\n\nThe release notes and changelog contain the same content, presented in two formats:\n\nRelease notes \\u2014 formatted for people, with expandable sections.\nChangelog \\u2014 plain Markdown for AI agents and tools.\n\nThanks\n@609NFT @aniketkrs @aniruddhaadak80 @EndeavorPioneer @ericcaiwx-star @fuller-stack-dev @hailongguo0530-alt",
+      "download_links": []
+    },
+    "vision_read": {
+      "repository": "openclaw/openclaw",
+      "version": "openclaw 2026.9.8",
+      "tag": "v2026.9.8",
+      "commit": "fc23bc8",
+      "author": "github-actions",
+      "published_at": "20 hours ago",
+      "is_prerelease": false,
+      "release_notes": "OpenClaw v2026.9.8\n\n58 commits · 43 pull requests · 21 contributors\n\nChanges included in this release\n\nThe release notes and changelog contain the same content, presented in two formats:\n\nRelease notes — formatted for people, with expandable sections.\nChangelog — plain Markdown for AI agents and tools.\n\nThanks\n@609NFT @aniketkrs @aniruddhaadak80 @EndeavorPioneer @ericcaiwx-star @fuller-stack-dev @hailongguo0530-alt",
+      "download_links": []
+    },
+    "verification": "agree",
+    "corrections": []
+  },
+  "run": {
+    "model": "claude-sonnet-5",
+    "grounding": "som",
+    "extraction": "verified",
+    "steps": 11,
+    "status": "success",
+    "status_detail": "Release \"openclaw 2026.9.8\" is shown badged \"Latest\" with tag v2026.9.8, commit fc23bc8, released by github-actions bot 20 hours ago, including release notes and changelog links.",
+    "usage": {
+      "input_tokens": 32965,
+      "output_tokens": 4293,
+      "cache_read_input_tokens": 16258,
+      "cache_creation_input_tokens": 0,
+      "api_calls": 13
+    },
+    "cost_usd": 0.1121,
+    "wall_time_s": 63.6,
+    "trace_dir": "/Users/jinay/Documents/aesopic-takehome/experiments/traces/grounding-claude-sonnet-5/som/20261003T232823_openclaw-openclaw-05",
+    "started_at": "2026-10-03T23:28:23+00:00"
+  },
+  "errors": [
+    "step 6: label 1010 is not on screen (1..83)",
+    "step 7: label 86 is not on screen (1..83)",
+    "step 8: label 1009 is not on screen (1..83)",
+    "step 9: label 1009 is not on screen (1..83)"
+  ]
+}

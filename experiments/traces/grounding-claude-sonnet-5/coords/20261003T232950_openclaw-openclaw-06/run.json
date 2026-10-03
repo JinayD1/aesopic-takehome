@@ -1,0 +1,60 @@
+{
+  "repository": "openclaw/openclaw",
+  "latest_release": {
+    "repository": "openclaw/openclaw",
+    "version": "openclaw 2026.9.8",
+    "tag": "v2026.9.8",
+    "commit": "fc23bc8",
+    "author": "github-actions",
+    "published_at": "20 hours ago",
+    "is_prerelease": false,
+    "release_notes": "OpenClaw v2026.9.8\n\n58 commits · 43 pull requests · 21 contributors\n\nChanges included in this release\n\nThe release notes and changelog contain the same content, presented in two formats:\n\nRelease notes — formatted for people, with expandable sections.\nChangelog — plain Markdown for AI agents and tools.\n\nThanks",
+    "download_links": []
+  },
+  "extraction": {
+    "release": {
+      "repository": "openclaw/openclaw",
+      "version": "openclaw 2026.9.8",
+      "tag": "v2026.9.8",
+      "commit": "fc23bc8",
+      "author": "github-actions",
+      "published_at": "20 hours ago",
+      "is_prerelease": false,
+      "release_notes": "OpenClaw v2026.9.8\n\n58 commits · 43 pull requests · 21 contributors\n\nChanges included in this release\n\nThe release notes and changelog contain the same content, presented in two formats:\n\nRelease notes — formatted for people, with expandable sections.\nChangelog — plain Markdown for AI agents and tools.\n\nThanks",
+      "download_links": []
+    },
+    "vision_read": {
+      "repository": "openclaw/openclaw",
+      "version": "openclaw 2026.9.8",
+      "tag": "v2026.9.8",
+      "commit": "fc23bc8",
+      "author": "github-actions",
+      "published_at": "20 hours ago",
+      "is_prerelease": false,
+      "release_notes": "OpenClaw v2026.9.8\n\n58 commits · 43 pull requests · 21 contributors\n\nChanges included in this release\n\nThe release notes and changelog contain the same content, presented in two formats:\n\nRelease notes — formatted for people, with expandable sections.\nChangelog — plain Markdown for AI agents and tools.\n\nThanks",
+      "download_links": []
+    },
+    "verification": "agree",
+    "corrections": []
+  },
+  "run": {
+    "model": "claude-sonnet-5",
+    "grounding": "coords",
+    "extraction": "verified",
+    "steps": 5,
+    "status": "success",
+    "status_detail": "The release page shows \"openclaw 2026.9.8\" badged \"Latest\", released by github-actions 20 hours ago, tag v2026.9.8, commit fc23bc8, with 58 commits, 43 pull requests, and 21 contributors listed.",
+    "usage": {
+      "input_tokens": 21298,
+      "output_tokens": 2725,
+      "cache_read_input_tokens": 7430,
+      "cache_creation_input_tokens": 0,
+      "api_calls": 7
+    },
+    "cost_usd": 0.0713,
+    "wall_time_s": 34.0,
+    "trace_dir": "/Users/jinay/Documents/aesopic-takehome/experiments/traces/grounding-claude-sonnet-5/coords/20261003T232950_openclaw-openclaw-06",
+    "started_at": "2026-10-03T23:29:50+00:00"
+  },
+  "errors": []
+}

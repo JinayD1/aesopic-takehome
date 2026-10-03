@@ -1,0 +1,60 @@
+{
+  "repository": "react/react",
+  "latest_release": {
+    "repository": "react/react",
+    "version": "19.3.0 (September 9, 2026)",
+    "tag": "v19.3.0",
+    "commit": "1d34f91",
+    "author": "eps1lon",
+    "published_at": "3 weeks ago",
+    "is_prerelease": false,
+    "release_notes": "Below is a list of all new features, APIs, and bug fixes.\n\nRead the React 19.3 release post for more information.\n\nNew React Features\n\n<ViewTransition /> : Adds <ViewTransition /> and addTransitionType APIs to power View Transition animations in React (@sebmarkbage, @jackpope, @gaearon: #31975, #31987, #31996, #31999, #32001, #32002, #32028, #32029, #32031, #32034, #32038, #32041, #32050, #32090, #32105, #32254, #32379, #32422, #32462, #32540, #32545, #32585, #32599, #32611, #32612, #32617, #32651, #32653, #32656, #32664, #32699, #32723, #32734, #32751, #32752, #32760, #32761, #32764, #32772, #32790, #32819, #32820, #32822, #32833, #32849, #33094, #33191, #33200, #33206, #33293, #33330, #33331, #33332, #33357, #33362, #33433, #33576, #34374, #34450, #34481, #34500, #34502, #34510, #34511, #34539, #35567, #35564, #35485, #35380, #35063, #35060, #34676, #36917, #35337, #35520)",
+    "download_links": []
+  },
+  "extraction": {
+    "release": {
+      "repository": "react/react",
+      "version": "19.3.0 (September 9, 2026)",
+      "tag": "v19.3.0",
+      "commit": "1d34f91",
+      "author": "eps1lon",
+      "published_at": "3 weeks ago",
+      "is_prerelease": false,
+      "release_notes": "Below is a list of all new features, APIs, and bug fixes.\n\nRead the React 19.3 release post for more information.\n\nNew React Features\n\n<ViewTransition /> : Adds <ViewTransition /> and addTransitionType APIs to power View Transition animations in React (@sebmarkbage, @jackpope, @gaearon: #31975, #31987, #31996, #31999, #32001, #32002, #32028, #32029, #32031, #32034, #32038, #32041, #32050, #32090, #32105, #32254, #32379, #32422, #32462, #32540, #32545, #32585, #32599, #32611, #32612, #32617, #32651, #32653, #32656, #32664, #32699, #32723, #32734, #32751, #32752, #32760, #32761, #32764, #32772, #32790, #32819, #32820, #32822, #32833, #32849, #33094, #33191, #33200, #33206, #33293, #33330, #33331, #33332, #33357, #33362, #33433, #33576, #34374, #34450, #34481, #34500, #34502, #34510, #34511, #34539, #35567, #35564, #35485, #35380, #35063, #35060, #34676, #36917, #35337, #35520)",
+      "download_links": []
+    },
+    "vision_read": {
+      "repository": "react/react",
+      "version": "19.3.0 (September 9, 2026)",
+      "tag": "v19.3.0",
+      "commit": "1d34f91",
+      "author": "eps1lon",
+      "published_at": "3 weeks ago",
+      "is_prerelease": false,
+      "release_notes": "Below is a list of all new features, APIs, and bug fixes.\n\nRead the React 19.3 release post for more information.\n\nNew React Features\n\n<ViewTransition /> : Adds <ViewTransition /> and addViewTransitionType APIs to power View Transition animations in React (@sebmarkbage, @jackpope, @gaearon: #31975, #31987, #31996, #31999, #32001, #32002, #32028, #32029, #32031, #32034, #32038, #32041, #32050, #32090, #32105, #32254, #32379, #32422, #32462, #32540, #32545, #32585, #32599, #32611, #32612, #32617, #32651, #32653, #32656, #32664, #32699, #32723, #32734, #32751, #32752, #32760, #32761, #32764, #32772, #32790, #32819, #32820, #32822, #32833, #32849, #33094, #33191, #33200, #33206, #33293, #33330, #33331, #33332, #33357, #33362, #33433, #33576, #34374, #34450, #34481, #34500, #34502, #34510, #34511, #34539, #35567, #35564, #35485, #35380, #35063, #35060, #34676, #36917, #35337, #35520)",
+      "download_links": []
+    },
+    "verification": "agree",
+    "corrections": []
+  },
+  "run": {
+    "model": "claude-sonnet-5",
+    "grounding": "coords",
+    "extraction": "verified",
+    "steps": 5,
+    "status": "success",
+    "status_detail": "On the react/react Releases page, the top entry is badged \"Latest\": version 19.3.0 (September 9, 2026), tag v19.3.0, commit 1d34f91, released by eps1lon 3 weeks ago.",
+    "usage": {
+      "input_tokens": 15956,
+      "output_tokens": 2638,
+      "cache_read_input_tokens": 7430,
+      "cache_creation_input_tokens": 0,
+      "api_calls": 7
+    },
+    "cost_usd": 0.0598,
+    "wall_time_s": 33.5,
+    "trace_dir": "/Users/jinay/Documents/aesopic-takehome/experiments/traces/grounding-claude-sonnet-5/coords/20261003T232907_react-react-05",
+    "started_at": "2026-10-03T23:29:07+00:00"
+  },
+  "errors": []
+}

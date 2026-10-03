@@ -1,6 +1,6 @@
 # Experiment 1: Set-of-Mark vs pixel-coordinate grounding
 
-_Generated 2026-10-03T22:47+00:00 from `results/grounding.jsonl` (60 runs)._
+_Generated 2026-10-03T23:35+00:00 from `results/grounding.jsonl` (60 runs)._
 
 **Question.** Does labelling interactables with numbered badges (Set-of-Mark) navigate more reliably than asking the model for raw pixel coordinates?
 

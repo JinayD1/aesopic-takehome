@@ -1,0 +1,352 @@
+Skip to content
+Navigation Menu
+Platform
+Solutions
+Resources
+Open Source
+Enterprise
+Pricing
+Sign in
+Sign up
+openclaw
+/
+openclaw
+Public
+ Sponsor
+Notifications
+Fork 82.2k
+ Star 391k
+Code
+Issues
+5k+
+Pull requests
+3.3k
+Actions
+Projects
+Security and quality
+722
+Insights
+Releases: openclaw/openclaw
+Releases
+Tags
+Release list
+openclaw 2026.9.8
+openclaw 2026.8.35
+openclaw 2026.8.34
+openclaw 2026.9.7
+openclaw 2026.8.33
+openclaw 2026.9.6
+openclaw 2026.7.35
+openclaw 2026.9.5
+OpenClaw Linux update channel
+openclaw 2026.9.4
+Previous
+Next
+openclaw 2026.9.8
+openclaw 2026.9.8 Latest
+Compare
+ github-actions released this 
+ v2026.9.8 
+ fc23bc8 
+OpenClaw v2026.9.8
+
+58 commits · 43 pull requests · 21 contributors
+
+Changes included in this release
+
+The release notes and changelog contain the same content, presented in two formats:
+
+Release notes — formatted for people, with expandable sections.
+Changelog — plain Markdown for AI agents and tools.
+Thanks
+
+@609NFT @aniketkrs @aniruddhaadak80 @EndeavorPioneer @ericcaiwx-star @fuller-stack-dev @hailongguo0530-alt @jasdeepohri-max @miguelpt2026 @NickM83 @obviyus @Patrick-Erichsen @PennyVibe @RomneyDa @scotthuang @steipete @VACInc @vincentkoc @WG-Mojo @xilopaint @yashas-13
+
+Release verification
+npm package: https://www.npmjs.com/package/openclaw/v/2026.9.8
+registry tarball: https://registry.npmjs.org/openclaw/-/openclaw-2026.9.8.tgz
+integrity: sha512-G+JkNUhtpDE3cXR4AEi2NyyG9fqI/T2WUSl8ZnR8AATH8Dh1kC3qYFL7wwPoZtgHiP/cszA86PEiE0PDysxb9Q==
+release SHA: fc23bc864e4553c2d215e479eeec47b67a0bf943
+full release CI report: https://github.com/openclaw/releases/blob/main/evidence/2026.9.8/release-evidence.md
+release publish: https://github.com/openclaw/openclaw/actions/runs/37089852299
+npm preflight: https://github.com/openclaw/openclaw/actions/runs/37046778498
+full release validation: https://github.com/openclaw/openclaw/actions/runs/37045896743
+plugin npm publish: https://github.com/openclaw/openclaw/actions/runs/37090141905
+plugin ClawHub submission: https://github.com/openclaw/openclaw/actions/runs/37090144556; public artifact verification follows successful release-parent completion
+plugin ClawHub bootstrap: not needed
+OpenClaw npm publish: https://github.com/openclaw/openclaw/actions/runs/37087759921/attempts/1
+Telegram integration checks: waived by the release owner for 2026.9.8 (source QA, Package Acceptance, published-package E2E); not run.
+Android APK: skipped — apps/android/version.json is 2026.8.2, release train is 2026.9.8; run pnpm android:version:pin -- --from-gateway before the next tag.
+Assets
+19
+latest.json
+sha256:2e66528a5c065b0d8c31aa1133d81984efe57c30c835b28f7f87a1a29ce65236
+3.59 KB
+OpenClaw-2026.9.8-arm64.dmg
+sha256:6d3b35ffce6ba82c2f91a3d34c6e162742483ac32c4ee6e2111a17c242b5029a
+162 MB
+OpenClaw-2026.9.8-arm64.dSYM.zip
+sha256:fc77af004ca7e15fa18abe3c177c20a53de710c89c79e6adfc2d31bbe2540b1e
+34.7 MB
+OpenClaw-2026.9.8-arm64.zip
+sha256:dfe3437ce85b64a099d8858fdd5777b84bc1f038980f725c61fd80c75afc92ab
+240 MB
+openclaw-2026.9.8-dependency-evidence.zip
+sha256:bc04ab38eb0c33ebe28e0295f582c56c14ef6842d9570c7487b0c01a4f5921dd
+290 KB
+openclaw-2026.9.8-postpublish-evidence.json
+sha256:e2dcbb4d357c9a0fe5fcd07ecf7b70aaec4ea9610e463f1d30e845a9c7177e07
+22.3 KB
+openclaw-2026.9.8-postpublish-evidence.json.sha256
+sha256:3ffee23f98b5f913964c4e7502acd1478bd890b1b1f5d2d1f3da73469a4b6fe7
+110 Bytes
+openclaw-2026.9.8-release-manifest.json
+sha256:ab33269dc9517974c15613c5004844869586b24241203676d71a430b75433b5c
+259 KB
+openclaw-2026.9.8-release-manifest.json.sha256
+sha256:bca3ba2c4f9d8afe04bf7c280f07925c79aeff44fb4570329c7fd21d7fd7e42c
+106 Bytes
+openclaw-2026.9.8-stable-main-closeout.json
+sha256:10c73987dc7f1606b3cd31e6f7068b7c7bb3b255cfc289fa8eb016809e2a8930
+1.67 KB
+Source code (zip)
+Source code (tar.gz)
+Show all 19 assets
+👍
+9
+😄
+1
+🎉
+3
+❤️
+2
+🚀
+5
+👀
+2
+14 people reacted
+openclaw 2026.8.35
+openclaw 2026.8.35
+Compare
+ RomneyDa released this 
+ v2026.8.35 
+ 713ba57 
+
+This is a gateway-only extended-stable release, which is our current equivalent to LTS. This release is OpenClaw from the end of August 2026, plus critical security updates, reliability and performance fixes, and features like new model support. The latest version of OpenClaw at the time of this release is 2026.9.7
+
+2026.8.35
+Highlights
+GPT-6.1 Sol support: add the current Sol model across OpenAI routing, discovery, reasoning, harness, and Reef guard-model boundaries. (#161400, #162955)
+Safer updates and recovery: preserve plugin settings, prevent duplicate Gateways, handle pnpm package updates without terminal failures, and retain plugin inventory through migration. (#160344, #160193, #161920, #161485) Thanks @EndeavorPioneer, @grtninja, @alkor2000, @xilopaint, and @aniruddhaadak80.
+Reliable agent completion: preserve complete delegated and CLI answers, release suspended child capacity, recover full cron output, and prevent failed requests from consuming steered questions. (#162843, #162368, #160520, #162439) Thanks @zyz619963502zyz, @holgergruenhagen, @armstrongsam25, @davidcittadini, @jayzhou2309, and @obviyus.
+Security and ownership hardening: keep secret-store kinds stable during rotation, restore admitted secret-egress execution, and retain explicit cron tool allowlists while repairing stale automatic snapshots. (#160926, #160760, #162432) Thanks @zachisfine, @yetval, @VACInc, and @obviyus.
+Channel and integration reliability: repair Gmail and IMAP watchers, Matrix direct mappings, Telegram progress, remote MCP startup, and managed llama.cpp startup on clean Windows hosts. (#161503, #160413, #161727, #161546, #162376, #163093) Thanks @obviyus, @kazuyuki-eguchi, @Ayushdevo, @addyCooks, @VACInc, @Patrick-Erichsen, and @RomneyDa.
+Performance and UI continuity: bound model-catalog waits, reduce Codex fleet heap pressure, and keep saved WebChat replies visible across history refresh races. (#161132, #162912, #162763) Thanks @jayzhou2309, @Flakedict, @obviyus, @609NFT, and @VACInc.
+Changes
+Extended-stable release preparation: align OpenClaw and every publishable official plugin to 2026.8.35 while preserving the 2026.8.34 publication contract.
+Model compatibility: add GPT-6.1 Sol to the branch-native OpenAI and Reef compatibility owners. (#161400, #162955)
+Fixes
+Update safety: preserve incompatible-plugin settings through recovery, keep retained plugin records during migration, avoid pnpm terminal failures, and carry the existing Gateway lock through container/direct startup. (#160344, #161485, #161920, #160193) Thanks @EndeavorPioneer, @aniruddhaadak80, @alkor2000, @xilopaint, and @grtninja.
+Agent delivery: recover uncapped cron replies, preserve complete CLI subagent answers, honor skipped announcements, retain detached transcripts, release suspended child slots, and keep failed requests from replacing earlier questions with a steer. (#160520, #162843, #161542, #161091, #162368, #162439) Thanks @jayzhou2309, @zyz619963502zyz, @holgergruenhagen, @armstrongsam25, @davidcittadini, and @obviyus.
+Cron and tools: bound thinking-catalog hydration, repair stale automatic tool snapshots without widening explicit allowlists, and deliver manual runs after their creating turn ends. (#161132, #162432, #162780) Thanks @jayzhou2309, @Flakedict, and @obviyus.
+Sessions and tool results: reject malformed session targets, preserve spawned working directories, project deeply nested MCP results safely, and keep remote MCP bundles working in native sessions. (#161533, #162308, #160825, #162376) Thanks @wangmiao0668000666, @Takhoffman, @hpyhandsome, and @Patrick-Erichsen.
+Channels: recover Gmail transient binds, bound IMAP backlog processing, restore Matrix direct mappings, and restore Telegram progress when hooks suppress previews. (#161503, #160413, #161727, #161546) Thanks @obviyus, @kazuyuki-eguchi, @Ayushdevo, @addyCooks, and @VACInc.
+Runtime reliability: prevent redaction stalls, cancel stale thinking-catalog waits, pass the responding agent to TTS model selection, stop durable worker retries from freezing hosts, reduce Codex fleet heap use, and install the required Visual C++ runtime after a managed llama.cpp launch failure. (#161089, #161319, #161454, #160812, #162912, #163093) Thanks @Baumus, @drakeo338, @aounakram, @RileyJJY, @aniruddhaadak80, @obviyus, @609NFT, and @RomneyDa.
+Secrets and sandboxing: retain secret entry kinds during value rotation and repair read-only copied skills without escaping their confined roots. (#160926, #162304, #162295) Thanks @zachisfine and @yetval.
+WebChat: keep saved replies visible when stale history responses race with live messages. (#162763) Thanks @VACInc.
+Complete contribution record
+
+This audited record covers the complete v2026.8.34..741d94f history: 49 in-range PRs + 0 retained seed-only PRs = 49 unique PRs. The generation manifest also supplies direct commits as editorial input; the grouped notes above prioritize user impact.
+
+Pull requests
+PR #160344 Related #159477. Thanks @EndeavorPioneer.
+PR #160193 Related #159941. Thanks @grtninja.
+PR #160825 Related #160418. Thanks @wangmiao0668000666 and @Takhoffman and @hpyhandsome.
+PR #161400 Related #161397.
+PR #161089
+PR #161503 Related #161467. Thanks @obviyus and @kazuyuki-eguchi.
+PR #161533
+PR #161542
+PR #161319 Related #161310. Thanks @Baumus.
+PR #161270 Thanks @zachisfine.
+PR #161454 Related #161431. Thanks @drakeo338 and @aounakram.
+PR #160413 Related #160353. Thanks @Ayushdevo and @addyCooks.
+PR #161132 Related #161112. Thanks @jayzhou2309 and @Flakedict.
+PR #161727
+PR #161091
+PR #160812 Related #160735. Thanks @RileyJJY and @aniruddhaadak80.
+PR #161485 Related #161329. Thanks @aniruddhaadak80.
+PR #160760 Thanks @VACInc.
+PR #160715 Thanks @VACInc.
+PR #160843 Thanks @VACInc.
+PR #162304
+PR #160520 Thanks @jayzhou2309.
+PR #161920 Related #161866. Thanks @alkor2000 and @xilopaint.
+PR #162308
+PR #162368 Related #162267. Thanks @armstrongsam25 and @davidcittadini.
+PR #162295
+PR #162439 Thanks @obviyus.
+PR #149925 Thanks @obviyus.
+PR #77023 Thanks @fuller-stack-dev.
+PR #109709
+PR #161069 Thanks @obviyus.
+PR #161546 Thanks @VACInc.
+PR #162763 Thanks @VACInc.
+PR #162432 Thanks @obviyus.
+PR #137832 Related #130753. Thanks @jalehman.
+PR #147969 Thanks @obviyus.
+PR #91499 Thanks @mmaps.
+PR #112483 Thanks @joshavant.
+PR #112661 Related #111809. Thanks @joshavant and @andersonjeccel.
+PR #162780 Thanks @obviyus.
+PR #104595
+PR #115404 Related #115758. Thanks @RomneyDa.
+PR #121113
+PR #162912 Related #162802. Thanks @obviyus and @609NFT.
+PR #162843 Related #162777. Thanks @zyz619963502zyz and @holgergruenhagen.
+PR #162955
+PR #162376 Thanks @Patrick-Erichsen.
+PR #163093 Thanks @RomneyDa.
+PR #160926 Related #158968. Thanks @zachisfine and @yetval.
+Release verification
+npm package: https://www.npmjs.com/package/openclaw/v/2026.8.35
+registry tarball: https://registry.npmjs.org/openclaw/-/openclaw-2026.8.35.tgz
+integrity: sha512-7Bk/IeHTk04gfR4rW2SEVwwmGiXg2CcRxL3K1U2JzTgwbSSSlbX/yoLEbkiiSMOLtOuAi1ZfVbgmSsSlOA/E6g==
+release SHA: 713ba5785d72d6ed1cec971e21307f16cc4234a6
+npm preflight: https://github.com/openclaw/openclaw/actions/runs/36994752811
+full release validation: https://github.com/openclaw/openclaw/actions/runs/36994246053
+plugin npm publication: https://github.com/openclaw/openclaw/actions/runs/37008498463
+OpenClaw npm publication: https://github.com/openclaw/openclaw/actions/runs/37010843200 — npm accepted publication; the workflow expired only during bounded registry readback.
+Docker publication recovery: https://github.com/openclaw/openclaw/actions/runs/37013839190
+Manual finalization: owner-approved after independent verification of npm signatures and provenance, the extended-stable selector, all 89 plugin packages, Docker digests and attestations, both requested upgrade paths, live model and channel paths, and public container smoke.
+Contributors
+jalehman, Takhoffman, and 31 other contributors
+Assets
+7
+🎉
+9
+❤️
+1
+🚀
+3
+12 people reacted
+openclaw 2026.8.34
+openclaw 2026.8.34
+Compare
+ github-actions released this 
+ v2026.8.34 
+ d21cb74 
+
+This is a gateway-only extended-stable release, which is our current equivalent to LTS. This release is OpenClaw from the end of August 2026, plus critical security updates, reliability and performance fixes, and features like new model support. The latest version of OpenClaw at the time of this release is 2026.9.7
+
+2026.8.34
+Highlights
+Extended-stable correctness rollup: backport 113 audit-selected fix units across upgrades, Doctor, authentication, sessions, channels, plugins, sandboxing, filesystem safety, model runtimes, and release packaging.
+Complete rescan: re-evaluate the full 2026.8.33 discovery range, large mixed-purpose pull requests, and the 2026.7.35 lineage instead of advancing only from the previous backport cursor.
+Upgrade and recovery hardening: preserve credentials, agent state, plugin inventory, transcripts, schedules, service ownership, and runtime links through upgrades, restarts, and Doctor repair.
+Boundary fixes: tighten remote filesystem mutation, plugin and skill scanning, browser authentication, channel reply identity, private skill ingress, and scoped runtime ownership.
+Changes
+Extended-stable release preparation: align OpenClaw, publishable plugins, native version metadata, generated channel catalogs, and npm package inventories to 2026.8.34.
+Fixes
+Plugins: Recover orphan installs without weakening ownership.
+Doctor: Repair keyed multi-agent rosters without ownership (#134706)
+Prevent device pairing migration crash on contaminated records.
+Doctor: Preserve per-agent memory search during upgrades.
+Doctor: Detect shared auth migration by provenance (#134808)
+Cron: Refuse stale doctor store rewrites.
+Gateway: Refresh model catalog after auth changes (#134361)
+Openai: Repair stale doctor route pins.
+Auth: Verify shared credential migration receipts (#134952)
+Cron: Keep model aliases scoped to the selected owner (#135069)
+Memory: Resolve profile auth for compatible embeddings (#134744)
+Auth: Recover credentials stranded by completed migrations (#135346)
+Auth: Relogin repairs stale profile order after upgrade.
+Auth: Preserve custom provider SecretRefs in Doctor.
+Docker: Install libgomp1 in the runtime image for managed llama.cpp (#134532)
+Devices: Allow authorized scoped node token management (#135617)
+Msteams: Thread context is dropped when a channel reply has no replyToId (#129345)
+Ui: Ignore tool-only model auth rows (#134218)
+Cron: Kind change fails with "command env must be an object" when env is omitted (#134639)
+Backup: Exclude workspaces before traversal.
+Infra: Drop empty PATHEXT entries from Windows extension lookup (#135807)
+Anthropic: Context usage is lost when a proxy omits message_delta usage (#135467)
+Systemd: Protect credentials in managed backups (#131786)
+Agents: Preserve requester MCP runtime ownership (#134819)
+Plugins: Refresh persisted registry when source mounts change (#136517)
+Gateway restart hangs while followup drain retries a draining error (#136713)
+Auth: Preserve OAuth metadata during session SDK refresh (#127988)
+Doctor: Recognize configured memory provider secret references (#137782)
+Sessions: Preserve logical shared-store ownership (#138380)
+Full-access tasks lose tools after Gateway restart (#138701)
+Keep unchanged files out of session diffs (#138877)
+Auth: Recover billing-disabled profiles in minutes instead of hours (#136364)
+Auth: Keep an unset default model unchanged during login (#139218)
+Gateway: Avoid crashes when an upgrading client disconnects (#139061)
+Shell-env: Preserve CLI terminal ownership during login imports (#139308)
+Auto-reply: Fold trailing transcript growth into memory-flush fresh totals (#138928)
+Cron: Preserve pending paced checks across restart (#140083)
+Daemon: Systemd install no longer aborts on "ownership could not be verified" after a clock step (#137253)
+Config: Apply environment changes after in-process restart (#141296)
+Pasted text is missing in model-locked Codex sessions (#142021)
+Docker: Restore source builds after dependency ownership guard (#142073)
+Security: Preserve existing WhatsApp group allowlists (#142589)
+Doctor: Avoid installing unselected search providers (#142640)
+Doctor: Migrate legacy Codex music model selectors (#143235)
+Doctor: Preserve selected model metadata in diagnostics (#144332)
+Discord: Report parent channel denies for thread permissions (#121144)
+Config: Avoid false model changes when saving settings (#144807)
+Doctor: Preserve legacy registry files when quarantine fails (#144787)
+Retain route ownership while discovering conversations (#146927)
+Install: Preserve runtime links when Node validation fails (#147221)
+Doctor reports missing OAuth dir for channel config with no installed plugin (#147888)
+Doctor: Stop private pending inputs replaying after session repair (#148625)
+Channels: Settle task-scoped context leases once (#148922)
+Push: Normalize malformed proxy auth errors (#149112)
+Cron: Reject invalid stagger before silent schedule changes (#151740)
+Cli: Keep model validation out of session execution (#154763)
+Agents: Treat empty credential environment variables as unresolved (#155558)
+Doctor: Apply ambient-owner fallback to dream diary and all memory target handlers (#156437)
+Sandbox: Unblock scoped recreation across runtime targets (#157808)
+Security: Parse gpt generation numbers in the audit tier check (#140012)
+Doctor: Report shared auth health without a default agent (#134902)
+Doctor: Converge redundant shared auth relocation subsets (#135096)
+Doctor: Report retained device-auth files (#133978)
+Update: Stop detached updates after chat ownership is revoked (#137312)
+Doctor: Inspect source auth stores during full lint (#137610)
+Gateway: Recover queued RPC replies across restart (#138565)
+Doctor: Preserve legacy ownership during config repair (#138837)
+Prevent browser profile permission hangs in Doctor (#139612)
+Gateway: Prevent systemd restarts from hanging (#140914)
+Doctor: Recover legacy node tokens with invalid scopes (#143599)
+Skills: Refresh session snapshots on gateway restart (#122110)
+Doctor: Session SQLite import drops Codex assistant messages from legacy transcripts (#140296)
+Cron: Forward claude-cli auth profile on scheduled runs to prevent OAuth expiration (#144266)
+Discord: Preserve sender-owned line limits and reply scope (#137969)
+Install: Never replace or break an existing nvm during installation (#145317)
+Sessions: Recover omitted historical transcripts in Doctor (#120781)
+Update: Recognize custom npm prefix installations (#146091)
+Context: Preserve provider-scoped prompt budgets before reply maintenance (#141052)
+Sessions: Prevent Doctor and startup memory exhaustion (#149704)
+Daemon: Preserve inline auth through service upgrades (#149686)
+Update: Verify paired trusted-proxy gateways with service credentials (#153540)
+Background continuations lose session access and GitHub tools (#141865)
+Doctor: Decode session headers across read chunk boundaries (#154034)
+Faulty compaction probe wedges run steering and restart aborts (#154868)
+Ui: Publish rejected goal operations (#156363)
+Commands: Deduplicate session lifecycle keys (#158487)
+Plugins: Preserve runtime artifact preference (#158487)
+Agents: Strip private skill authoring from public ingress (#159220)
+Plugins: Preserve include ownership during uninstall (#159945)
+Channels: Restore system-agent approval reactions (#159132)
+Moonshot: Reject inherited thinking-model keys (#158437)
+Tencent: Ignore inherited effort-map keys (#158437)
+Workers: Observe already-aborted operation promises (#158228)
+Gateway: Reject non-object Claude history rows (#158228)
+Copilot: Recover pool after synchronous factory failures (#157819)
+Tlon: Preserve IPv6 ship origins (#157825)
+Sms: Clean revoked inbound media (#157825)
+Slack: Preserve replacement webhook registrations (#158085)
+Matrix: Accept system-agent approval reactions (#158164)
+Channels: Retain typing tick exclusivity across restart (#158830)
+Acp: Format unset optional tool arguments (#159417)
+Meeting: Clean up partial audio startup (#15798
