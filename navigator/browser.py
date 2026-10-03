@@ -27,6 +27,9 @@ from playwright.sync_api import (
     ViewportSize,
     sync_playwright,
 )
+from playwright.sync_api import (
+    Error as PlaywrightError,
+)
 
 from .schemas import BoundingBox, Interactable, PageState
 
@@ -100,10 +103,17 @@ _SCAN_JS = """
 
 _STATE_JS = """
 () => ({
+  url: location.href,
+  title: document.title,
   scroll_y: window.scrollY,
   scroll_height: document.documentElement.scrollHeight,
 })
 """
+
+# Playwright raises this when a navigation tears down the page mid-evaluate.
+_CONTEXT_DESTROYED = "Execution context was destroyed"
+# How long to wait for a navigation to *begin* after an action that may cause one.
+_NAV_GRACE_MS = 1_500
 
 
 class BrowserSession:
@@ -167,26 +177,54 @@ class BrowserSession:
         the agent on it: a slow third-party beacon should not stall a run.
         """
         with contextlib.suppress(Exception):
+            self.page.wait_for_load_state("domcontentloaded", timeout=idle_timeout_ms)
+        with contextlib.suppress(Exception):
             self.page.wait_for_load_state("networkidle", timeout=idle_timeout_ms)
         self.page.wait_for_timeout(min_wait_ms)
+
+    def _after_possible_navigation(self, url_before: str) -> None:
+        """Give a click/Enter up to a short grace period to start navigating.
+
+        Without this the harness can observe the *old* page right after a
+        successful click (the navigation has not started yet) and report a
+        false "no visible change", or run JavaScript while the page is being
+        torn down.
+        """
+        with contextlib.suppress(Exception):
+            self.page.wait_for_url(lambda u: u != url_before, timeout=_NAV_GRACE_MS)
+        self.settle()
+
+    def _evaluate(self, js: str, arg: Any = None, attempts: int = 3) -> Any:
+        """``page.evaluate`` that survives a navigation racing the call."""
+        last: Exception | None = None
+        for _ in range(attempts):
+            try:
+                return self.page.evaluate(js, arg) if arg is not None else self.page.evaluate(js)
+            except PlaywrightError as e:
+                if _CONTEXT_DESTROYED not in str(e):
+                    raise
+                last = e
+                self.settle()
+        assert last is not None
+        raise last
 
     def screenshot(self) -> bytes:
         return self.page.screenshot(type="png", full_page=False)
 
     def state(self) -> PageState:
-        extra: dict[str, Any] = self.page.evaluate(_STATE_JS)
+        info: dict[str, Any] = self._evaluate(_STATE_JS)
         return PageState(
-            url=self.page.url,
-            title=self.page.title(),
+            url=str(info.get("url") or self.page.url),
+            title=str(info.get("title") or ""),
             viewport_width=VIEWPORT["width"],
             viewport_height=VIEWPORT["height"],
-            scroll_y=float(extra.get("scroll_y", 0)),
-            scroll_height=float(extra.get("scroll_height", 0)),
+            scroll_y=float(info.get("scroll_y", 0)),
+            scroll_height=float(info.get("scroll_height", 0)),
         )
 
     def scan_interactables(self) -> list[Interactable]:
         """Generic scan of visible interactive elements, labelled 1..N top-to-bottom."""
-        raw: list[dict[str, Any]] = self.page.evaluate(_SCAN_JS, _INTERACTABLE_SELECTOR)
+        raw: list[dict[str, Any]] = self._evaluate(_SCAN_JS, _INTERACTABLE_SELECTOR)
         raw.sort(key=lambda r: (round(r["box"]["y"] / 8), r["box"]["x"]))
         return [
             Interactable(
@@ -205,20 +243,24 @@ class BrowserSession:
         Used only by the extraction verifier. It is the whole body's innerText;
         no selectors, no knowledge of where GitHub puts anything.
         """
-        text: str = self.page.evaluate("() => document.body.innerText")
+        text: str = self._evaluate("() => document.body.innerText")
         return text[:max_chars]
 
     # -- actions -----------------------------------------------------------
 
     def click(self, x: float, y: float) -> None:
+        before = self.page.url
         self.page.mouse.click(x, y)
-        self.settle()
+        self._after_possible_navigation(before)
 
     def type_text(self, text: str, submit: bool = False) -> None:
+        before = self.page.url
         self.page.keyboard.type(text, delay=20)
         if submit:
             self.page.keyboard.press("Enter")
-        self.settle()
+            self._after_possible_navigation(before)
+        else:
+            self.settle()
 
     def scroll(self, direction: str, amount: int = 600) -> None:
         dy = amount if direction == "down" else -amount
@@ -226,8 +268,9 @@ class BrowserSession:
         self.page.wait_for_timeout(300)
 
     def press(self, key: str) -> None:
+        before = self.page.url
         self.page.keyboard.press(key)
-        self.settle()
+        self._after_possible_navigation(before)
 
     def back(self) -> None:
         with contextlib.suppress(Exception):
