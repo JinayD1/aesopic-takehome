@@ -1,6 +1,6 @@
 # ADR 001: Ground clicks with pixel coordinates; keep Set-of-Mark behind a flag
 
-**Status:** accepted (2026-10-03). Supersedes the plan's provisional choice of
+**Status:** accepted (2026-10-03), replicated on a second model the same day. Supersedes the plan's provisional choice of
 Set-of-Mark as default (PLAN.md §5, decision 2).
 
 ## Context
@@ -69,17 +69,44 @@ only observed error in 186 clicks and it is structural: badge misreads get
 more likely as pages get denser, while coordinate error got no worse on the
 densest page in the set.
 
+## Replication on a smaller model (Sonnet 5, same day)
+
+The obvious objection was that coordinates won only because Opus 5 localises
+so well, and that a smaller model would favour labels. We ran the identical
+60-run design on Claude Sonnet 5 (`experiments/RESULTS_grounding_sonnet.md`,
+cross-model table in `RESULTS_grounding_by_model.md`):
+
+| Model | Arm | Task success | Wrong-target | Detour runs | Click error mean (max) | Cost/run | Wall s |
+|---|---|---|---|---|---|---|---|
+| Opus 5 | coords | 30/30 | 0/90 | 0/30 | 0.8 px (2.0) | $0.153 | 39.5 |
+| Opus 5 | som | 30/30 | 3/96 | 3/30 | — | $0.158 | 43.0 |
+| Sonnet 5 | coords | 30/30 | 0/90 | 0/30 | 1.1 px (19.1) | $0.062 | 34.3 |
+| Sonnet 5 | som | **27/30** | 3/122 | **14/30** | — | $0.068 | 37.6 |
+
+The hypothesis was not supported. Sonnet's coordinate clicks stayed inside
+their targets on every one of 90 clicks (one landed 19 px from a centre, at
+the edge of the Releases link, still inside it). Set-of-Mark got *worse*: three
+runs were ended by loop detection after the model asked three times for badge
+**1009**, a number not on screen, ignoring the harness's "label 1009 is not on
+screen (1..95)" feedback each time; and 14 of 30 runs took detours, including
+two where it clicked "Sign in" (badge 9) when it wanted search (badge 8).
+
+Reading: badge-number reading is the weaker skill on the smaller model, not
+pointing. Set-of-Mark adds a symbolic step (read a number, emit that number)
+that can fail outright, while coordinate estimation degrades gracefully: a
+few pixels off is still inside a 24 px-tall link.
+
+A side result worth more than the grounding question for a production tool:
+Sonnet 5 with coordinates hit 100% at 40% of the cost and 13% less wall time.
+
 ## What this does not show
 
-- One site, one model, one day. GitHub's targets are large and well spaced.
-- SoM's expected advantage was never exercised: tiny targets, or a model that
-  localises worse than Opus 5 (Haiku 4.5 would be the obvious test).
-- Three events is a thin base for a rate; the CI on SoM's wrong-target rate
-  is 1–9%.
-
-If any of those conditions change, re-run `make experiment-grounding` with
-the relevant `--model` or repositories; the harness, oracle and scoring are
-unchanged by this decision.
+- One site, two models, one day. GitHub's targets are large and well spaced;
+  a page of 10 px icon buttons could still favour labels.
+- Haiku 4.5 is untested. The harness is unchanged by this decision:
+  `make experiment-grounding` with `--model claude-haiku-4-5` runs it.
+- Three and three events are thin bases for rates; the intervals are in the
+  reports.
 
 ## Consequences
 

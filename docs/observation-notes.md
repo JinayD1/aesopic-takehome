@@ -88,3 +88,9 @@ at the end. Each entry: what happened, why it matters.
   the model's next action went back. First version without the second
   condition flagged every search-box click (stop-word bug); the two-condition
   version matches manual review exactly.
+- **Sonnet 5 replication (60 runs).** Coords 30/30, mean error 1.1 px, one
+  19 px click still inside the Releases box. SoM 27/30: 3 loop_detected runs
+  where the model asked for badge "1009" three times despite INVALID feedback
+  naming the valid range; 14/30 detours; 2 "Sign in" (9) for search (8). The
+  "smaller model prefers labels" hypothesis is not supported; the symbolic
+  read-a-number step is the fragile part. Sonnet coords: $0.062, 34 s.

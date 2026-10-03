@@ -94,11 +94,32 @@ Every run's step-by-step JSON is committed under `experiments/traces/`.
 fewer wrong targets, and marginally cheaper. I switched the default and left
 the plan's original prediction struck through rather than rewritten.
 
-**What this does not show.** One site, one model, one day, with large and
-well-spaced targets. The case where Set-of-Mark should shine, tiny targets or
-a model that localises worse than Opus 5, was never exercised. Three events is
-a thin base for a rate. The harness is unchanged by the decision, so
-`make experiment-grounding --model claude-haiku-4-5` is the obvious next run.
+**Replication on Sonnet 5.** The natural objection was that coordinates only
+won because Opus 5 points so precisely, and a smaller model would favour
+labels. Same 60-run design, same oracle, Sonnet 5:
+
+| Model | Arm | Task success | Wrong-target | Detours | Click error mean (max) | Cost/run |
+|---|---|---|---|---|---|---|
+| Opus 5 | coords | 30/30 | 0/90 | 0/30 | 0.8 px (2.0) | $0.153 |
+| Opus 5 | som | 30/30 | 3/96 | 3/30 | — | $0.158 |
+| Sonnet 5 | coords | 30/30 | 0/90 | 0/30 | 1.1 px (19.1) | $0.062 |
+| Sonnet 5 | som | **27/30** | 3/122 | **14/30** | — | $0.068 |
+
+The objection was wrong in the other direction. Sonnet's pointing stayed
+inside the target on all 90 clicks. Its badge reading got worse: three runs
+ended in loop detection after it asked three times for badge **1009**, which
+was not on screen, ignoring the harness's explicit "not on screen (1..95)"
+feedback; 14 of 30 runs detoured. Reading a number and emitting it is a
+symbolic step that fails outright; pointing degrades gracefully, since a few
+pixels off is still inside a 24 px link. The loop detector did its job in all
+three failures: each ended at step 6 or 7 rather than at the 15-step budget.
+
+Cheapest headline from the whole project: Sonnet 5 with coordinates was
+30/30 at 40% of Opus's cost.
+
+**What this does not show.** One site, two models, one day, with large and
+well-spaced targets. A page of tiny icon buttons could still favour labels.
+Haiku 4.5 is untested; the harness runs it with one flag.
 
 ## 4. What didn't work, and what it taught me
 
@@ -148,8 +169,10 @@ Every item here came from a real run, is in the commit history, and has a trace.
 - **One fixed viewport.** 1280×800 at 1x keeps the screenshot under the API's
   resize threshold so coordinates map 1:1. GitHub's Releases link sits at
   y≈787, right at the fold; a smaller viewport would force a scroll on every run.
-- **Cost over cleverness.** ~$0.17 and ~50–70 s per run on Opus 5. Sonnet 5
-  would roughly halve both; I did not measure its success rate.
+- **Cost over cleverness.** ~$0.15 and ~40 s per run on Opus 5. Sonnet 5 with
+  coordinates measured 30/30 at $0.06 and 34 s, so it is the better production
+  default; Opus stays the default here only because it is what the main
+  experiment and the sample output were produced with.
 - **Single-turn steps.** The model cannot look back at a previous screenshot.
   URL, title and the outcome line per step have been enough in every run so far.
 
@@ -161,15 +184,14 @@ Every item here came from a real run, is in the commit history, and has a trace.
 - Release notes are captured only as far as they are visible in the final
   screenshot; download links come from the visible asset list, which GitHub
   collapses by default.
-- The experiment ran on one model (Opus 5) and three repositories on one day.
+- The experiments ran on two models and three repositories on one day.
   Intervals are wide; see §3 for exactly how wide.
 
 ## 7. What I would do with another week
 
-1. A model sweep (Opus 5 / Sonnet 5 / Haiku 4.5) on the grounding experiment.
-   The coordinates-vs-labels answer almost certainly depends on how well the
-   model localises, and cost per *successful* run is the number that matters.
-   Then the extraction experiment as designed.
+1. Haiku 4.5 on the grounding experiment, and a page with genuinely small
+   targets, to find where coordinates finally break. Then the extraction
+   experiment as designed.
 2. Attach the previous screenshot when the last action had no effect, so the
    model can see what changed rather than being told.
 3. Trim the verifier's input to the text near the release card to cut its cost.

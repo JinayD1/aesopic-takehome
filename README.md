@@ -82,11 +82,13 @@ goal ─► screenshot ─► model picks ONE action (click at x,y / type / scro
   1280×800 at 1x so the screenshot maps 1:1 onto the page. This was *not* the
   plan: the plan was Set-of-Mark (the harness draws a numbered badge on every
   interactable found by a site-agnostic scan, and the model answers with a
-  number). A pre-registered 60-run experiment found both at 30/30 task success,
-  coordinates within 2 px of element centres on every click, and Set-of-Mark
-  with three wrong-badge clicks in a dense region. The pre-registered rule said
-  switch, so coordinates are the default and Set-of-Mark is `--grounding som`.
-  → [ADR 001](docs/adr/001-grounding-coordinates-over-set-of-mark.md), [experiment](experiments/RESULTS_grounding.md)
+  number). A pre-registered 60-run experiment on Opus 5 found both at 30/30
+  task success, coordinates within 2 px of element centres on every click, and
+  Set-of-Mark with three wrong-badge clicks. A replication on Sonnet 5 widened
+  the gap: coordinates 30/30, Set-of-Mark 27/30 with three runs stuck asking
+  for a badge that did not exist. So coordinates are the default and
+  Set-of-Mark is `--grounding som`.
+  → [ADR 001](docs/adr/001-grounding-coordinates-over-set-of-mark.md), [by model](experiments/RESULTS_grounding_by_model.md)
 - **Extraction.** Structured-output read of the final screenshot, then a second
   call that checks each string against the page's rendered text and reports any
   correction. Output includes whether the two agreed.
@@ -113,7 +115,7 @@ GitHub's release card shows both the git tag and the commit. We return
 | Unit | `make test` | overlay geometry, click resolution incl. rescaling, loop signatures, pixel diff, URL parsing, vision-vs-text diffing | nothing |
 | Replay | `make test` | the whole agent loop against a scripted model and fake browser: happy path, coordinate attribution, step budget, loop detection, stuck hint, abort, invalid label, model errors, browser crash, timeout | nothing |
 | Live | `make test-live` | one real run scored against the GitHub API | network + key (~$0.20) |
-| Experiment | `make experiment-grounding` | 60 scored navigations, Set-of-Mark vs coordinates | ~$11 |
+| Experiment | `make experiment-grounding` | 60 scored navigations, Set-of-Mark vs coordinates (run on Opus 5 and Sonnet 5) | ~$11 / ~$4 |
 
 CI runs lint, mypy (strict) and the first two layers on every push.
 
@@ -141,6 +143,7 @@ sample_output.json
 - **GitHub bot detection** is not handled beyond a realistic user agent; a
   rate-limit page would end the run with `abort`.
 - **Relative dates.** `published_at` is whatever the page shows ("18 hours ago").
-- **Cost/latency.** ~$0.15–0.18 and ~40–70 s per run on Claude Opus 5 (measured over 60 runs).
+- **Cost/latency.** ~$0.15 and ~40 s per run on Opus 5; ~$0.06 and ~34 s on
+  Sonnet 5 at the same 30/30 success (`--model claude-sonnet-5`).
 
 See [OBSERVATIONS.md](OBSERVATIONS.md) for the full discussion.
