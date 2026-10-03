@@ -80,8 +80,7 @@ BROWSER_ACTION_TOOL: ToolParam = {
                 "description": "type: press Enter after typing.",
             },
             "direction": {
-                "type": ["string", "null"],
-                "enum": ["up", "down", None],
+                "anyOf": [{"type": "string", "enum": ["up", "down"]}, {"type": "null"}],
                 "description": "scroll: direction.",
             },
             "amount": {
