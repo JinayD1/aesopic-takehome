@@ -21,3 +21,6 @@ runs/
 
 # experiment scratch
 experiments/results/smoke_*.jsonl
+
+# experiment traces: JSON for every run is committed; screenshots only for a few representative runs (git add -f)
+experiments/traces/**/*.png

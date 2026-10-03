@@ -1,0 +1,1190 @@
+{
+  "index": 3,
+  "before": {
+    "url": "https://github.com/react/react",
+    "title": "GitHub - react/react: The library for web and native user interfaces. · GitHub",
+    "viewport_width": 1280,
+    "viewport_height": 800,
+    "scroll_y": 0.0,
+    "scroll_height": 4192.0
+  },
+  "action": {
+    "type": "click",
+    "reason": "Open the Releases section",
+    "label": 92,
+    "x": null,
+    "y": null,
+    "text": null,
+    "submit": false,
+    "direction": null,
+    "amount": null,
+    "key": null,
+    "summary": null
+  },
+  "after": {
+    "url": "https://github.com/react/react/releases",
+    "title": "Releases · react/react · GitHub",
+    "viewport_width": 1280,
+    "viewport_height": 800,
+    "scroll_y": 0.0,
+    "scroll_height": 7275.0
+  },
+  "screenshot_path": "/Users/jinay/Documents/aesopic-takehome/experiments/traces/grounding/som/20261003T223804_react-react-05/step_04.png",
+  "interactables": [
+    {
+      "label": 1,
+      "tag": "a",
+      "role": null,
+      "text": "Homepage",
+      "box": {
+        "x": 32.0,
+        "y": 20.0,
+        "width": 32.0,
+        "height": 32.0
+      }
+    },
+    {
+      "label": 2,
+      "tag": "button",
+      "role": null,
+      "text": "Platform",
+      "box": {
+        "x": 80.0,
+        "y": 16.0,
+        "width": 101.28125,
+        "height": 40.0
+      }
+    },
+    {
+      "label": 3,
+      "tag": "button",
+      "role": null,
+      "text": "Solutions",
+      "box": {
+        "x": 181.28125,
+        "y": 16.0,
+        "width": 107.234375,
+        "height": 40.0
+      }
+    },
+    {
+      "label": 4,
+      "tag": "button",
+      "role": null,
+      "text": "Resources",
+      "box": {
+        "x": 288.515625,
+        "y": 16.0,
+        "width": 116.015625,
+        "height": 40.0
+      }
+    },
+    {
+      "label": 5,
+      "tag": "button",
+      "role": null,
+      "text": "Open Source",
+      "box": {
+        "x": 404.53125,
+        "y": 16.0,
+        "width": 134.96875,
+        "height": 40.0
+      }
+    },
+    {
+      "label": 6,
+      "tag": "button",
+      "role": null,
+      "text": "Enterprise",
+      "box": {
+        "x": 539.5,
+        "y": 16.0,
+        "width": 114.71875,
+        "height": 40.0
+      }
+    },
+    {
+      "label": 7,
+      "tag": "a",
+      "role": null,
+      "text": "Pricing",
+      "box": {
+        "x": 654.21875,
+        "y": 16.0,
+        "width": 69.203125,
+        "height": 40.0
+      }
+    },
+    {
+      "label": 8,
+      "tag": "button",
+      "role": null,
+      "text": "Search or jump to, type / to search",
+      "box": {
+        "x": 1000.75,
+        "y": 20.0,
+        "width": 42.0,
+        "height": 32.0
+      }
+    },
+    {
+      "label": 9,
+      "tag": "a",
+      "role": null,
+      "text": "Sign in",
+      "box": {
+        "x": 1050.75,
+        "y": 20.0,
+        "width": 72.09375,
+        "height": 32.0
+      }
+    },
+    {
+      "label": 10,
+      "tag": "a",
+      "role": null,
+      "text": "Sign up",
+      "box": {
+        "x": 1130.84375,
+        "y": 20.0,
+        "width": 77.15625,
+        "height": 32.0
+      }
+    },
+    {
+      "label": 11,
+      "tag": "button",
+      "role": null,
+      "text": "",
+      "box": {
+        "x": 1216.0,
+        "y": 20.0,
+        "width": 32.0,
+        "height": 32.0
+      }
+    },
+    {
+      "label": 12,
+      "tag": "a",
+      "role": null,
+      "text": "react",
+      "box": {
+        "x": 56.0,
+        "y": 91.0,
+        "width": 44.6875,
+        "height": 23.0
+      }
+    },
+    {
+      "label": 13,
+      "tag": "a",
+      "role": null,
+      "text": "react",
+      "box": {
+        "x": 114.21875,
+        "y": 91.0,
+        "width": 47.46875,
+        "height": 23.0
+      }
+    },
+    {
+      "label": 14,
+      "tag": "a",
+      "role": null,
+      "text": "Notifications",
+      "box": {
+        "x": 858.21875,
+        "y": 88.0,
+        "width": 123.671875,
+        "height": 28.0
+      }
+    },
+    {
+      "label": 15,
+      "tag": "a",
+      "role": null,
+      "text": "Fork 51.4k",
+      "box": {
+        "x": 989.890625,
+        "y": 88.0,
+        "width": 126.140625,
+        "height": 28.0
+      }
+    },
+    {
+      "label": 16,
+      "tag": "a",
+      "role": null,
+      "text": "Star 251k",
+      "box": {
+        "x": 1124.03125,
+        "y": 88.0,
+        "width": 123.96875,
+        "height": 28.0
+      }
+    },
+    {
+      "label": 17,
+      "tag": "a",
+      "role": null,
+      "text": "Code",
+      "box": {
+        "x": 32.0,
+        "y": 143.0,
+        "width": 75.421875,
+        "height": 30.0
+      }
+    },
+    {
+      "label": 18,
+      "tag": "a",
+      "role": null,
+      "text": "Issues 866",
+      "box": {
+        "x": 115.421875,
+        "y": 143.0,
+        "width": 128.765625,
+        "height": 30.0
+      }
+    },
+    {
+      "label": 19,
+      "tag": "a",
+      "role": null,
+      "text": "Pull requests 544",
+      "box": {
+        "x": 252.1875,
+        "y": 143.0,
+        "width": 173.40625,
+        "height": 30.0
+      }
+    },
+    {
+      "label": 20,
+      "tag": "a",
+      "role": null,
+      "text": "Actions",
+      "box": {
+        "x": 433.59375,
+        "y": 143.0,
+        "width": 90.9375,
+        "height": 30.0
+      }
+    },
+    {
+      "label": 21,
+      "tag": "a",
+      "role": null,
+      "text": "Security and quality 8",
+      "box": {
+        "x": 532.53125,
+        "y": 143.0,
+        "width": 204.4375,
+        "height": 30.0
+      }
+    },
+    {
+      "label": 22,
+      "tag": "a",
+      "role": null,
+      "text": "Insights",
+      "box": {
+        "x": 744.96875,
+        "y": 143.0,
+        "width": 93.859375,
+        "height": 30.0
+      }
+    },
+    {
+      "label": 23,
+      "tag": "button",
+      "role": null,
+      "text": "main",
+      "box": {
+        "x": 32.0,
+        "y": 206.0,
+        "width": 105.796875,
+        "height": 32.0
+      }
+    },
+    {
+      "label": 24,
+      "tag": "a",
+      "role": null,
+      "text": "981 Branches",
+      "box": {
+        "x": 145.796875,
+        "y": 206.0,
+        "width": 124.9375,
+        "height": 32.0
+      }
+    },
+    {
+      "label": 25,
+      "tag": "a",
+      "role": null,
+      "text": "175 Tags",
+      "box": {
+        "x": 270.734375,
+        "y": 206.0,
+        "width": 92.453125,
+        "height": 32.0
+      }
+    },
+    {
+      "label": 26,
+      "tag": "input",
+      "role": "combobox",
+      "text": "Go to file",
+      "box": {
+        "x": 648.140625,
+        "y": 207.0,
+        "width": 154.0,
+        "height": 30.0
+      }
+    },
+    {
+      "label": 27,
+      "tag": "button",
+      "role": null,
+      "text": "Code",
+      "box": {
+        "x": 827.140625,
+        "y": 206.0,
+        "width": 108.859375,
+        "height": 32.0
+      }
+    },
+    {
+      "label": 28,
+      "tag": "button",
+      "role": null,
+      "text": "",
+      "box": {
+        "x": 510.265625,
+        "y": 267.0,
+        "width": 28.0,
+        "height": 28.0
+      }
+    },
+    {
+      "label": 29,
+      "tag": "button",
+      "role": null,
+      "text": "",
+      "box": {
+        "x": 546.265625,
+        "y": 267.0,
+        "width": 28.0,
+        "height": 28.0
+      }
+    },
+    {
+      "label": 30,
+      "tag": "a",
+      "role": null,
+      "text": "21,710 Commits",
+      "box": {
+        "x": 793.6875,
+        "y": 267.0,
+        "width": 129.3125,
+        "height": 28.0
+      }
+    },
+    {
+      "label": 31,
+      "tag": "a",
+      "role": null,
+      "text": "",
+      "box": {
+        "x": 45.0,
+        "y": 270.09375,
+        "width": 29.0,
+        "height": 21.8125
+      }
+    },
+    {
+      "label": 32,
+      "tag": "a",
+      "role": null,
+      "text": "acdlite",
+      "box": {
+        "x": 74.0,
+        "y": 270.5,
+        "width": 45.59375,
+        "height": 21.0
+      }
+    },
+    {
+      "label": 33,
+      "tag": "a",
+      "role": null,
+      "text": "Fix: Infinite loop caused by uDV + error recovery (",
+      "box": {
+        "x": 127.59375,
+        "y": 272.5,
+        "width": 319.0625,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 34,
+      "tag": "a",
+      "role": null,
+      "text": "#37739",
+      "box": {
+        "x": 446.65625,
+        "y": 272.5,
+        "width": 50.40625,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 35,
+      "tag": "a",
+      "role": null,
+      "text": ")",
+      "box": {
+        "x": 497.0625,
+        "y": 272.5,
+        "width": 5.203125,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 36,
+      "tag": "a",
+      "role": null,
+      "text": "278794d",
+      "box": {
+        "x": 669.203125,
+        "y": 272.0,
+        "width": 51.015625,
+        "height": 18.0
+      }
+    },
+    {
+      "label": 37,
+      "tag": "a",
+      "role": null,
+      "text": "react.dev",
+      "box": {
+        "x": 1000.0,
+        "y": 304.0,
+        "width": 63.75,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 38,
+      "tag": "a",
+      "role": null,
+      "text": ".claude",
+      "box": {
+        "x": 75.0,
+        "y": 319.5,
+        "width": 46.703125,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 39,
+      "tag": "a",
+      "role": null,
+      "text": "[repo] init claude config (",
+      "box": {
+        "x": 409.796875,
+        "y": 319.5,
+        "width": 163.046875,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 40,
+      "tag": "a",
+      "role": null,
+      "text": "#35617",
+      "box": {
+        "x": 572.84375,
+        "y": 319.5,
+        "width": 48.734375,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 41,
+      "tag": "a",
+      "role": null,
+      "text": ")",
+      "box": {
+        "x": 621.578125,
+        "y": 319.5,
+        "width": 5.203125,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 42,
+      "tag": "a",
+      "role": null,
+      "text": "declarative",
+      "box": {
+        "x": 976.0,
+        "y": 335.0,
+        "width": 91.5625,
+        "height": 25.5
+      }
+    },
+    {
+      "label": 43,
+      "tag": "a",
+      "role": null,
+      "text": "frontend",
+      "box": {
+        "x": 1069.5625,
+        "y": 335.0,
+        "width": 77.046875,
+        "height": 25.5
+      }
+    },
+    {
+      "label": 44,
+      "tag": "a",
+      "role": null,
+      "text": "javascript",
+      "box": {
+        "x": 1148.609375,
+        "y": 335.0,
+        "width": 83.78125,
+        "height": 25.5
+      }
+    },
+    {
+      "label": 45,
+      "tag": "a",
+      "role": null,
+      "text": ".codesandbox",
+      "box": {
+        "x": 75.0,
+        "y": 360.5,
+        "width": 90.484375,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 46,
+      "tag": "a",
+      "role": null,
+      "text": "Update Code Sandbox CI to Node 20 to Match .nvmrc (",
+      "box": {
+        "x": 409.796875,
+        "y": 360.5,
+        "width": 356.015625,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 47,
+      "tag": "a",
+      "role": null,
+      "text": "#34329",
+      "box": {
+        "x": 765.8125,
+        "y": 360.5,
+        "width": 51.84375,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 48,
+      "tag": "a",
+      "role": null,
+      "text": "library",
+      "box": {
+        "x": 976.0,
+        "y": 368.5,
+        "width": 64.234375,
+        "height": 25.5
+      }
+    },
+    {
+      "label": 49,
+      "tag": "a",
+      "role": null,
+      "text": "react",
+      "box": {
+        "x": 1042.234375,
+        "y": 368.5,
+        "width": 56.640625,
+        "height": 25.5
+      }
+    },
+    {
+      "label": 50,
+      "tag": "a",
+      "role": null,
+      "text": "ui",
+      "box": {
+        "x": 1100.875,
+        "y": 368.5,
+        "width": 36.640625,
+        "height": 25.5
+      }
+    },
+    {
+      "label": 51,
+      "tag": "a",
+      "role": null,
+      "text": ".github",
+      "box": {
+        "x": 75.0,
+        "y": 401.5,
+        "width": 44.921875,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 52,
+      "tag": "a",
+      "role": null,
+      "text": "[DevTools] Add an independent npm publish workflow for react-devtools…",
+      "box": {
+        "x": 409.796875,
+        "y": 401.5,
+        "width": 478.53125,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 53,
+      "tag": "a",
+      "role": null,
+      "text": "Readme",
+      "box": {
+        "x": 976.0,
+        "y": 404.0,
+        "width": 76.546875,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 54,
+      "tag": "a",
+      "role": null,
+      "text": "MIT license",
+      "box": {
+        "x": 976.0,
+        "y": 433.0,
+        "width": 97.46875,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 55,
+      "tag": "a",
+      "role": null,
+      "text": "compiler",
+      "box": {
+        "x": 75.0,
+        "y": 442.5,
+        "width": 55.96875,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 56,
+      "tag": "a",
+      "role": null,
+      "text": "[compiler] Remove unused collections in HIR passes (",
+      "box": {
+        "x": 409.796875,
+        "y": 442.5,
+        "width": 346.171875,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 57,
+      "tag": "a",
+      "role": null,
+      "text": "#37699",
+      "box": {
+        "x": 755.96875,
+        "y": 442.5,
+        "width": 51.203125,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 58,
+      "tag": "a",
+      "role": null,
+      "text": "Code of conduct",
+      "box": {
+        "x": 976.0,
+        "y": 462.0,
+        "width": 131.953125,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 59,
+      "tag": "a",
+      "role": null,
+      "text": "fixtures",
+      "box": {
+        "x": 75.0,
+        "y": 483.5,
+        "width": 48.375,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 60,
+      "tag": "a",
+      "role": null,
+      "text": "[DevTools] Remove the dead Timeline profiler code (",
+      "box": {
+        "x": 409.796875,
+        "y": 483.5,
+        "width": 337.84375,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 61,
+      "tag": "a",
+      "role": null,
+      "text": "#37187",
+      "box": {
+        "x": 747.640625,
+        "y": 483.5,
+        "width": 48.078125,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 62,
+      "tag": "a",
+      "role": null,
+      "text": ")",
+      "box": {
+        "x": 795.71875,
+        "y": 483.5,
+        "width": 5.203125,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 63,
+      "tag": "a",
+      "role": null,
+      "text": "Contributing",
+      "box": {
+        "x": 976.0,
+        "y": 491.0,
+        "width": 104.5625,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 64,
+      "tag": "a",
+      "role": null,
+      "text": "Security policy",
+      "box": {
+        "x": 976.0,
+        "y": 520.0,
+        "width": 119.34375,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 65,
+      "tag": "a",
+      "role": null,
+      "text": "flow-typed",
+      "box": {
+        "x": 75.0,
+        "y": 524.5,
+        "width": 69.96875,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 66,
+      "tag": "a",
+      "role": null,
+      "text": "[Flight] Preserve leading",
+      "box": {
+        "x": 409.796875,
+        "y": 524.5,
+        "width": 157.765625,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 67,
+      "tag": "a",
+      "role": null,
+      "text": "U+FEFF",
+      "box": {
+        "x": 571.359375,
+        "y": 527.5,
+        "width": 43.359375,
+        "height": 14.0
+      }
+    },
+    {
+      "label": 68,
+      "tag": "a",
+      "role": null,
+      "text": "in text rows (",
+      "box": {
+        "x": 618.515625,
+        "y": 524.5,
+        "width": 82.90625,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 69,
+      "tag": "a",
+      "role": null,
+      "text": "#37625",
+      "box": {
+        "x": 701.421875,
+        "y": 524.5,
+        "width": 50.484375,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 70,
+      "tag": "a",
+      "role": null,
+      "text": ")",
+      "box": {
+        "x": 751.90625,
+        "y": 524.5,
+        "width": 5.203125,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 71,
+      "tag": "a",
+      "role": null,
+      "text": "Activity",
+      "box": {
+        "x": 976.0,
+        "y": 549.0,
+        "width": 72.078125,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 72,
+      "tag": "a",
+      "role": null,
+      "text": "packages",
+      "box": {
+        "x": 75.0,
+        "y": 565.5,
+        "width": 61.890625,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 73,
+      "tag": "a",
+      "role": null,
+      "text": "Fix: Infinite loop caused by uDV + error recovery (",
+      "box": {
+        "x": 409.796875,
+        "y": 565.5,
+        "width": 319.0625,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 74,
+      "tag": "a",
+      "role": null,
+      "text": "#37739",
+      "box": {
+        "x": 728.859375,
+        "y": 565.5,
+        "width": 50.40625,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 75,
+      "tag": "a",
+      "role": null,
+      "text": ")",
+      "box": {
+        "x": 779.265625,
+        "y": 565.5,
+        "width": 5.203125,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 76,
+      "tag": "a",
+      "role": null,
+      "text": "Custom properties",
+      "box": {
+        "x": 976.0,
+        "y": 578.0,
+        "width": 144.09375,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 77,
+      "tag": "a",
+      "role": null,
+      "text": "scripts",
+      "box": {
+        "x": 75.0,
+        "y": 606.5,
+        "width": 43.734375,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 78,
+      "tag": "a",
+      "role": null,
+      "text": "[Flight] Server References for arbitrary object types (",
+      "box": {
+        "x": 409.796875,
+        "y": 606.5,
+        "width": 341.875,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 79,
+      "tag": "a",
+      "role": null,
+      "text": "#37636",
+      "box": {
+        "x": 751.671875,
+        "y": 606.5,
+        "width": 51.078125,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 80,
+      "tag": "a",
+      "role": null,
+      "text": ".editorconfig",
+      "box": {
+        "x": 75.0,
+        "y": 647.5,
+        "width": 81.703125,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 81,
+      "tag": "a",
+      "role": null,
+      "text": "Remove trim_trailing_whitespace from editorconfig (",
+      "box": {
+        "x": 409.796875,
+        "y": 647.5,
+        "width": 338.171875,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 82,
+      "tag": "a",
+      "role": null,
+      "text": "#31413",
+      "box": {
+        "x": 747.96875,
+        "y": 647.5,
+        "width": 49.84375,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 83,
+      "tag": "a",
+      "role": null,
+      "text": "51.4k forks",
+      "box": {
+        "x": 976.0,
+        "y": 665.0,
+        "width": 96.796875,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 84,
+      "tag": "a",
+      "role": null,
+      "text": ".eslintignore",
+      "box": {
+        "x": 75.0,
+        "y": 688.5,
+        "width": 79.078125,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 85,
+      "tag": "a",
+      "role": null,
+      "text": "[DevTools] Remove the dead Timeline profiler code (",
+      "box": {
+        "x": 409.796875,
+        "y": 688.5,
+        "width": 337.84375,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 86,
+      "tag": "a",
+      "role": null,
+      "text": "#37187",
+      "box": {
+        "x": 747.640625,
+        "y": 688.5,
+        "width": 48.078125,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 87,
+      "tag": "a",
+      "role": null,
+      "text": ")",
+      "box": {
+        "x": 795.71875,
+        "y": 688.5,
+        "width": 5.203125,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 88,
+      "tag": "a",
+      "role": null,
+      "text": "Report repository",
+      "box": {
+        "x": 976.0,
+        "y": 694.0,
+        "width": 112.6875,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 89,
+      "tag": "a",
+      "role": null,
+      "text": ".eslintrc.js",
+      "box": {
+        "x": 75.0,
+        "y": 729.5,
+        "width": 65.5625,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 90,
+      "tag": "a",
+      "role": null,
+      "text": "[RN] Move RN globals to RN private interface module (",
+      "box": {
+        "x": 409.796875,
+        "y": 729.5,
+        "width": 351.34375,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 91,
+      "tag": "a",
+      "role": null,
+      "text": "#37550",
+      "box": {
+        "x": 761.140625,
+        "y": 729.5,
+        "width": 50.65625,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 92,
+      "tag": "a",
+      "role": null,
+      "text": "Releases",
+      "box": {
+        "x": 976.0,
+        "y": 746.0,
+        "width": 67.890625,
+        "height": 24.0
+      }
+    },
+    {
+      "label": 93,
+      "tag": "a",
+      "role": null,
+      "text": ".git-blame-ignore-revs",
+      "box": {
+        "x": 75.0,
+        "y": 770.5,
+        "width": 146.5,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 94,
+      "tag": "a",
+      "role": null,
+      "text": "Add run prettier commit to .git-blame-ignore-revs",
+      "box": {
+        "x": 409.796875,
+        "y": 770.5,
+        "width": 320.90625,
+        "height": 17.0
+      }
+    },
+    {
+      "label": 95,
+      "tag": "a",
+      "role": null,
+      "text": "19.3.0 (September 9, 2026) Latest",
+      "box": {
+        "x": 976.0,
+        "y": 782.0,
+        "width": 272.0,
+        "height": 39.0
+      }
+    }
+  ],
+  "clicked_at": [
+    1009.9453125,
+    758.0
+  ],
+  "clicked_label": 92,
+  "page_changed": true,
+  "model_latency_s": 3.6272422499896493,
+  "usage": {
+    "input_tokens": 1697,
+    "output_tokens": 280,
+    "cache_read_input_tokens": 1410,
+    "cache_creation_input_tokens": 0,
+    "api_calls": 1
+  },
+  "error": null
+}

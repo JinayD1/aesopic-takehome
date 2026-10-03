@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
@@ -40,11 +41,67 @@ def _step_records(trace_dir: Path) -> list[dict[str, Any]]:
     return [json.loads(p.read_text()) for p in sorted(trace_dir.glob("step_*.json"))]
 
 
+_STOP = {
+    "the",
+    "this",
+    "that",
+    "open",
+    "click",
+    "link",
+    "button",
+    "page",
+    "section",
+    "from",
+    "into",
+    "with",
+    "repository",
+    "repo",
+    "sidebar",
+    "find",
+    "view",
+    "main",
+    "box",
+}
+
+
+def _words(text: str) -> set[str]:
+    return {w for w in re.findall(r"[a-z0-9]+", text.lower()) if len(w) >= 3 and w not in _STOP}
+
+
+def is_wrong_target(step: dict[str, Any], next_step: dict[str, Any] | None) -> bool:
+    """Did the click land somewhere the model did not intend?
+
+    Two conditions, both required, to keep false positives out:
+    1. the model's `reason` shares no content word with the text of the element
+       the click actually hit (so "open the search box" -> "Search or jump to"
+       is fine);
+    2. the model treated it as a mistake: its next action went back, or
+       returned to the URL it was on before this click.
+    """
+    label = step.get("clicked_label")
+    if label is None or next_step is None:
+        return False
+    hit = next((i for i in step.get("interactables", []) if i["label"] == label), None)
+    if not hit or not hit.get("text"):
+        return False
+    if _words(step["action"].get("reason", "")) & _words(hit["text"]):
+        return False
+    went_back = next_step["action"]["type"] == "back"
+    returned = (next_step.get("after") or {}).get("url") == step["before"]["url"]
+    return bool(went_back or returned)
+
+
 def click_metrics(steps: list[dict[str, Any]]) -> dict[str, Any]:
     """Per-run click statistics derived from the trace."""
     clicks = [s for s in steps if s["action"]["type"] == "click"]
     misclicks = [s for s in clicks if s.get("page_changed") is False]
     off_target = [s for s in clicks if s.get("clicked_at") and s.get("clicked_label") is None]
+    wrong_target = [
+        s
+        for i, s in enumerate(steps)
+        if s["action"]["type"] == "click"
+        and is_wrong_target(s, steps[i + 1] if i + 1 < len(steps) else None)
+    ]
     invalid = [s for s in clicks if s.get("error")]
     errors_px: list[float] = []
     for s in clicks:
@@ -59,7 +116,14 @@ def click_metrics(steps: list[dict[str, Any]]) -> dict[str, Any]:
         "clicks": len(clicks),
         "misclicks": len(misclicks),
         "off_target_clicks": len(off_target),
+        "wrong_target_clicks": len(wrong_target),
+        "wrong_target_detail": [
+            f"step {s['index'] + 1}: wanted '{s['action'].get('reason', '')[:50]}' hit label "
+            f"{s['clicked_label']} '{next(i['text'] for i in s['interactables'] if i['label'] == s['clicked_label'])[:40]}'"
+            for s in wrong_target
+        ],
         "invalid_clicks": len(invalid),
+        "detour": len(steps) > 5,
         "mean_click_error_px": (sum(errors_px) / len(errors_px)) if errors_px else None,
         "max_click_error_px": max(errors_px) if errors_px else None,
     }
@@ -86,7 +150,10 @@ def score_run(result: RunResult, oracle: dict[str, Any], trace_dir: Path) -> dic
         "tag_ok": tag_ok,
         "commit_ok": commit_ok,
         "author_ok": author_ok,
-        "recovered": bool(cm["misclicks"] > 0 and result.run.status is RunStatus.SUCCESS),
+        "recovered": bool(
+            (cm["misclicks"] > 0 or cm["wrong_target_clicks"] > 0)
+            and result.run.status is RunStatus.SUCCESS
+        ),
         **cm,
         "model_latency_s": round(sum(s.get("model_latency_s", 0.0) for s in steps), 1),
         "wall_time_s": result.run.wall_time_s,
@@ -125,7 +192,27 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--max-steps", type=int, default=15)
     p.add_argument("--parallel", type=int, default=3)
     p.add_argument("--out", type=Path, default=RESULTS_DIR / "grounding.jsonl")
+    p.add_argument(
+        "--rescore",
+        action="store_true",
+        help="Recompute trace-derived metrics for existing rows (no API calls) and exit.",
+    )
     args = p.parse_args(argv)
+
+    if args.rescore:
+        rows = read_jsonl(args.out)
+        for row in rows:
+            td = Path(row.get("trace_dir", ""))
+            if td.is_dir():
+                cm = click_metrics(_step_records(td))
+                row.update(cm)
+                row["recovered"] = bool(
+                    (cm["misclicks"] > 0 or cm["wrong_target_clicks"] > 0)
+                    and row.get("status") == "success"
+                )
+        args.out.write_text("".join(json.dumps(r, default=str) + "\n" for r in rows))
+        print(f"rescored {len(rows)} rows")
+        return 0
 
     for repo in args.repos:
         o = load_or_fetch_oracle(repo)

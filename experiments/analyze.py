@@ -11,6 +11,7 @@ from __future__ import annotations
 import sys
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any
 
 from .common import EXP_DIR, RESULTS_DIR, fmt_rate, median, percentile, read_jsonl, wilson
@@ -82,6 +83,17 @@ def grounding_report(rows: list[dict[str, Any]]) -> str:
             ),
         ),
         row(
+            "**Wrong-target clicks** (hit an element unrelated to the stated intent)",
+            lambda rs: fmt_rate(
+                sum(r.get("wrong_target_clicks", 0) for r in rs),
+                sum(r.get("clicks", 0) for r in rs),
+            ),
+        ),
+        row(
+            "Runs with a detour (more than the 5-step minimum path)",
+            lambda rs: fmt_rate(sum(1 for r in rs if r.get("detour")), len(rs)),
+        ),
+        row(
             "Invalid actions (bad label / out of bounds)",
             lambda rs: str(sum(r.get("invalid_clicks", 0) for r in rs)),
         ),
@@ -98,7 +110,7 @@ def grounding_report(rows: list[dict[str, Any]]) -> str:
             ),
         ),
         row(
-            "Runs that misclicked but still succeeded",
+            "Runs that misclicked or hit the wrong target but still succeeded",
             lambda rs: str(sum(1 for r in rs if r.get("recovered"))),
         ),
         row(
@@ -142,6 +154,18 @@ def grounding_report(rows: list[dict[str, Any]]) -> str:
     for a in arms:
         c = Counter(r.get("status", "?") for r in by_arm[a])
         lines.append(f"- **{a}**: " + ", ".join(f"{k} ×{v}" for k, v in c.most_common()))
+
+    wrong = [r for r in rows if r.get("wrong_target_clicks")]
+    lines += ["", "## Wrong-target clicks", ""]
+    if not wrong:
+        lines.append("None.")
+    else:
+        lines += ["| Arm | Repo | Run | What happened | Trace |", "|---|---|---|---|---|"]
+        for r in sorted(wrong, key=lambda r: (r["arm"], r["repo"], r["run"])):
+            for d in r.get("wrong_target_detail", []):
+                lines.append(
+                    f"| {r['arm']} | {r['repo']} | {r['run']} | {d.replace('|', '/')} | `{Path(r.get('trace_dir', '')).name}` |"
+                )
 
     fails = [r for r in rows if not r.get("task_success")]
     lines += ["", "## Failed runs", ""]

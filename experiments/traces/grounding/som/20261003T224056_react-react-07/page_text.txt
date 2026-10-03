@@ -1,0 +1,290 @@
+Skip to content
+Navigation Menu
+Platform
+Solutions
+Resources
+Open Source
+Enterprise
+Pricing
+Sign in
+Sign up
+react
+/
+react
+Public
+Notifications
+Fork 51.4k
+ Star 251k
+Code
+Issues
+866
+Pull requests
+544
+Actions
+Security and quality
+8
+Insights
+Releases: react/react
+Releases
+Tags
+Release list
+19.3.0 (September 9, 2026)
+19.2.8 (July 21st, 2026)
+19.1.9 (July 21st, 2026)
+19.0.8 (July 21st, 2026)
+19.2.7 (June 1st, 2026)
+19.1.8 (June 1st, 2026)
+19.0.7 (June 1st, 2026)
+19.2.6 (May 6th, 2026)
+19.1.7 (May 6th, 2026)
+19.0.6 (May 6th, 2026)
+Previous
+Next
+19.3.0 (September 9, 2026)
+19.3.0 (September 9, 2026) Latest
+Compare
+ eps1lon released this 
+ v19.3.0
+ 1d34f91 
+
+Below is a list of all new features, APIs, and bug fixes.
+
+Read the React 19.3 release post for more information.
+
+New React Features
+<ViewTransition />: Adds <ViewTransition /> and addTransitionType APIs to power View Transition animations in React (@sebmarkbage, @jackpope, @gaearon: #31975, #31987, #31996, #31999, #32001, #32002, #32028, #32029, #32031, #32034, #32038, #32041, #32050, #32090, #32105, #32254, #32379, #32422, #32462, #32540, #32545, #32585, #32599, #32611, #32612, #32617, #32651, #32653, #32656, #32664, #32699, #32723, #32734, #32751, #32752, #32760, #32761, #32764, #32772, #32790, #32819, #32820, #32822, #32833, #32849, #33094, #33191, #33200, #33206, #33293, #33330, #33331, #33332, #33357, #33362, #33433, #33576, #34374, #34450, #34481, #34500, #34502, #34510, #34511, #34539, #35567, #35564, #35485, #35380, #35063, #35060, #34676, #36917, #35337, #35520)
+Fragment Refs: Add Refs to <Fragment /> to support composable platform behavior (@jackpope, @sebmarkbage, @eps1lon, @Dhakshin2007, @chirokas, @teamleaderleo, @fallintoplace: #32465, #32613, #32619, #32654, #32660, #32682, #32722, #32813, #32814, #33056, #33058, #33093, #34069, #34103, #34544, #34545, #37062, #37061, #37060, #36047, #36010, #35642, #35641, #35637, #35630, #34935, #37457, #37408, #37326, #37251, #37171, #37169, #37168, #37167, #37166, #37165, #37164, #37163, #37162, #37161, #37160, #37125, #37063)
+New React DOM Features
+browser(): a new react-dom API that returns a usable which errors during server rendering and resolves in the browser. use(browser()) inside a <Suspense> boundary marks a subtree as browser-only without reporting a recoverable error (@gnoff: #37143, #37241)
+Added an onBrowserBailout option to the react-dom/server APIs to observe when a subtree defers to the browser (@gnoff #37193)
+Notable changes
+Enable Trusted Types API integration (@rickhanlonii #35816)
+Transitions now render independently instead of being entangled into a single render, so a slow transition no longer holds up unrelated ones (@acdlite #37290)
+Added a DEV-only warning when a component appears to have been unblocked by calling use() conditionally (@hoxyq, @eps1lon: #37104, #37203, #37491)
+All Changes
+React
+Fast Refresh Fixes
+Fix Fast Refresh to find and remount edits to components wrapped behind lazy() (@sophiebits #36965)
+Fix Fast Refresh so edits to a memo() comparison function take effect (@sophiebits #36964)
+Fix Fast Refresh crash when an edit changes the kind of a component's type (@sophiebits #36963)
+Unify hot reload type resolution for Fast Refresh (@sophiebits #36962)
+Fix Fast Refresh to remount correctly when an edit changes the component kind (@sophiebits #36950)
+Double invoke effects in StrictMode after Fast Refresh (@eps1lon #35962)
+Performance Track Fixes
+Prevent crash when accessing $$typeof in Performance Tracks (@eps1lon #35679)
+Handle non-string function names in Performance Tracks (@eps1lon #35659)
+Use minus (-) instead of en dash for removed props in Performance Tracks (@eps1lon #35649)
+Handle arrays with bigints in deep objects in Performance Tracks (@eps1lon #35648)
+Don't enumerate typed array props in Performance Tracks in DEV (@UditDewan #36913)
+Bail out of diffing wi...
+Read more
+Contributors
+sophiebits, sebmarkbage, and 34 other contributors
+Assets
+2
+Loading
+👍
+45
+😄
+2
+🎉
+12
+❤️
+25
+🚀
+16
+👀
+2
+74 people reacted
+19.2.8 (July 21st, 2026)
+19.2.8 (July 21st, 2026)
+Compare
+ eps1lon released this 
+ v19.2.8
+ 1dd4ecb 
+React Server Components
+Performance improvements when decoding
+(#37087 by @eps1lon)
+Contributors
+eps1lon
+Assets
+2
+👍
+38
+😄
+8
+🎉
+9
+❤️
+11
+🚀
+7
+👀
+9
+52 people reacted
+19.1.9 (July 21st, 2026)
+19.1.9 (July 21st, 2026)
+Compare
+ eps1lon released this 
+ v19.1.9
+ 642ce6d 
+React Server Components
+Performance improvements when decoding
+(#37088 by @eps1lon)
+Contributors
+eps1lon
+Assets
+2
+👍
+6
+😄
+1
+🎉
+1
+❤️
+1
+🚀
+1
+👀
+2
+7 people reacted
+19.0.8 (July 21st, 2026)
+19.0.8 (July 21st, 2026)
+Compare
+ eps1lon released this 
+ v19.0.8
+ dec2f1b 
+React Server Components
+Performance improvements when decoding
+(#37089 by @eps1lon)
+Contributors
+eps1lon
+Assets
+2
+👍
+2
+2 people reacted
+19.2.7 (June 1st, 2026)
+19.2.7 (June 1st, 2026)
+Compare
+ eps1lon released this 
+ v19.2.7
+ 6117d7c 
+React Server Components
+Fixed missing FormData entries in Server Actions which regressed in 19.2.6
+(#36566 by @unstubbable)
+Contributors
+unstubbable
+Assets
+2
+👍
+37
+😄
+8
+🎉
+10
+❤️
+11
+🚀
+9
+👀
+4
+53 people reacted
+19.1.8 (June 1st, 2026)
+19.1.8 (June 1st, 2026)
+Compare
+ eps1lon released this 
+ v19.1.8
+ 27de93c 
+React Server Components
+Fixed missing FormData entries in Server Actions which regressed in 19.1.7
+(#36567 by @unstubbable)
+Contributors
+unstubbable
+Assets
+2
+👍
+4
+4 people reacted
+19.0.7 (June 1st, 2026)
+19.0.7 (June 1st, 2026)
+Compare
+ eps1lon released this 
+ v19.0.7
+ 3620850 
+React Server Components
+Fixed missing FormData entries in Server Actions which regressed in 19.0.6
+(#36568 by @unstubbable)
+Contributors
+unstubbable
+Assets
+2
+👍
+2
+2 people reacted
+19.2.6 (May 6th, 2026)
+19.2.6 (May 6th, 2026)
+Compare
+ eps1lon released this 
+ v19.2.6
+ eaf3e95 
+React Server Components
+Type hardening and performance improvements
+(#36425 by @eps1lon and @unstubbable)
+Contributors
+unstubbable and eps1lon
+Assets
+2
+👍
+25
+❤️
+9
+🚀
+9
+37 people reacted
+19.1.7 (May 6th, 2026)
+19.1.7 (May 6th, 2026)
+Compare
+ eps1lon released this 
+ v19.1.7
+ a658165 
+React Server Components
+Type hardening and performance improvements
+(#36425 by @eps1lon and @unstubbable)
+Contributors
+unstubbable and eps1lon
+Assets
+2
+🎉
+4
+4 people reacted
+19.0.6 (May 6th, 2026)
+19.0.6 (May 6th, 2026)
+Compare
+ eps1lon released this 
+ v19.0.6
+ 38020c0 
+React Server Components
+Type hardening and performance improvements
+(#36425 by @eps1lon and @unstubbable)
+Contributors
+unstubbable and eps1lon
+Assets
+2
+👍
+2
+2 people reacted
+Previous 1 2 3 4 5 … 13 14 Next
+Footer
+© 2026 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Community
+Docs
+Contact
+Manage cookies
+Do not share my personal information
+ 
