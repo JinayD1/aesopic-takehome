@@ -1,0 +1,329 @@
+Skip to content
+Navigation Menu
+Platform
+Solutions
+Resources
+Open Source
+Enterprise
+Pricing
+Sign in
+Sign up
+pallets
+/
+flask
+Public
+ Sponsor
+Notifications
+Fork 17k
+ Star 74.8k
+Code
+Issues
+1
+Pull requests
+3
+Discussions
+Actions
+Security and quality
+3
+Insights
+Releases: pallets/flask
+Releases
+Tags
+Release list
+3.1.3
+3.1.2
+3.1.1
+3.1.0
+3.0.3
+3.0.2
+3.0.1
+3.0.0
+2.3.3
+2.2.5
+Previous
+Next
+3.1.3
+3.1.3 Latest
+Compare
+ github-actions released this 
+ 3.1.3 
+ 22d9247 
+
+This is the Flask 3.1.3 security fix release, which fixes a security issue but does not otherwise change behavior and should not result in breaking changes compared to the latest feature release.
+
+PyPI: https://pypi.org/project/Flask/3.1.3/
+Changes: https://flask.palletsprojects.com/page/changes/#version-3-1-3
+
+The session is marked as accessed for operations that only access the keys but not the values, such as in and len. GHSA-68rp-wp8r-4726
+Assets
+4
+flask-3.1.3-py3-none-any.whl
+sha256:f4bcbefc124291925f1a26446da31a5178f9483862233b23c0c96a20701f670c
+101 KB
+flask-3.1.3.tar.gz
+sha256:0ef0e52b8a9cd932855379197dd8f94047b359ca0a78695144304cb45f87c9eb
+741 KB
+Source code (zip)
+Source code (tar.gz)
+👍
+5
+🎉
+12
+❤️
+8
+👀
+2
+20 people reacted
+3.1.2
+3.1.2
+Compare
+ github-actions released this 
+ 3.1.2 
+ 2c1b30d 
+
+This is the Flask 3.1.2 fix release, which fixes bugs but does not otherwise change behavior and should not result in breaking changes compared to the latest feature release.
+
+PyPI: https://pypi.org/project/Flask/3.1.2/
+Changes: https://flask.palletsprojects.com/page/changes/#version-3-1-2
+Milestone: https://github.com/pallets/flask/milestone/38?closed=1
+
+stream_with_context does not fail inside async views. #5774
+When using follow_redirects in the test client, the final state of session is correct. #5786
+Relax type hint for passing bytes IO to send_file. #5776
+Assets
+4
+👍
+7
+🎉
+10
+❤️
+3
+17 people reacted
+3.1.1
+3.1.1
+Compare
+ github-actions released this 
+ 3.1.1 
+ 7fff56f 
+
+This is the Flask 3.1.1 fix release, which fixes bugs but does not otherwise change behavior and should not result in breaking changes compared to the latest feature release.
+
+PyPI: https://pypi.org/project/Flask/3.1.1/
+Changes: https://flask.palletsprojects.com/en/stable/changes/#version-3-1-1
+Milestone https://github.com/pallets/flask/milestone/36?closed=1
+
+Fix signing key selection order when key rotation is enabled via SECRET_KEY_FALLBACKS. GHSA-4grg-w6v8-c28g
+Fix type hint for cli_runner.invoke. #5645
+flask --help loads the app and plugins first to make sure all commands are shown. #5673
+Mark sans-io base class as being able to handle views that return AsyncIterable. This is not accurate for Flask, but makes typing easier for Quart. #5659
+Assets
+5
+👍
+20
+🎉
+5
+❤️
+7
+🚀
+5
+27 people reacted
+3.1.0
+3.1.0
+Compare
+ github-actions released this 
+ 3.1.0 
+ ab81496 
+
+This is the Flask 3.1.0 feature release. A feature release may include new features, remove previously deprecated code, add new deprecations, or introduce potentially breaking changes. We encourage everyone to upgrade, and to use a tool such as pip-tools to pin all dependencies and control upgrades. Test with warnings treated as errors to be able to adapt to deprecation warnings early.
+
+PyPI: https://pypi.org/project/Flask/3.1.0/
+Changes: https://flask.palletsprojects.com/en/stable/changes/#version-3-1-0
+Milestone: https://github.com/pallets/flask/milestone/33?closed=1
+
+Drop support for Python 3.8. #5623
+Update minimum dependency versions to latest feature releases. Werkzeug >= 3.1, ItsDangerous >= 2.2, Blinker >= 1.9. #5624, #5633
+Provide a configuration option to control automatic option responses. #5496
+Flask.open_resource/open_instance_resource and Blueprint.open_resource take an encoding parameter to use when opening in text mode. It defaults to utf-8. #5504
+Request.max_content_length can be customized per-request instead of only through the MAX_CONTENT_LENGTH config. Added MAX_FORM_MEMORY_SIZE and MAX_FORM_PARTS config. Added documentation about resource limits to the security page. #5625
+Add support for the Partitioned cookie attribute (CHIPS), with the SESSION_COOKIE_PARTITIONED config. #5472
+-e path takes precedence over default .env and .flaskenv files. load_dotenv loads default files in addition to a path unless load_defaults=False is passed. #5628
+Support key rotation with the SECRET_KEY_FALLBACKS config, a list of old secret keys that can still be used for unsigning. Extensions will need to add support. #5621
+Fix how setting host_matching=True or subdomain_matching=False interacts with SERVER_NAME. Setting SERVER_NAME no longer restricts requests to only that domain. #5553
+Request.trusted_hosts is checked during routing, and can be set through the TRUSTED_HOSTS config. #5636
+Assets
+5
+👍
+16
+😄
+1
+🎉
+3
+❤️
+22
+🚀
+12
+👀
+1
+44 people reacted
+3.0.3
+3.0.3
+Compare
+ github-actions released this 
+ 3.0.3 
+ c12a5d8 
+
+This is a fix release for the 3.0.x feature branch.
+
+PyPI: https://pypi.org/project/Flask/3.0.3/
+Changes: https://flask.palletsprojects.com/en/3.0.x/changes/#version-3-0-3
+Milestone: https://github.com/pallets/flask/milestone/35?closed=1
+
+The default hashlib.sha1 may not be available in FIPS builds. Don't access it at import time so the developer has time to change the default. #5448
+Don't initialize the cli attribute in the sansio scaffold, but rather in the Flask concrete class. #5270
+Assets
+5
+👍
+29
+😄
+4
+🎉
+6
+❤️
+2
+🚀
+5
+37 people reacted
+3.0.2
+3.0.2
+Compare
+ github-actions released this 
+ 3.0.2 
+ d203059 
+
+This is a fix release for the 3.0.x feature release branch. It fixes bugs but does not otherwise change behavior and should not result in breaking changes.
+
+Changes: https://flask.palletsprojects.com/en/3.0.x/changes/#version-3.0.2
+Milestone: https://github.com/pallets/flask/milestone/34?closed=1
+PyPI: https://pypi.org/project/Flask/3.0.2/
+Assets
+5
+👍
+26
+😄
+2
+❤️
+4
+🚀
+13
+👀
+1
+40 people reacted
+3.0.1
+3.0.1
+Compare
+ github-actions released this 
+ 3.0.1 
+ f622b1c 
+
+This is a fix release for the 3.0.x feature release branch.
+
+Fixes an issue where using other JSON providers, such as flask-orjson, previously caused loaded session data to have an incorrect format in some cases.
+
+Changes: https://flask.palletsprojects.com/en/3.0.x/changes/#version-3-0-1
+Milestone: https://github.com/pallets/flask/milestone/32?closed=1
+PyPI: https://pypi.org/project/Flask/3.0.1/
+Assets
+5
+👍
+29
+❤️
+8
+🚀
+4
+👀
+1
+37 people reacted
+3.0.0
+3.0.0
+Compare
+ github-actions released this 
+ 3.0.0
+ 735a470
+
+This is a feature release, which includes new features, removes previously deprecated code, and adds new deprecations. The 3.0.x branch is now the supported fix branch, the 2.3.x branch will become a tag marking the end of support for that branch. We encourage everyone to upgrade, and to use a tool such as pip-tools to pin all dependencies and control upgrades. Test with warnings treated as errors to be able to adapt to deprecation warnings early.
+
+Changes: https://flask.palletsprojects.com/en/3.0.x/changes/#version-3-0-0
+Milestone: https://github.com/pallets/flask/milestone/20?closed=1
+Assets
+5
+👍
+84
+😄
+3
+🎉
+12
+❤️
+15
+🚀
+36
+👀
+6
+114 people reacted
+2.3.3
+2.3.3
+Compare
+ github-actions released this 
+ 2.3.3 
+ 3205b53 
+
+This is a fix release for the 2.3.x feature branch.
+
+Changes: https://flask.palletsprojects.com/en/2.3.x/changes/#version-2-3-3
+Milestone: https://github.com/pallets/flask/milestone/31?closed=1
+Assets
+5
+👍
+17
+🎉
+1
+❤️
+5
+21 people reacted
+2.2.5
+2.2.5
+Compare
+ github-actions released this 
+ 2.2.5 
+ 47af817 
+
+This is a security fix release for the 2.2.x release branch. Note that 2.3.x is the currently supported release branch; please upgrade to the latest version if possible.
+
+Security advisory: GHSA-m2qf-hxjv-5gpq, CVE-2023-30861
+Changes: https://flask.palletsprojects.com/en/2.2.x/changes/#version-2-2-5
+Milestone: https://github.com/pallets/flask/milestone/30?closed=1
+Assets
+5
+👍
+10
+🎉
+5
+❤️
+3
+🚀
+3
+👀
+1
+18 people reacted
+Previous 1 2 3 4 Next
+Footer
+© 2026 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Community
+Docs
+Contact
+Manage cookies
+Do not share my personal information

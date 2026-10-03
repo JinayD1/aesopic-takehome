@@ -1,0 +1,14 @@
+{
+  "requested_repo": "neovim/neovim",
+  "repository": "neovim/neovim",
+  "version": "Nvim 0.12.5",
+  "tag": "v0.12.5",
+  "commit": "5885a30e1e1225349079e7a1c4a3848aa8e43e42",
+  "commit_short": "5885a30",
+  "author": "github-actions[bot]",
+  "published_at": "2026-08-23T18:27:13Z",
+  "is_prerelease": false,
+  "asset_count": 12,
+  "html_url": "https://github.com/neovim/neovim/releases/tag/v0.12.5",
+  "fetched_at": "2026-10-03T22:24:17+00:00"
+}

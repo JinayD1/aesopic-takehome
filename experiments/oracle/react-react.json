@@ -1,0 +1,14 @@
+{
+  "requested_repo": "react/react",
+  "repository": "react/react",
+  "version": "19.3.0 (September 9, 2026)",
+  "tag": "v19.3.0",
+  "commit": "1d34f91dfde6bba84d08b683aaba164c7194dacb",
+  "commit_short": "1d34f91",
+  "author": "eps1lon",
+  "published_at": "2026-09-09T18:01:33Z",
+  "is_prerelease": false,
+  "asset_count": 0,
+  "html_url": "https://github.com/react/react/releases/tag/v19.3.0",
+  "fetched_at": "2026-10-03T22:24:01+00:00"
+}

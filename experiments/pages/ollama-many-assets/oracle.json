@@ -1,0 +1,14 @@
+{
+  "requested_repo": "ollama/ollama",
+  "repository": "ollama/ollama",
+  "version": "v0.35.1",
+  "tag": "v0.35.1",
+  "commit": "b0c1ca4f7549d7acdfa52a7dcffc934bc63a43ce",
+  "commit_short": "b0c1ca4",
+  "author": "github-actions[bot]",
+  "published_at": "2026-09-29T20:14:22Z",
+  "is_prerelease": false,
+  "asset_count": 17,
+  "html_url": "https://github.com/ollama/ollama/releases/tag/v0.35.1",
+  "fetched_at": "2026-10-03T22:24:13+00:00"
+}

@@ -18,3 +18,6 @@ runs/
 .DS_Store
 .idea/
 .vscode/
+
+# experiment scratch
+experiments/results/smoke_*.jsonl

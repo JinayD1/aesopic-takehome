@@ -44,6 +44,11 @@ target-version = "py310"
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM"]
 
+[tool.ruff.lint.per-file-ignores]
+# Report generators are long f-string tables; wrapping them hurts readability.
+"experiments/analyze.py" = ["E501"]
+"experiments/run_grounding.py" = ["E501"]
+
 [tool.mypy]
 python_version = "3.10"
 strict = true

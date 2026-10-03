@@ -1,0 +1,787 @@
+Skip to content
+Navigation Menu
+Platform
+Solutions
+Resources
+Open Source
+Enterprise
+Pricing
+Sign in
+Sign up
+neovim
+/
+neovim
+Public
+ Sponsor
+Notifications
+Fork 7.1k
+ Star 103k
+Code
+Issues
+1.6k
+Pull requests
+307
+Discussions
+Actions
+Wiki
+Security and quality
+1
+Insights
+Releases: neovim/neovim
+Releases
+Tags
+Release list
+Nvim development (prerelease) build
+Nvim 0.12.5
+Nvim release build
+Nvim 0.12.4
+Nvim 0.12.3
+Nvim 0.12.2
+Nvim 0.12.1
+Nvim 0.12.0
+Nvim 0.11.7
+Nvim 0.11.6
+Previous
+Next
+Nvim development (prerelease) build
+Nvim development (prerelease) build Pre-release
+Compare
+ github-actions released this 
+ nightly
+ 1dc9728 
+NVIM v0.13.0-dev-1793+g1dc9728dbd
+Build type: RelWithDebInfo
+LuaJIT 2.1.1788460057
+
+Release notes
+Changelog (fixes + features)
+News (:help news in Nvim)
+Install
+Windows
+Zip
+Download nvim-win64.zip (or nvim-win-arm64.zip for ARM)
+Extract the zip
+Run nvim.exe in your terminal
+MSI
+Download nvim-win64.msi (or nvim-win-arm64.msi for ARM)
+Run the MSI
+Run nvim.exe in your terminal
+
+Note: On Windows "Server" you may need to install vcruntime*.dll.
+
+macOS (x86_64)
+Download nvim-macos-x86_64.tar.gz
+Run xattr -c ./nvim-macos-x86_64.tar.gz (to avoid "unknown developer" warning)
+Extract: tar xzvf nvim-macos-x86_64.tar.gz
+Run ./nvim-macos-x86_64/bin/nvim
+macOS (arm64)
+Download nvim-macos-arm64.tar.gz
+Run xattr -c ./nvim-macos-arm64.tar.gz (to avoid "unknown developer" warning)
+Extract: tar xzvf nvim-macos-arm64.tar.gz
+Run ./nvim-macos-arm64/bin/nvim
+Linux (x86_64)
+
+If your system does not have the required glibc version, try the (unsupported) builds for older glibc.
+
+AppImage
+Download nvim-linux-x86_64.appimage
+Run chmod u+x nvim-linux-x86_64.appimage && ./nvim-linux-x86_64.appimage
+If your system does not have FUSE you can extract the appimage:
+./nvim-linux-x86_64.appimage --appimage-extract
+./squashfs-root/usr/bin/nvim
+Tarball
+Download nvim-linux-x86_64.tar.gz
+Extract: tar xzvf nvim-linux-x86_64.tar.gz
+Run ./nvim-linux-x86_64/bin/nvim
+Linux (arm64)
+AppImage
+Download nvim-linux-arm64.appimage
+Run chmod u+x nvim-linux-arm64.appimage && ./nvim-linux-arm64.appimage
+If your system does not have FUSE you can extract the appimage:
+./nvim-linux-arm64.appimage --appimage-extract
+./squashfs-root/usr/bin/nvim
+Tarball
+Download nvim-linux-arm64.tar.gz
+Extract: tar xzvf nvim-linux-arm64.tar.gz
+Run ./nvim-linux-arm64/bin/nvim
+Other
+Install by package manager
+Assets
+15
+👍
+2
+2 people reacted
+Nvim 0.12.5
+Nvim 0.12.5 Latest
+Compare
+ github-actions released this 
+ v0.12.5 
+ 5885a30
+NVIM v0.12.5
+Build type: Release
+LuaJIT 2.1.1774638290
+
+Release notes
+Changelog (fixes + features)
+News (:help news in Nvim)
+Install
+Windows
+Zip
+Download nvim-win64.zip (or nvim-win-arm64.zip for ARM)
+Extract the zip
+Run nvim.exe in your terminal
+MSI
+Download nvim-win64.msi (or nvim-win-arm64.msi for ARM)
+Run the MSI
+Run nvim.exe in your terminal
+
+Note: On Windows "Server" you may need to install vcruntime*.dll.
+
+macOS (x86_64)
+Download nvim-macos-x86_64.tar.gz
+Run xattr -c ./nvim-macos-x86_64.tar.gz (to avoid "unknown developer" warning)
+Extract: tar xzvf nvim-macos-x86_64.tar.gz
+Run ./nvim-macos-x86_64/bin/nvim
+macOS (arm64)
+Download nvim-macos-arm64.tar.gz
+Run xattr -c ./nvim-macos-arm64.tar.gz (to avoid "unknown developer" warning)
+Extract: tar xzvf nvim-macos-arm64.tar.gz
+Run ./nvim-macos-arm64/bin/nvim
+Linux (x86_64)
+
+If your system does not have the required glibc version, try the (unsupported) builds for older glibc.
+
+AppImage
+Download nvim-linux-x86_64.appimage
+Run chmod u+x nvim-linux-x86_64.appimage && ./nvim-linux-x86_64.appimage
+If your system does not have FUSE you can extract the appimage:
+./nvim-linux-x86_64.appimage --appimage-extract
+./squashfs-root/usr/bin/nvim
+Tarball
+Download nvim-linux-x86_64.tar.gz
+Extract: tar xzvf nvim-linux-x86_64.tar.gz
+Run ./nvim-linux-x86_64/bin/nvim
+Linux (arm64)
+AppImage
+Download nvim-linux-arm64.appimage
+Run chmod u+x nvim-linux-arm64.appimage && ./nvim-linux-arm64.appimage
+If your system does not have FUSE you can extract the appimage:
+./nvim-linux-arm64.appimage --appimage-extract
+./squashfs-root/usr/bin/nvim
+Tarball
+Download nvim-linux-arm64.tar.gz
+Extract: tar xzvf nvim-linux-arm64.tar.gz
+Run ./nvim-linux-arm64/bin/nvim
+Other
+Install by package manager
+Assets
+14
+nvim-linux-arm64.appimage
+sha256:4ba6c8f5df71e414367b4778ac4e0744f57b0a5dbefc2eccdc55caf0a32f766a
+10.8 MB
+nvim-linux-arm64.appimage.zsync
+sha256:0db4e86bdef1890a25c6f8920d06689b2a2fa741b3221382738cbcb48d7bc849
+38.1 KB
+nvim-linux-arm64.tar.gz
+sha256:1aa5ca085249580ae0f91eb14f27ec0919773ff2d99a163d03f3d6c21ac29725
+10.8 MB
+nvim-linux-x86_64.appimage
+sha256:d429822f6994770e3bb10330e0baf21e72b0afe66e0507cb3c631c1c65f4bf41
+10.9 MB
+nvim-linux-x86_64.appimage.zsync
+sha256:6e65581b1871d7d95dd94020c7034391438ecdc32e968b9ade137dbdfb6a3f23
+38.4 KB
+nvim-linux-x86_64.tar.gz
+sha256:bce0f56eda1f1b1db6eee8f4133d7a38813ea07933837dd1777411ca384c6875
+10.9 MB
+nvim-macos-arm64.tar.gz
+sha256:65fb000099e47ca1b762584c484cc833f40e30851a0ec450d4174e16317c1f9b
+9.19 MB
+nvim-macos-x86_64.tar.gz
+sha256:81f4518622cb059b450ee2e498c6a1082a222f6bd89589de5bbcf0c6a68aa3fd
+9.39 MB
+nvim-win-arm64.msi
+sha256:2dbd0c41b7462f6c48fe750cea456ad500b534bfe9af9e95295ab715ce6ec417
+12.2 MB
+nvim-win-arm64.zip
+sha256:f5a2f7ee4603e0185ed5c3e6dc9db762499426baf1c6613a487da5b5e126ae55
+12.4 MB
+Source code (zip)
+Source code (tar.gz)
+Show all 14 assets
+👍
+24
+🎉
+38
+❤️
+12
+🚀
+11
+63 people reacted
+Nvim release build
+Nvim release build
+Compare
+ github-actions released this 
+ stable
+ 5885a30
+NVIM v0.12.5
+Build type: Release
+LuaJIT 2.1.1774638290
+
+Release notes
+Changelog (fixes + features)
+News (:help news in Nvim)
+Install
+Windows
+Zip
+Download nvim-win64.zip (or nvim-win-arm64.zip for ARM)
+Extract the zip
+Run nvim.exe in your terminal
+MSI
+Download nvim-win64.msi (or nvim-win-arm64.msi for ARM)
+Run the MSI
+Run nvim.exe in your terminal
+
+Note: On Windows "Server" you may need to install vcruntime*.dll.
+
+macOS (x86_64)
+Download nvim-macos-x86_64.tar.gz
+Run xattr -c ./nvim-macos-x86_64.tar.gz (to avoid "unknown developer" warning)
+Extract: tar xzvf nvim-macos-x86_64.tar.gz
+Run ./nvim-macos-x86_64/bin/nvim
+macOS (arm64)
+Download nvim-macos-arm64.tar.gz
+Run xattr -c ./nvim-macos-arm64.tar.gz (to avoid "unknown developer" warning)
+Extract: tar xzvf nvim-macos-arm64.tar.gz
+Run ./nvim-macos-arm64/bin/nvim
+Linux (x86_64)
+
+If your system does not have the required glibc version, try the (unsupported) builds for older glibc.
+
+AppImage
+Download nvim-linux-x86_64.appimage
+Run chmod u+x nvim-linux-x86_64.appimage && ./nvim-linux-x86_64.appimage
+If your system does not have FUSE you can extract the appimage:
+./nvim-linux-x86_64.appimage --appimage-extract
+./squashfs-root/usr/bin/nvim
+Tarball
+Download nvim-linux-x86_64.tar.gz
+Extract: tar xzvf nvim-linux-x86_64.tar.gz
+Run ./nvim-linux-x86_64/bin/nvim
+Linux (arm64)
+AppImage
+Download nvim-linux-arm64.appimage
+Run chmod u+x nvim-linux-arm64.appimage && ./nvim-linux-arm64.appimage
+If your system does not have FUSE you can extract the appimage:
+./nvim-linux-arm64.appimage --appimage-extract
+./squashfs-root/usr/bin/nvim
+Tarball
+Download nvim-linux-arm64.tar.gz
+Extract: tar xzvf nvim-linux-arm64.tar.gz
+Run ./nvim-linux-arm64/bin/nvim
+Other
+Install by package manager
+Assets
+14
+👍
+3
+3 people reacted
+Nvim 0.12.4
+Nvim 0.12.4
+Compare
+ github-actions released this 
+ v0.12.4 
+ 68ea43c
+NVIM v0.12.4
+Build type: Release
+LuaJIT 2.1.1774638290
+
+Release notes
+Changelog (fixes + features)
+News (:help news in Nvim)
+Install
+Windows
+Zip
+Download nvim-win64.zip (or nvim-win-arm64.zip for ARM)
+Extract the zip
+Run nvim.exe in your terminal
+MSI
+Download nvim-win64.msi (or nvim-win-arm64.msi for ARM)
+Run the MSI
+Run nvim.exe in your terminal
+
+Note: On Windows "Server" you may need to install vcruntime*.dll.
+
+macOS (x86_64)
+Download nvim-macos-x86_64.tar.gz
+Run xattr -c ./nvim-macos-x86_64.tar.gz (to avoid "unknown developer" warning)
+Extract: tar xzvf nvim-macos-x86_64.tar.gz
+Run ./nvim-macos-x86_64/bin/nvim
+macOS (arm64)
+Download nvim-macos-arm64.tar.gz
+Run xattr -c ./nvim-macos-arm64.tar.gz (to avoid "unknown developer" warning)
+Extract: tar xzvf nvim-macos-arm64.tar.gz
+Run ./nvim-macos-arm64/bin/nvim
+Linux (x86_64)
+
+If your system does not have the required glibc version, try the (unsupported) builds for older glibc.
+
+AppImage
+Download nvim-linux-x86_64.appimage
+Run chmod u+x nvim-linux-x86_64.appimage && ./nvim-linux-x86_64.appimage
+If your system does not have FUSE you can extract the appimage:
+./nvim-linux-x86_64.appimage --appimage-extract
+./squashfs-root/usr/bin/nvim
+Tarball
+Download nvim-linux-x86_64.tar.gz
+Extract: tar xzvf nvim-linux-x86_64.tar.gz
+Run ./nvim-linux-x86_64/bin/nvim
+Linux (arm64)
+AppImage
+Download nvim-linux-arm64.appimage
+Run chmod u+x nvim-linux-arm64.appimage && ./nvim-linux-arm64.appimage
+If your system does not have FUSE you can extract the appimage:
+./nvim-linux-arm64.appimage --appimage-extract
+./squashfs-root/usr/bin/nvim
+Tarball
+Download nvim-linux-arm64.tar.gz
+Extract: tar xzvf nvim-linux-arm64.tar.gz
+Run ./nvim-linux-arm64/bin/nvim
+Other
+Install by package manager
+Assets
+14
+👍
+31
+❤️
+31
+51 people reacted
+Nvim 0.12.3
+Nvim 0.12.3
+Compare
+ github-actions released this 
+ v0.12.3 
+ 35b5744
+NVIM v0.12.3
+Build type: Release
+LuaJIT 2.1.1774638290
+
+Release notes
+Changelog (fixes + features)
+News (:help news in Nvim)
+Install
+Windows
+Zip
+Download nvim-win64.zip (or nvim-win-arm64.zip for ARM)
+Extract the zip
+Run nvim.exe in your terminal
+MSI
+Download nvim-win64.msi (or nvim-win-arm64.msi for ARM)
+Run the MSI
+Run nvim.exe in your terminal
+
+Note: On Windows "Server" you may need to install vcruntime*.dll.
+
+macOS (x86_64)
+Download nvim-macos-x86_64.tar.gz
+Run xattr -c ./nvim-macos-x86_64.tar.gz (to avoid "unknown developer" warning)
+Extract: tar xzvf nvim-macos-x86_64.tar.gz
+Run ./nvim-macos-x86_64/bin/nvim
+macOS (arm64)
+Download nvim-macos-arm64.tar.gz
+Run xattr -c ./nvim-macos-arm64.tar.gz (to avoid "unknown developer" warning)
+Extract: tar xzvf nvim-macos-arm64.tar.gz
+Run ./nvim-macos-arm64/bin/nvim
+Linux (x86_64)
+
+If your system does not have the required glibc version, try the (unsupported) builds for older glibc.
+
+AppImage
+Download nvim-linux-x86_64.appimage
+Run chmod u+x nvim-linux-x86_64.appimage && ./nvim-linux-x86_64.appimage
+If your system does not have FUSE you can extract the appimage:
+./nvim-linux-x86_64.appimage --appimage-extract
+./squashfs-root/usr/bin/nvim
+Tarball
+Download nvim-linux-x86_64.tar.gz
+Extract: tar xzvf nvim-linux-x86_64.tar.gz
+Run ./nvim-linux-x86_64/bin/nvim
+Linux (arm64)
+AppImage
+Download nvim-linux-arm64.appimage
+Run chmod u+x nvim-linux-arm64.appimage && ./nvim-linux-arm64.appimage
+If your system does not have FUSE you can extract the appimage:
+./nvim-linux-arm64.appimage --appimage-extract
+./squashfs-root/usr/bin/nvim
+Tarball
+Download nvim-linux-arm64.tar.gz
+Extract: tar xzvf nvim-linux-arm64.tar.gz
+Run ./nvim-linux-arm64/bin/nvim
+Other
+Install by package manager
+Assets
+14
+👍
+19
+🎉
+22
+❤️
+5
+🚀
+7
+👀
+3
+45 people reacted
+Nvim 0.12.2
+Nvim 0.12.2
+Compare
+ github-actions released this 
+ v0.12.2 
+ 4b35336
+NVIM v0.12.2
+Build type: Release
+LuaJIT 2.1.1774638290
+
+Release notes
+Changelog (fixes + features)
+News (:help news in Nvim)
+Install
+Windows
+Zip
+Download nvim-win64.zip (or nvim-win-arm64.zip for ARM)
+Extract the zip
+Run nvim.exe in your terminal
+MSI
+Download nvim-win64.msi (or nvim-win-arm64.msi for ARM)
+Run the MSI
+Run nvim.exe in your terminal
+
+Note: On Windows "Server" you may need to install vcruntime*.dll.
+
+macOS (x86_64)
+Download nvim-macos-x86_64.tar.gz
+Run xattr -c ./nvim-macos-x86_64.tar.gz (to avoid "unknown developer" warning)
+Extract: tar xzvf nvim-macos-x86_64.tar.gz
+Run ./nvim-macos-x86_64/bin/nvim
+macOS (arm64)
+Download nvim-macos-arm64.tar.gz
+Run xattr -c ./nvim-macos-arm64.tar.gz (to avoid "unknown developer" warning)
+Extract: tar xzvf nvim-macos-arm64.tar.gz
+Run ./nvim-macos-arm64/bin/nvim
+Linux (x86_64)
+
+If your system does not have the required glibc version, try the (unsupported) builds for older glibc.
+
+AppImage
+Download nvim-linux-x86_64.appimage
+Run chmod u+x nvim-linux-x86_64.appimage && ./nvim-linux-x86_64.appimage
+If your system does not have FUSE you can extract the appimage:
+./nvim-linux-x86_64.appimage --appimage-extract
+./squashfs-root/usr/bin/nvim
+Tarball
+Download nvim-linux-x86_64.tar.gz
+Extract: tar xzvf nvim-linux-x86_64.tar.gz
+Run ./nvim-linux-x86_64/bin/nvim
+Linux (arm64)
+AppImage
+Download nvim-linux-arm64.appimage
+Run chmod u+x nvim-linux-arm64.appimage && ./nvim-linux-arm64.appimage
+If your system does not have FUSE you can extract the appimage:
+./nvim-linux-arm64.appimage --appimage-extract
+./squashfs-root/usr/bin/nvim
+Tarball
+Download nvim-linux-arm64.tar.gz
+Extract: tar xzvf nvim-linux-arm64.tar.gz
+Run ./nvim-linux-arm64/bin/nvim
+Other
+Install by package manager
+Assets
+14
+👍
+16
+🎉
+39
+❤️
+47
+74 people reacted
+Nvim 0.12.1
+Nvim 0.12.1
+Compare
+ github-actions released this 
+ v0.12.1 
+ 7ac5a26
+NVIM v0.12.1
+Build type: Release
+LuaJIT 2.1.1774638290
+
+Release notes
+Changelog (fixes + features)
+News (:help news in Nvim)
+Install
+Windows
+Zip
+Download nvim-win64.zip (or nvim-win-arm64.zip for ARM)
+Extract the zip
+Run nvim.exe in your terminal
+MSI
+Download nvim-win64.msi (or nvim-win-arm64.msi for ARM)
+Run the MSI
+Run nvim.exe in your terminal
+
+Note: On Windows "Server" you may need to install vcruntime140.dll.
+
+macOS (x86_64)
+Download nvim-macos-x86_64.tar.gz
+Run xattr -c ./nvim-macos-x86_64.tar.gz (to avoid "unknown developer" warning)
+Extract: tar xzvf nvim-macos-x86_64.tar.gz
+Run ./nvim-macos-x86_64/bin/nvim
+macOS (arm64)
+Download nvim-macos-arm64.tar.gz
+Run xattr -c ./nvim-macos-arm64.tar.gz (to avoid "unknown developer" warning)
+Extract: tar xzvf nvim-macos-arm64.tar.gz
+Run ./nvim-macos-arm64/bin/nvim
+Linux (x86_64)
+
+If your system does not have the required glibc version, try the (unsupported) builds for older glibc.
+
+AppImage
+Download nvim-linux-x86_64.appimage
+Run chmod u+x nvim-linux-x86_64.appimage && ./nvim-linux-x86_64.appimage
+If your system does not have FUSE you can extract the appimage:
+./nvim-linux-x86_64.appimage --appimage-extract
+./squashfs-root/usr/bin/nvim
+Tarball
+Download nvim-linux-x86_64.tar.gz
+Extract: tar xzvf nvim-linux-x86_64.tar.gz
+Run ./nvim-linux-x86_64/bin/nvim
+Linux (arm64)
+AppImage
+Download nvim-linux-arm64.appimage
+Run chmod u+x nvim-linux-arm64.appimage && ./nvim-linux-arm64.appimage
+If your system does not have FUSE you can extract the appimage:
+./nvim-linux-arm64.appimage --appimage-extract
+./squashfs-root/usr/bin/nvim
+Tarball
+Download nvim-linux-arm64.tar.gz
+Extract: tar xzvf nvim-linux-arm64.tar.gz
+Run ./nvim-linux-arm64/bin/nvim
+Other
+Install by package manager
+Assets
+14
+👍
+50
+🎉
+8
+❤️
+22
+🚀
+27
+69 people reacted
+Nvim 0.12.0
+Nvim 0.12.0
+Compare
+ github-actions released this 
+ v0.12.0 
+ fc7e5cf
+NVIM v0.12.0
+Build type: Release
+LuaJIT 2.1.1774638290
+
+Release notes
+Changelog (fixes + features)
+News (:help news in Nvim)
+Install
+Windows
+Zip
+Download nvim-win64.zip (or nvim-win-arm64.zip for ARM)
+Extract the zip
+Run nvim.exe in your terminal
+MSI
+Download nvim-win64.msi (or nvim-win-arm64.msi for ARM)
+Run the MSI
+Run nvim.exe in your terminal
+
+Note: On Windows "Server" you may need to install vcruntime140.dll.
+
+macOS (x86_64)
+Download nvim-macos-x86_64.tar.gz
+Run xattr -c ./nvim-macos-x86_64.tar.gz (to avoid "unknown developer" warning)
+Extract: tar xzvf nvim-macos-x86_64.tar.gz
+Run ./nvim-macos-x86_64/bin/nvim
+macOS (arm64)
+Download nvim-macos-arm64.tar.gz
+Run xattr -c ./nvim-macos-arm64.tar.gz (to avoid "unknown developer" warning)
+Extract: tar xzvf nvim-macos-arm64.tar.gz
+Run ./nvim-macos-arm64/bin/nvim
+Linux (x86_64)
+
+If your system does not have the required glibc version, try the (unsupported) builds for older glibc.
+
+AppImage
+Download nvim-linux-x86_64.appimage
+Run chmod u+x nvim-linux-x86_64.appimage && ./nvim-linux-x86_64.appimage
+If your system does not have FUSE you can extract the appimage:
+./nvim-linux-x86_64.appimage --appimage-extract
+./squashfs-root/usr/bin/nvim
+Tarball
+Download nvim-linux-x86_64.tar.gz
+Extract: tar xzvf nvim-linux-x86_64.tar.gz
+Run ./nvim-linux-x86_64/bin/nvim
+Linux (arm64)
+AppImage
+Download nvim-linux-arm64.appimage
+Run chmod u+x nvim-linux-arm64.appimage && ./nvim-linux-arm64.appimage
+If your system does not have FUSE you can extract the appimage:
+./nvim-linux-arm64.appimage --appimage-extract
+./squashfs-root/usr/bin/nvim
+Tarball
+Download nvim-linux-arm64.tar.gz
+Extract: tar xzvf nvim-linux-arm64.tar.gz
+Run ./nvim-linux-arm64/bin/nvim
+Other
+Install by package manager
+Assets
+14
+👍
+256
+😄
+42
+🎉
+329
+❤️
+202
+🚀
+122
+👀
+31
+550 people reacted
+Nvim 0.11.7
+Nvim 0.11.7
+Compare
+ github-actions released this 
+ v0.11.7 
+ cd90ec7
+NVIM v0.11.7
+Build type: Release
+LuaJIT 2.1.1741730670
+
+Release notes
+Changelog (fixes + features)
+News (:help news in Nvim)
+Install
+Windows
+Zip
+Download nvim-win64.zip (or nvim-win-arm64.zip for ARM)
+Extract the zip
+Run nvim.exe in your terminal
+MSI
+Download nvim-win64.msi (or nvim-win-arm64.msi for ARM)
+Run the MSI
+Run nvim.exe in your terminal
+
+Note: On Windows "Server" you may need to install vcruntime140.dll.
+
+macOS (x86_64)
+Download nvim-macos-x86_64.tar.gz
+Run xattr -c ./nvim-macos-x86_64.tar.gz (to avoid "unknown developer" warning)
+Extract: tar xzvf nvim-macos-x86_64.tar.gz
+Run ./nvim-macos-x86_64/bin/nvim
+macOS (arm64)
+Download nvim-macos-arm64.tar.gz
+Run xattr -c ./nvim-macos-arm64.tar.gz (to avoid "unknown developer" warning)
+Extract: tar xzvf nvim-macos-arm64.tar.gz
+Run ./nvim-macos-arm64/bin/nvim
+Linux (x86_64)
+
+If your system does not have the required glibc version, try the (unsupported) builds for older glibc.
+
+AppImage
+Download nvim-linux-x86_64.appimage
+Run chmod u+x nvim-linux-x86_64.appimage && ./nvim-linux-x86_64.appimage
+If your system does not have FUSE you can extract the appimage:
+./nvim-linux-x86_64.appimage --appimage-extract
+./squashfs-root/usr/bin/nvim
+
+Tarball
+Download nvim-linux-x86_64.tar.gz
+Extract: tar xzvf nvim-linux-x86_64.tar.gz
+Run ./nvim-linux-x86_64/bin/nvim
+Linux (arm64) - Untested
+AppImage
+Download nvim-linux-arm64.appimage
+Run chmod u+x nvim-linux-arm64.appimage && ./nvim-linux-arm64.appimage
+If your system does not have FUSE you can extract the appimage:
+./nvim-linux-arm64.appimage --appimage-extract
+./squashfs-root/usr/bin/nvim
+
+Tarball
+Download nvim-linux-arm64.tar.gz
+Extract: tar xzvf nvim-linux-arm64.tar.gz
+Run ./nvim-linux-arm64/bin/nvim
+Other
+Install by package manager
+Assets
+14
+👍
+26
+❤️
+15
+🚀
+7
+37 people reacted
+Nvim 0.11.6
+Nvim 0.11.6
+Compare
+ github-actions released this 
+ v0.11.6 
+ e8b87a5
+NVIM v0.11.6
+Build type: Release
+LuaJIT 2.1.1741730670
+
+Release notes
+Changelog (fixes + features)
+News (:help news in Nvim)
+Install
+Windows
+Zip
+Download nvim-win64.zip (or nvim-win-arm64.zip for ARM)
+Extract the zip
+Run nvim.exe in your terminal
+MSI
+Download nvim-win64.msi (or nvim-win-arm64.msi for ARM)
+Run the MSI
+Run nvim.exe in your terminal
+
+Note: On Windows "Server" you may need to install vcruntime140.dll.
+
+macOS (x86_64)
+Download nvim-macos-x86_64.tar.gz
+Run xattr -c ./nvim-macos-x86_64.tar.gz (to avoid "unknown developer" warning)
+Extract: tar xzvf nvim-macos-x86_64.tar.gz
+Run ./nvim-macos-x86_64/bin/nvim
+macOS (arm64)
+Download nvim-macos-arm64.tar.gz
+Run xattr -c ./nvim-macos-arm64.tar.gz (to avoid "unknown developer" warning)
+Extract: tar xzvf nvim-macos-arm64.tar.gz
+Run ./nvim-macos-arm64/bin/nvim
+Linux (x86_64)
+
+If your system does not have the required glibc version, try the (unsupported) builds for older glibc.
+
+AppImage
+Download nvim-linux-x86_64.appimage
+Run chmod u+x nvim-linux-x86_64.appimage && ./nvim-linux-x86_64.appimage
+If your system does not have FUSE you can extract the appimage:
+./nvim-linux-x86_64.appimage --appimage-extract
+./squashfs-root/usr/bin/nvim
+
+Tarball
+Download nvim-linux-x86_64.tar.gz
+Extract: tar xzvf nvim-linux-x86_64.tar.gz
+Run ./nvim-linux-x86_64/bin/nvim
+Linux (arm64) - Untested
+AppImage
+Download nvim-linux-arm64.appimage
+Run chmod u+x nvim-linux-arm64.appimage && ./nvim-linux-arm64.ap

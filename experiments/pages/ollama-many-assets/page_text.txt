@@ -1,0 +1,470 @@
+Skip to content
+Navigation Menu
+Platform
+Solutions
+Resources
+Open Source
+Enterprise
+Pricing
+Sign in
+Sign up
+ollama
+/
+ollama
+Public
+Notifications
+Fork 18.1k
+ Star 182k
+Code
+Issues
+2.5k
+Pull requests
+1.6k
+Actions
+Security and quality
+Insights
+Releases: ollama/ollama
+Releases
+Tags
+Release list
+v0.35.1
+v0.35.0
+v0.40.0
+v0.34.4
+v0.34.3
+v0.34.2
+v0.34.1
+v0.34.0
+v0.33.3
+v0.33.2
+Previous
+Next
+v0.35.1
+v0.35.1 Latest
+Compare
+ github-actions released this 
+ v0.35.1
+ b0c1ca4 
+Clef decision models
+
+Ollama now supports Clef and Clef Flash, Cloudflare's new open-source decision models, through /v1/systemone.
+
+Clef (27B) and Clef Flash (9B) are multimodal: requests can now include images alongside the text state, shared by all questions and scored jointly with it.
+
+curl http://localhost:11434/v1/systemone -d '{
+  "model": "clef-flash",
+  "state": "The user took this screenshot.",
+  "images": ["<base64-encoded image>"],
+  "questions": {
+    "has_ollama": {"type": "noul", "instructions": "Does this image contain Ollama?"}
+  }
+}'
+{
+  "model": "clef-flash",
+  "answers": {
+    "has_ollama": {
+      "type": "noul",
+      "noul": 0.958
+    }
+  },
+  "usage": {
+    "input_tokens": 548,
+    "output_tokens": 0
+  }
+}
+
+What's Changed
+Models using web search can now perform up to ten searches per response, up from three
+Modelfiles now support CAPABILITY declarations, so model creators can explicitly declare what a model can do. Declarations are preserved when creating from GGUF or safetensors, through model inheritance, and on Modelfile export
+ollama show and the model list now report only decision as the capability for decision models, so clients no longer offer them for general chat, tools, or thinking
+Updated llama.cpp and the MLX engine
+
+Full Changelog: v0.35.0...v0.35.1
+
+Assets
+19
+install.ps1
+sha256:015c97c38bd342225ee83e0a3fd5c630b1ee7c522f18f1ca751ec1c3b811396e
+22.1 KB
+install.sh
+sha256:25f64b810b947145095956533e1bdf56eacea2673c55a7e586be4515fc882c9f
+15.5 KB
+ollama-darwin.tgz
+sha256:3137dbf28948ee844e0fb3e584d9b5de6879d73d9f0cb7eff3ad64930601d307
+152 MB
+Ollama-darwin.zip
+sha256:60dba52660dc7cb4e160e914edd76b98271945941f5db40d34a507cef544970e
+189 MB
+ollama-linux-amd64-mlx.tar.zst
+sha256:15ee9a52b60e22d62c3195c70d0a708fbaeb3decb393f2571cbd4e1079608e6b
+1.2 GB
+ollama-linux-amd64-rocm.tar.zst
+sha256:786e1ba2ed7877b48aa948315ab704da2ea54a4b636e0ca18c3d328c84ff22cf
+1000 MB
+ollama-linux-amd64.tar.zst
+sha256:9fcd79ac4575b2bd31b992eee18b1000c8ad126b451627c8f8cd091714cfbb10
+1.34 GB
+ollama-linux-arm64-jetpack5.tar.zst
+sha256:78a9c11b5c30c1f8632646e8187f1a3da6ff4c499c47f63f55e9ab68ca18161a
+285 MB
+ollama-linux-arm64-jetpack6.tar.zst
+sha256:e9a6b9a9e71c4eeefd8b7955354e08a088e0a7afcc5186992f906fa080bc0af8
+258 MB
+ollama-linux-arm64.tar.zst
+sha256:b1b1c85d25136b256d3740f6ecd2f7c0105e8ca71642fd6ff2fc199f3cefd69d
+1.45 GB
+Source code (zip)
+Source code (tar.gz)
+Show all 19 assets
+👍
+14
+🚀
+3
+16 people reacted
+v0.35.0
+v0.35.0
+Compare
+ github-actions released this 
+ v0.35.0
+ cc40693 
+Decision models
+
+Ollama now supports decision models through /v1/systemone, based on TypeSafe’s Jev API.
+
+Decision models return choices, probabilities, and scores instead of text. Use them for tasks such as ticket triage, model routing, and content classification.
+
+Available models:
+
+Nimble from Bespoke Labs
+Tev1 from Together AI
+ollama pull nimble
+
+Send context and one or more questions:
+
+curl http://localhost:11434/v1/systemone \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "model": "nimble",
+    "state": "Our checkout has returned 500 errors since 9am.",
+    "questions": {
+      "label": {
+        "type": "choice",
+        "instructions": "Which label fits this ticket?",
+        "criteria": {
+          "billing": "Payments and refunds",
+          "bug": "Software errors",
+          "account": "Login and account access"
+        }
+      }
+    }
+  }'
+
+Example response:
+
+{
+  "model": "nimble",
+  "answers": {
+    "label": {
+      "type": "choice",
+      "choice": "bug",
+      "probabilities": {
+        "billing": 0.0125,
+        "bug": 0.9781,
+        "account": 0.0093
+      },
+      "confidence": 0.8906
+    }
+  },
+  "usage": {
+    "input_tokens": 174,
+    "output_tokens": 1
+  }
+}
+
+The API supports three question types:
+
+choice: Select an option and return probabilities for each.
+noul: Return the probability that a condition is true.
+score: Return a score across an ordered set of criteria
+What's Changed
+Settings now opens without waiting for model discovery.
+Fixed the macOS update menu and icon not reflecting an available update at startup.
+Fixed stalled MLX model downloads hanging indefinitely.
+Requests containing the deprecated typical_p parameter now log a warning instead of failing.
+
+Full Changelog: v0.34.4...v0.35.0
+
+Assets
+19
+👍
+19
+🎉
+6
+❤️
+4
+🚀
+8
+21 people reacted
+v0.40.0
+v0.40.0 Pre-release
+Compare
+ github-actions released this 
+ v0.40.0-rc0
+ 75b9527
+What's Changed
+
+Models run on MLX on Apple Silicon by default
+
+In this release, on Apple Silicon devices, model architectures supported by the MLX runtime will automatically run on MLX.
+
+ollama pull qwen3.8
+ollama run qwen3.8
+
+
+During the pre-release we will be testing and enabling additional models.
+
+Full Changelog: v0.34.4...v0.40.0-rc0
+
+Assets
+19
+👍
+21
+😄
+5
+🎉
+6
+❤️
+8
+🚀
+10
+👀
+3
+28 people reacted
+v0.34.4
+v0.34.4
+Compare
+ github-actions released this 
+ v0.34.4
+ b2da9e4
+What's Changed
+Structured outputs on thinking models now apply in a single pass, making them faster and more reliable.
+Fixed intermittent "model not found" errors with a large local library
+Fixed the macOS app becoming unresponsive when checking if ChatGPT or Codex is running.
+Qwen 3.8 prompt processing is faster on Apple Silicon.
+Gemma 4 on Apple Silicon now picks the best image resolution per image, keeping more detail in high-resolution images.
+Updated llama.cpp, MLX, and XGrammar.
+
+Full Changelog: v0.34.3...v0.34.4
+
+Assets
+19
+👍
+17
+🎉
+4
+❤️
+2
+19 people reacted
+v0.34.3
+v0.34.3
+Compare
+ github-actions released this 
+ v0.34.3
+ 6383a0f 
+What's Changed
+
+GET /api/show now advertises each model's thinking controls and default:
+
+Available in the CLI with:
+
+ollama show gemma4
+
+    thinking
+        levels     false, true
+        default    true
+
+
+Available in the API with:
+
+curl http://localhost:11434/api/show -d '{"model": "glm-5.3-flash:cloud"}'
+{
+  "thinking": {
+    "values": ["low", "high", "max"],
+    "default": "max"
+  }
+}
+
+Also available on ollama.com directly for cloud models.
+
+Nemotron H vision models are now supported on Apple Silicon with MLX
+Ollama's macOS app will now no longer reopen windows you've closed when activating it
+Fix for model pulls from HuggingFace
+
+Full Changelog: v0.34.2...v0.34.3
+
+Assets
+19
+👍
+23
+🎉
+4
+❤️
+3
+🚀
+8
+👀
+3
+31 people reacted
+v0.34.2
+v0.34.2
+Compare
+ github-actions released this 
+ v0.34.2
+ dfabde4 
+What's Changed
+Added first-run setup when running ollama, with options to sign in or continue locally. Setup completion is shared with the desktop app on macOS and Windows.
+Added ollama://apps to open the desktop app’s Apps page directly on macOS and Windows.
+Fixed excessive memory growth during long generations with MLX speculative decoding.
+Updated llama.cpp.
+
+Full Changelog: v0.34.1...v0.34.2
+
+Assets
+19
+👍
+22
+😄
+3
+🎉
+4
+❤️
+5
+🚀
+6
+👀
+5
+28 people reacted
+v0.34.1
+v0.34.1
+Compare
+ github-actions released this 
+ v0.34.1
+ 38fdb5d 
+What's Changed
+MLX safetensors ollama create no longer experimental. GGUF model creation now requires using llama.cpp tooling for safetensor conversion and quantization.
+Improved MLX memory handling on Apple Silicon
+Runaway repeat token detection now requires 100 repeat tokens for reduced false positives (e.g. OCR)
+/api/tags is much faster on large model libraries (3.1 s → 294 ms cold in testing), and model capabilities are now reported consistently.
+Deprecated typical_p: it can no longer be set when creating new models, existing GGUF models retain support.
+MLX and llama.cpp updates
+
+Full Changelog: v0.34.0...v0.34.1-rc1
+
+Assets
+19
+👍
+29
+🎉
+4
+32 people reacted
+v0.34.0
+v0.34.0
+Compare
+ github-actions released this 
+ v0.34.0
+ d8ab4b4 
+Use Ollama models in ChatGPT Desktop
+
+Ollama models can now be used directly in ChatGPT Desktop, so you can keep your existing workflow while running open models. Setup is available from the Ollama app on MacOS.
+
+This release also improves structured output performance on Apple Silicon, adds support for OpenAI-compatible client tool search and response compaction.
+
+Full Changelog: v0.33.3...v0.34.0
+
+Assets
+19
+👍
+51
+😄
+6
+🎉
+10
+❤️
+8
+🚀
+9
+👀
+6
+57 people reacted
+v0.33.3
+v0.33.3
+Compare
+ github-actions released this 
+ v0.33.3
+ b79067b
+What's Changed
+gemma4 now supports images and audio on MLX engine
+Report cached prompt tokens
+Honor GGUF model defined default parameters
+MLX, MLX-C, llama.cpp update
+New Contributors
+@marcelpetrick made their first contribution in #17579
+
+Full Changelog: v0.33.2...v0.33.3
+
+Contributors
+marcelpetrick
+Assets
+19
+👍
+36
+😄
+6
+🎉
+6
+❤️
+6
+🚀
+7
+👀
+2
+42 people reacted
+v0.33.2
+v0.33.2
+Compare
+ github-actions released this 
+ v0.33.2
+ f96e7aa 
+What's Changed
+Ollama's app now follows the system appearance again, restoring dark mode support
+Fixed the macOS app to properly hand off to an already-running instance instead of starting a second one
+The Claude Desktop proxy no longer interrupts in-flight requests when the model catalog updates
+
+Full Changelog: v0.33.1...v0.33.2
+
+Assets
+19
+👍
+37
+🎉
+13
+❤️
+6
+🚀
+13
+👀
+4
+46 people reacted
+Previous 1 2 3 4 5 … 25 26 Next
+Footer
+© 2026 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Community
+Docs
+Contact
+Manage cookies
+Do not share my personal information
