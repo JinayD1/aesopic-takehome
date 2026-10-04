@@ -1,4 +1,6 @@
-# Observations
+# Observations (extended)
+
+_The two-page version submitted as the observations document is `../OBSERVATIONS.md`; this is the full record._
 
 What I built, what the data says, what broke, and what I would do next.
 Numbers come from `experiments/RESULTS_grounding.md` (60 scored runs) and the

@@ -35,6 +35,7 @@ make setup                      # venv, deps, Chromium
 cp .env.example .env            # then put ANTHROPIC_API_KEY=... in .env
 make test                       # 51 tests, no network, no key needed
 make demo                       # the take-home task -> sample_output.json
+pyproject.toml + uv.lock   dependencies
 ```
 
 Without `make`: `uv venv && uv pip install -e ".[dev]" && .venv/bin/python -m playwright install chromium`.
@@ -48,7 +49,7 @@ navigate --repo openclaw/openclaw
 # natural-language interface
 navigate --url https://github.com --prompt "search for openclaw and get the current release and related tags"
 
-# any repository; bonus fields (notes, assets, date) are always included when visible
+# any repository; release notes and the date come along when visible, asset names only if the Assets section is open
 navigate --repo pallets/flask --out flask.json
 
 # watch it
@@ -127,9 +128,10 @@ tests/            unit + replay (fakes.py) + opt-in live
 experiments/      oracle snapshots, runners, analysis, RESULTS_*.md, traces of every scored run
 docs/adr/         architecture decision records
 docs/observation-notes.md   raw chronological notes from the build
-OBSERVATIONS.md   the write-up: approach, what worked, what didn't, trade-offs, limitations
+OBSERVATIONS.md   the 2-page write-up; docs/observations-extended.md has the long version
 PLAN.md           the plan this was built from, including the pre-registered experiment design
 sample_output.json
+pyproject.toml + uv.lock   dependencies
 ```
 
 ## Limitations
@@ -142,7 +144,10 @@ sample_output.json
   GitHub's Releases link (at y≈787) below the fold and cost a scroll.
 - **GitHub bot detection** is not handled beyond a realistic user agent; a
   rate-limit page would end the run with `abort`.
-- **Relative dates.** `published_at` is whatever the page shows ("18 hours ago").
+- **Relative dates, collapsed assets.** `published_at` is whatever the page shows
+  ("18 hours ago"). `download_links` is empty unless the Assets section is
+  visible; asking the agent to expand it pushed the core fields off-screen
+  (see OBSERVATIONS.md), so that needs a second extraction pass.
 - **Cost/latency.** ~$0.15 and ~40 s per run on Opus 5; ~$0.06 and ~34 s on
   Sonnet 5 at the same 30/30 success (`--model claude-sonnet-5`).
 
