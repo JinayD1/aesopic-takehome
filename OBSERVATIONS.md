@@ -96,10 +96,12 @@ list of lines in the trace.
   break. A second extraction pass for assets. The extraction experiment as
   designed. Attach the previous screenshot when an action had no effect.
 - **Replay with verification.** The 120 committed traces are a memory of what
-  worked. On a repeat task, replay the remembered actions and ask a small
-  model (Haiku 4.5) only "did this step land?" per screenshot; fall back to
-  full navigation on the first failed check and discard that memory. Cost
-  drops from ~$0.15 to a few cents on the happy path while keeping the
+  worked. On a repeat task, replay the remembered actions and, after each one,
+  ask a decision-only model such as TypeSafe's Jev a typed yes/no ("did this
+  step land?") against the page's URL and visible text, which it answers with
+  a calibrated probability in well under a second; call the vision model only
+  when that probability is low, and discard the memory on the first miss.
+  Cost drops from ~$0.15 to cents on the happy path while keeping the
   robustness to layout changes the brief asks for. The trap is treating a
   remembered path as authoritative: that is a hardcoded path by another name.
 - **Fine-tuning on traces.** Every step is already a (screenshot, history,
