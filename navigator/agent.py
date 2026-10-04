@@ -26,6 +26,7 @@ from urllib.parse import urlparse
 from PIL import Image, ImageChops
 
 from . import prompts
+from .assets import collect_assets
 from .browser import VIEWPORT, BrowserSession
 from .grounding import GroundingError, GroundingMode, draw_som, label_at, resolve_click
 from .llm import ModelError, VisionClient, cost_usd
@@ -63,6 +64,7 @@ class NavigatorConfig:
     timeout_s: float = 300.0
     headless: bool = True
     slow_mo_ms: int = 0
+    assets: bool = True
     trace_root: Path = field(default_factory=lambda: Path("runs"))
 
 
@@ -202,6 +204,7 @@ class Navigator:
         status = RunStatus.STEP_BUDGET
         status_detail: str | None = None
         steps = 0
+        assets_steps = 0
         extraction: Extraction | None = None
         final_url: str | None = None
 
@@ -331,6 +334,23 @@ class Navigator:
                     errors.append(f"extraction: {e}")
                     status, status_detail = RunStatus.ERROR, f"extraction failed: {e}"
 
+            # -- assets: a separate bounded pass so it can never cost the core fields
+            if status is RunStatus.SUCCESS and extraction is not None and cfg.assets:
+                assets = collect_assets(self.client, browser, trace, cfg.grounding, self._log)
+                usage.add(assets.usage)
+                assets_steps = assets.steps
+                errors.extend(assets.errors)
+                extraction.release.download_links = assets.links
+                self._log(
+                    f"assets: {len(assets.links)} links in {assets.steps} steps"
+                    + (
+                        f", {len(assets.unverified)} unverified names dropped"
+                        if assets.unverified
+                        else ""
+                    )
+                    + (", none visible" if assets.none_visible else "")
+                )
+
         except Exception as e:  # noqa: BLE001 - we want a JSON result, not a stack trace
             status, status_detail = RunStatus.ERROR, f"{type(e).__name__}: {e}"
             errors.append(traceback.format_exc(limit=3))
@@ -354,6 +374,7 @@ class Navigator:
                 grounding=cfg.grounding,
                 extraction=cfg.extraction,
                 steps=steps,
+                assets_steps=assets_steps,
                 status=status,
                 status_detail=status_detail,
                 usage=usage,

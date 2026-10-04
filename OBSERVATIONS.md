@@ -71,10 +71,14 @@ list of lines in the trace.
   0% in both arms because every wrong badge click still navigated. The metric
   that matched manual review was wrong-target: no shared word between the
   model's reason and the element it hit, and the next action going back.
-- **The assets bonus.** Asking the agent to expand the collapsed Assets section
-  produced a 10-step run whose final screenshot had scrolled the tag and commit
-  off-screen; they came back null. One screenshot cannot hold both the header
-  and 17 assets. Reverted. Doing it right needs a second extraction pass.
+- **The assets bonus, twice.** First attempt: one sentence in the goal asking
+  the agent to expand the collapsed Assets section. Result: a 10-step run whose
+  final screenshot had scrolled tag and commit off-screen, so they came back
+  null. One screenshot cannot hold both. Second attempt, kept: a separate
+  bounded pass after the core fields are extracted, which expands the list,
+  reads the names, drops any not present in the page text, and resolves URLs
+  by link text. openclaw: 12 of 19 listed with real URLs, +3 steps, +$0.07;
+  react: both source archives. Still partial: names below the fold are missed.
 - **Loop detection was too eager** (three scrolls down a long page counted as
   a loop); a replay test caught it before any live run.
 
@@ -85,16 +89,17 @@ list of lines in the trace.
 - Generic DOM reads for the verifier (`innerText`) and the optional Set-of-Mark
   mode; a `<canvas>` app or cross-origin iframe defeats both. `--extraction
   vision` makes a run pixel-only.
-- `published_at` is the page's relative text ("18 hours ago"). `download_links`
-  is empty unless assets are visible. Release notes are what fits on screen.
+- `published_at` is the page's relative text ("18 hours ago"). Download links
+  and release notes are what fits in one screenshot after expanding.
 - No handling of rate-limit pages beyond a clean `abort`. Two models, three
   repositories, one day; intervals are in the reports.
 
 ## With another week
 
 - Haiku 4.5 and a page with genuinely small targets, to find where coordinates
-  break. A second extraction pass for assets. The extraction experiment as
-  designed. Attach the previous screenshot when an action had no effect.
+  break. Scroll-and-merge in the assets pass for long lists. The extraction
+  experiment as designed. Attach the previous screenshot when an action had
+  no effect.
 - **Replay with verification.** The 120 committed traces are a memory of what
   worked. On a repeat task, replay the remembered actions and, after each one,
   ask a decision-only model such as TypeSafe's Jev a typed yes/no ("did this

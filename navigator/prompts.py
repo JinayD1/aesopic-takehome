@@ -134,7 +134,7 @@ From this screenshot, extract the latest release:
 - published_at: the date or relative time shown, exactly as written.
 - is_prerelease: true if marked as pre-release, false if marked Latest, null if unclear.
 - release_notes: the release notes text if visible (first ~1500 characters), else null.
-- download_links: names of downloadable assets if listed, else an empty list.
+- download_links: leave empty; assets are collected in a separate pass.
 """
 
 VERIFY_SYSTEM = """\
@@ -159,3 +159,23 @@ def verify_user(vision_json: str, page_text: str) -> str:
         "-----\n\n"
         "Return the corrected release fields."
     )
+
+
+ASSETS_GOAL = """\
+You are on a release page with the latest release's details visible. Find this \
+release's list of downloadable files (often a collapsed "Assets" section with a \
+count). If it is collapsed, click it to expand it; scroll if needed so the file \
+names are visible. Call done as soon as the file names are on screen. If the \
+release clearly has no downloadable files, call abort with that reason.\
+"""
+
+ASSETS_EXTRACT_SYSTEM = """\
+You read a screenshot of a software release page and list the names of the \
+downloadable files shown in its assets section. Copy each file name exactly as \
+written. List only names you can actually see. If no asset list is visible, \
+set no_assets_visible to true and return no names.\
+"""
+
+ASSETS_EXTRACT_USER = """\
+List the downloadable asset file names visible for this release.\
+"""

@@ -101,3 +101,9 @@ at the end. Each entry: what happened, why it matters.
   header and 17 assets. Doing this properly needs a second extraction pass on
   a second screenshot (or a full-page capture), not a prompt line. Reverted;
   `download_links` stays empty unless assets happen to be visible.
+- **Assets, second attempt (kept).** Separate bounded pass after core
+  extraction: sub-goal "expand the Assets section", <=4 steps, structured read
+  of names, names verified against page text, URLs resolved by matching anchor
+  visible text. openclaw: 12/19 listed (17 uploads + 2 source archives) with real download URLs (+3 steps, +$0.07,
+  core fields untouched, verification agree). react: 2 source archives, model
+  noticed the list was already open. 7 openclaw entries missed below the fold.

@@ -20,7 +20,12 @@ navigate --repo openclaw/openclaw
     "commit": "fc23bc8",
     "author": "github-actions",
     "published_at": "18 hours ago",
-    "is_prerelease": false
+    "is_prerelease": false,
+    "release_notes": "OpenClaw v2026.9.8 ...",
+    "download_links": [
+      {"name": "OpenClaw-2026.9.8-arm64.dmg", "url": "https://github.com/openclaw/openclaw/releases/download/v2026.9.8/OpenClaw-2026.9.8-arm64.dmg"},
+      "..."
+    ]
   },
   "run": { "status": "success", "steps": 5, "cost_usd": 0.17, "wall_time_s": 41.3, "...": "..." }
 }
@@ -33,7 +38,7 @@ Requires Python ≥ 3.10, [uv](https://docs.astral.sh/uv/) and an Anthropic API 
 ```bash
 make setup                      # venv, deps, Chromium
 cp .env.example .env            # then put ANTHROPIC_API_KEY=... in .env
-make test                       # 51 tests, no network, no key needed
+make test                       # 57 tests, no network, no key needed
 make demo                       # the take-home task -> sample_output.json
 pyproject.toml + uv.lock   dependencies
 ```
@@ -49,7 +54,7 @@ navigate --repo openclaw/openclaw
 # natural-language interface
 navigate --url https://github.com --prompt "search for openclaw and get the current release and related tags"
 
-# any repository; release notes and the date come along when visible, asset names only if the Assets section is open
+# any repository; notes, date and download links (a second pass expands the Assets section)
 navigate --repo pallets/flask --out flask.json
 
 # watch it
@@ -58,6 +63,7 @@ navigate --repo openclaw/openclaw --headed --slow-mo 300
 # the alternatives kept for comparison
 navigate --repo openclaw/openclaw --grounding som         # Set-of-Mark numbered labels instead of coordinates
 navigate --repo openclaw/openclaw --extraction vision     # skip text verification
+navigate --repo openclaw/openclaw --skip-assets           # skip the assets pass (saves ~3 steps, ~$0.07)
 navigate --repo openclaw/openclaw --model claude-sonnet-5 # cheaper model
 ```
 
@@ -94,6 +100,11 @@ goal ─► screenshot ─► model picks ONE action (click at x,y / type / scro
   call that checks each string against the page's rendered text and reports any
   correction. Output includes whether the two agreed.
   → [ADR 002](docs/adr/002-extraction-verified-against-page-text.md)
+- **Assets, as a separate pass.** After the core fields are safe, a bounded
+  sub-task (≤ 4 steps) expands the release's collapsed Assets section, reads the
+  file names, drops any name not present in the page text, and resolves each to
+  a download URL by matching the visible text of a link. Putting this in the
+  main goal instead was measured to scroll the core fields off-screen.
 - **Memory.** Each step is a single-turn request: system prompt + goal + a text
   history of prior actions and outcomes + the current screenshot. Cost is flat
   per step and the agent's memory is readable in the trace.
@@ -113,7 +124,7 @@ GitHub's release card shows both the git tag and the commit. We return
 
 | Layer | Command | What it proves | Needs |
 |---|---|---|---|
-| Unit | `make test` | overlay geometry, click resolution incl. rescaling, loop signatures, pixel diff, URL parsing, vision-vs-text diffing | nothing |
+| Unit | `make test` | overlay geometry, asset-name verification, click resolution incl. rescaling, loop signatures, pixel diff, URL parsing, vision-vs-text diffing | nothing |
 | Replay | `make test` | the whole agent loop against a scripted model and fake browser: happy path, coordinate attribution, step budget, loop detection, stuck hint, abort, invalid label, model errors, browser crash, timeout | nothing |
 | Live | `make test-live` | one real run scored against the GitHub API | network + key (~$0.20) |
 | Experiment | `make experiment-grounding` | 60 scored navigations, Set-of-Mark vs coordinates (run on Opus 5 and Sonnet 5) | ~$11 / ~$4 |
@@ -123,7 +134,7 @@ CI runs lint, mypy (strict) and the first two layers on every push.
 ## Repository map
 
 ```
-navigator/        the tool: browser.py, grounding.py, agent.py, llm.py, prompts.py, trace.py, cli.py
+navigator/        the tool: browser.py, grounding.py, agent.py, assets.py, llm.py, prompts.py, trace.py, cli.py
 tests/            unit + replay (fakes.py) + opt-in live
 experiments/      oracle snapshots, runners, analysis, RESULTS_*.md, traces of every scored run
 docs/adr/         architecture decision records
@@ -144,11 +155,12 @@ pyproject.toml + uv.lock   dependencies
   GitHub's Releases link (at y≈787) below the fold and cost a scroll.
 - **GitHub bot detection** is not handled beyond a realistic user agent; a
   rate-limit page would end the run with `abort`.
-- **Relative dates, collapsed assets.** `published_at` is whatever the page shows
-  ("18 hours ago"). `download_links` is empty unless the Assets section is
-  visible; asking the agent to expand it pushed the core fields off-screen
-  (see OBSERVATIONS.md), so that needs a second extraction pass.
-- **Cost/latency.** ~$0.15 and ~40 s per run on Opus 5; ~$0.06 and ~34 s on
-  Sonnet 5 at the same 30/30 success (`--model claude-sonnet-5`).
+- **Relative dates, partial asset lists.** `published_at` is whatever the page
+  shows ("18 hours ago"). The assets pass reads the names visible in one
+  screenshot after expanding the list: 12 of the 19 listed for openclaw, since the
+  rest sit below the fold.
+- **Cost/latency.** ~$0.15 and ~40 s per run on Opus 5 for the core fields,
+  plus ~$0.07 and ~15 s for the assets pass; ~$0.06 and ~34 s on Sonnet 5 at
+  the same 30/30 success (`--model claude-sonnet-5`).
 
 See [OBSERVATIONS.md](OBSERVATIONS.md) for the full discussion.

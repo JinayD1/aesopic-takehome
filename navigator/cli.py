@@ -63,6 +63,11 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("--trace-dir", type=Path, default=Path("runs"))
     run.add_argument("--out", type=Path, help="Also write the JSON result to this file.")
     run.add_argument("--quiet", action="store_true", help="No progress on stderr.")
+    run.add_argument(
+        "--skip-assets",
+        action="store_true",
+        help="Skip the second pass that expands and reads the release's asset list.",
+    )
     return p
 
 
@@ -95,6 +100,7 @@ def main(argv: list[str] | None = None) -> int:
         timeout_s=args.timeout,
         headless=not args.headed,
         slow_mo_ms=args.slow_mo,
+        assets=not args.skip_assets,
         trace_root=args.trace_dir,
     )
     result = Navigator(config, log=log).run(goal=goal, start_url=args.url, name_hint=name_hint)

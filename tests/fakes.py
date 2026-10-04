@@ -14,8 +14,16 @@ from dataclasses import dataclass, field
 from PIL import Image, ImageDraw
 
 from navigator.browser import VIEWPORT, BrowserSession
-from navigator.llm import Decision, ModelError, Read, VisionClient
-from navigator.schemas import Action, BoundingBox, Interactable, PageState, ReleaseInfo, Usage
+from navigator.llm import AssetsRead, Decision, ModelError, Read, VisionClient
+from navigator.schemas import (
+    Action,
+    AssetRead,
+    BoundingBox,
+    Interactable,
+    PageState,
+    ReleaseInfo,
+    Usage,
+)
 
 
 def _render(label: str, shade: int) -> bytes:
@@ -65,7 +73,11 @@ SITE: dict[str, FakePage] = {
         "Releases",
         220,
         [_item(1, 300, 200, "v2026.9.8")],
-        text="Releases\nv2026.9.8 Latest\n77e703c\ngithub-actions[bot] released this 3 hours ago",
+        text=(
+            "Releases\nv2026.9.8 Latest\n77e703c\ngithub-actions[bot] released this 3 hours ago\n"
+            "Assets 2\nopenclaw-macos.zip\nopenclaw-linux.tar.gz"
+        ),
+        links={},
     ),
 }
 
@@ -120,6 +132,9 @@ class FakeBrowser(BrowserSession):
     def visible_text(self, max_chars: int = 20_000) -> str:
         return self.current.text
 
+    def links_by_text(self, names: list[str]) -> dict[str, str]:
+        return {n: f"https://example.test/download/{n}" for n in names if "openclaw" in n}
+
     # actions
     def click(self, x: float, y: float) -> None:
         self.clicks.append((x, y))
@@ -165,6 +180,7 @@ class ScriptedClient(VisionClient):
             update={"commit": "77e703c"}
         )
         self.decide_calls: list[str] = []
+        self.asset_names: list[str] = ["openclaw-macos.zip", "openclaw-linux.tar.gz"]
 
     def decide(self, system: str, user_text: str, screenshot_png: bytes) -> Decision:
         self.decide_calls.append(user_text)
@@ -185,3 +201,10 @@ class ScriptedClient(VisionClient):
 
     def verify_release(self, vision_read: ReleaseInfo, page_text: str) -> Read:
         return Read(release=self._verified_read, usage=Usage(api_calls=1), latency_s=0.01)
+
+    def read_assets(self, screenshot_png: bytes) -> AssetsRead:
+        return AssetsRead(
+            assets=AssetRead(names=list(self.asset_names), no_assets_visible=not self.asset_names),
+            usage=Usage(api_calls=1),
+            latency_s=0.01,
+        )

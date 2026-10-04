@@ -107,6 +107,18 @@ class Action(BaseModel):
 # --------------------------------------------------------------------------- #
 
 
+class DownloadLink(BaseModel):
+    name: str
+    url: str | None = None
+
+
+class AssetRead(BaseModel):
+    """What the model sees in the asset list; verified against page text afterwards."""
+
+    names: list[str] = Field(default_factory=list)
+    no_assets_visible: bool = False
+
+
 class ReleaseInfo(BaseModel):
     """Structured description of the latest release as read from the page.
 
@@ -124,7 +136,7 @@ class ReleaseInfo(BaseModel):
     published_at: str | None = None
     is_prerelease: bool | None = None
     release_notes: str | None = None
-    download_links: list[str] = Field(default_factory=list)
+    download_links: list[DownloadLink] = Field(default_factory=list)
 
 
 class VerificationOutcome(str, Enum):
@@ -201,6 +213,7 @@ class RunMeta(BaseModel):
     grounding: Literal["som", "coords"]
     extraction: Literal["verified", "vision"]
     steps: int
+    assets_steps: int = 0
     status: RunStatus
     status_detail: str | None = None
     usage: Usage

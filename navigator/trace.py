@@ -46,6 +46,11 @@ class RunTrace:
         path = self.dir / f"step_{record.index + 1:02d}.json"
         path.write_text(record.model_dump_json(indent=2))
 
+    def save_named_image(self, name: str, png: bytes) -> Path:
+        path = self.dir / name
+        path.write_bytes(png)
+        return path
+
     def save_final_image(self, png: bytes) -> Path:
         path = self.dir / "final.png"
         path.write_bytes(png)

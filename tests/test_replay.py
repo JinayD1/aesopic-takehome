@@ -23,6 +23,7 @@ def _nav(tmp_path: Path, client: ScriptedClient, browser: FakeBrowser, **cfg: ob
     # The scripted happy path clicks by label, so these tests run in Set-of-Mark
     # mode unless a test says otherwise; coordinate mode has its own class below.
     cfg.setdefault("grounding", "som")
+    cfg.setdefault("assets", False)  # the assets pass has its own tests below
     config = NavigatorConfig(trace_root=tmp_path, **cfg)  # type: ignore[arg-type]
     return Navigator(config, client=client, browser_factory=lambda: browser)
 
@@ -180,3 +181,58 @@ class TestFailureModes:
         result = _nav(tmp_path, client, browser, timeout_s=0.0).run("g", HOME, "t")
         assert result.run.status is RunStatus.TIMEOUT
         assert result.run.steps == 0
+
+
+class TestAssetsPass:
+    """The second extraction pass runs after the core fields are safe."""
+
+    def test_assets_collected_and_verified(self, tmp_path: Path) -> None:
+        # After the main loop's `done`, the assets pass asks for actions again:
+        # one click to expand, then done.
+        actions = [
+            *HAPPY_PATH,
+            Action(type=CLICK, label=1, reason="expand assets"),
+            Action(type=ActionType.DONE, summary="file names visible"),
+        ]
+        browser, client = FakeBrowser(), ScriptedClient(actions)
+        # One hallucinated name that is not in the page text must be dropped.
+        client.asset_names = ["openclaw-macos.zip", "openclaw-linux.tar.gz", "ghost.dmg"]
+        result = _nav(tmp_path, client, browser, assets=True).run("goal", HOME, "t")
+
+        assert result.run.status is RunStatus.SUCCESS
+        assert result.latest_release is not None
+        assert result.latest_release.commit == "77e703c"  # core fields untouched
+        names = [d.name for d in result.latest_release.download_links]
+        assert names == ["openclaw-macos.zip", "openclaw-linux.tar.gz"]
+        assert result.latest_release.download_links[0].url == (
+            "https://example.test/download/openclaw-macos.zip"
+        )
+        assert result.run.assets_steps == 2
+        trace = Path(result.run.trace_dir)
+        assert (trace / "assets_step_01.png").is_file()
+        assert (trace / "assets_final.png").is_file()
+        # The assets sub-goal, not the main goal, drove those steps.
+        assert "downloadable files" in client.decide_calls[-1]
+
+    def test_no_assets_visible_is_clean(self, tmp_path: Path) -> None:
+        actions = [*HAPPY_PATH, Action(type=ActionType.ABORT, summary="no assets listed")]
+        browser, client = FakeBrowser(), ScriptedClient(actions)
+        result = _nav(tmp_path, client, browser, assets=True).run("goal", HOME, "t")
+        assert result.run.status is RunStatus.SUCCESS
+        assert result.latest_release is not None
+        assert result.latest_release.download_links == []
+        assert result.errors == []
+
+    def test_assets_pass_is_bounded(self, tmp_path: Path) -> None:
+        # A model that never says done is cut off after MAX_ASSET_STEPS.
+        actions = [*HAPPY_PATH, *([Action(type=ActionType.SCROLL, direction="down")] * 10)]
+        browser, client = FakeBrowser(), ScriptedClient(actions)
+        result = _nav(tmp_path, client, browser, assets=True).run("goal", HOME, "t")
+        assert result.run.status is RunStatus.SUCCESS
+        assert result.run.assets_steps == 4
+
+    def test_skip_flag(self, tmp_path: Path) -> None:
+        browser, client = FakeBrowser(), ScriptedClient(list(HAPPY_PATH))
+        result = _nav(tmp_path, client, browser, assets=False).run("goal", HOME, "t")
+        assert result.run.assets_steps == 0
+        assert len(client.decide_calls) == 4

@@ -125,3 +125,17 @@ class TestNormaliseRepo:
     def test_empty_is_none(self) -> None:
         assert normalise_repo("") is None
         assert normalise_repo(None) is None
+
+
+class TestVerifyAssetNames:
+    def test_keeps_names_present_in_text(self) -> None:
+        from navigator.assets import verify_names
+
+        kept, dropped = verify_names(["App.dmg", "ghost.zip", " App.dmg "], "Assets\napp.dmg\n")
+        assert kept == ["App.dmg", "App.dmg"]
+        assert dropped == ["ghost.zip"]
+
+    def test_empty(self) -> None:
+        from navigator.assets import verify_names
+
+        assert verify_names([], "anything") == ([], [])

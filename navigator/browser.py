@@ -246,6 +246,26 @@ class BrowserSession:
         text: str = self._evaluate("() => document.body.innerText")
         return text[:max_chars]
 
+    def links_by_text(self, names: list[str]) -> dict[str, str]:
+        """Resolve visible link text -> absolute href, generically.
+
+        For each name, the first anchor whose trimmed visible text equals it
+        (case-insensitive) wins. No site knowledge; just "the link that says X".
+        """
+        js = """
+        (names) => {
+          const want = new Map(names.map(n => [n.trim().toLowerCase(), n]));
+          const out = {};
+          for (const a of document.querySelectorAll('a[href]')) {
+            const t = (a.innerText || a.textContent || '').trim().toLowerCase();
+            if (want.has(t) && !(want.get(t) in out)) out[want.get(t)] = a.href;
+          }
+          return out;
+        }
+        """
+        found: dict[str, str] = self._evaluate(js, names)
+        return found
+
     # -- actions -----------------------------------------------------------
 
     def click(self, x: float, y: float) -> None:

@@ -27,7 +27,7 @@ from anthropic.types import (
 from pydantic import ValidationError
 
 from . import prompts
-from .schemas import Action, ReleaseInfo, Usage
+from .schemas import Action, AssetRead, ReleaseInfo, Usage
 
 DEFAULT_MODEL = "claude-opus-5"
 
@@ -126,6 +126,13 @@ class Decision:
 @dataclass
 class Read:
     release: ReleaseInfo
+    usage: Usage
+    latency_s: float
+
+
+@dataclass
+class AssetsRead:
+    assets: AssetRead
     usage: Usage
     latency_s: float
 
@@ -295,3 +302,30 @@ class VisionClient:
         if parsed is None:
             raise ModelError("verification returned no parsed output")
         return Read(release=parsed, usage=_usage(response), latency_s=latency)
+
+    def read_assets(self, screenshot_png: bytes) -> AssetsRead:
+        """Structured read of the visible asset file names."""
+        t0 = time.perf_counter()
+        response = self._client.messages.parse(
+            model=self.model,
+            max_tokens=2048,
+            system=prompts.ASSETS_EXTRACT_SYSTEM,
+            messages=[
+                {
+                    "role": "user",
+                    "content": [
+                        _image_block(screenshot_png),
+                        _text_block(prompts.ASSETS_EXTRACT_USER),
+                    ],
+                }
+            ],
+            output_format=AssetRead,
+            **self._thinking_kwargs("medium"),
+        )
+        latency = time.perf_counter() - t0
+        if response.stop_reason == "refusal":
+            raise ModelError("model refused the assets request")
+        parsed = response.parsed_output
+        if parsed is None:
+            raise ModelError("assets read returned no parsed output")
+        return AssetsRead(assets=parsed, usage=_usage(response), latency_s=latency)
