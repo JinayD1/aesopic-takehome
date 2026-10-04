@@ -92,6 +92,19 @@ list of lines in the trace.
 
 ## With another week
 
-Haiku 4.5 and a page with genuinely small targets, to find where coordinates
-break. A second extraction pass for assets. The extraction experiment as
-designed. Attach the previous screenshot when an action had no effect.
+- Haiku 4.5 and a page with genuinely small targets, to find where coordinates
+  break. A second extraction pass for assets. The extraction experiment as
+  designed. Attach the previous screenshot when an action had no effect.
+- **Replay with verification.** The 120 committed traces are a memory of what
+  worked. On a repeat task, replay the remembered actions and ask a small
+  model (Haiku 4.5) only "did this step land?" per screenshot; fall back to
+  full navigation on the first failed check and discard that memory. Cost
+  drops from ~$0.15 to a few cents on the happy path while keeping the
+  robustness to layout changes the brief asks for. The trap is treating a
+  remembered path as authoritative: that is a hardcoded path by another name.
+- **Fine-tuning on traces.** Every step is already a (screenshot, history,
+  action, outcome) tuple with a scored result. With a few thousand such tuples
+  across several sites, a small vision model could be fine-tuned for this
+  action schema, trading per-call cost and latency for a dependency on one
+  model. The scoring harness is what makes this viable: it labels which
+  trajectories to learn from.

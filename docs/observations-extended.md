@@ -201,3 +201,10 @@ Every item here came from a real run, is in the commit history, and has a trace.
    non-GitHub sites to see which assumptions are actually GitHub-shaped.
 5. Record the agent's `reason` against the clicked element's text in every
    run to compute a true wrong-target rate automatically.
+6. Replay with verification: reuse successful traces as advisory memory, with
+   a small model confirming each replayed step against the live screenshot
+   and a fallback to full navigation on the first miss. Memory must stay
+   advisory; a replayed path that is trusted blindly is a scraper again.
+7. Fine-tuning on traces: each step is a scored (screenshot, history, action,
+   outcome) tuple. With a few thousand across several sites, a small vision
+   model could learn this action schema directly.
