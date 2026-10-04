@@ -53,6 +53,14 @@ smoke pass agreed on every field in both arms.
 Fresh single-turn steps keep cost flat and make the agent's memory a readable
 list of lines in the trace.
 
+**Relation to existing tools.** Most browser agents, browser-use and Skyvern
+among them, pick actions from a DOM-derived element list, which is Set-of-Mark
+with text instead of badges; Skyvern adds a planner and a per-step validator.
+Magnitude argues for pure vision. My result sits between them: on this site and
+these two models, pointing at pixels beat picking from a list, and the list's
+failure mode was reading the number, not finding the element. I would expect a
+planner-validator layer to help most on longer tasks than this one.
+
 ## What didn't work
 
 - **Asynchronous navigation.** GitHub navigates after a click via Turbo; the

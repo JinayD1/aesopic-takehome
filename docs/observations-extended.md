@@ -50,6 +50,16 @@ A model that can type URLs skips the task. Each step is a fresh single-turn
 request with an explicit text history, so cost is flat and the agent's memory
 is readable in the trace. ADR 003.
 
+### Relation to existing tools
+
+Most browser agents, browser-use and Skyvern
+among them, pick actions from a DOM-derived element list, which is Set-of-Mark
+with text instead of badges; Skyvern adds a planner and a per-step validator.
+Magnitude argues for pure vision. My result sits between them: on this site and
+these two models, pointing at pixels beat picking from a list, and the list's
+failure mode was reading the number, not finding the element. I would expect a
+planner-validator layer to help most on longer tasks than this one.
+
 ## 3. Experiment: Set-of-Mark vs pixel coordinates
 
 60 full navigations on Claude Opus 5: 2 grounding modes × 3 repositories
