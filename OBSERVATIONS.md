@@ -110,3 +110,15 @@ list of lines in the trace.
   action schema, trading per-call cost and latency for a dependency on one
   model. The scoring harness is what makes this viable: it labels which
   trajectories to learn from.
+
+## Toward production
+
+Three gaps the brief excluded but real consoles have. **Auth:** classify
+login, MFA and session-expired screens as distinct states; resume from a
+stored browser session, pause for a human on MFA, abort with a precise reason
+otherwise; credentials never pass through the model or the trace.
+**Anti-automation:** detect and cooperate, never evade: back off on rate
+limits, hand CAPTCHAs to a human, use a persistent authorised browser profile,
+and log every challenge as a metric. **Memory:** replay scored traces as
+advisory hints verified per step, discarded on the first miss, so the happy
+path gets cheap without rebuilding a scraper.
