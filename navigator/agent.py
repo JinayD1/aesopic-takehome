@@ -163,17 +163,15 @@ def notes_change_summary(vision: str | None, verified: str | None) -> str | None
 
 def extract_release(
     client: VisionClient, png: bytes, page_text: str, mode: ExtractionMode
-) -> tuple[Extraction, Usage]:
+) -> tuple[ReleaseInfo, Extraction, Usage]:
+    """Return (the release to report, the audit trail, token usage)."""
     usage = Usage()
     vision = client.read_release(png)
     usage.add(vision.usage)
     if mode == "vision":
         return (
-            Extraction(
-                release=vision.release,
-                vision_read=vision.release,
-                verification=VerificationOutcome.SKIPPED,
-            ),
+            vision.release,
+            Extraction(vision_read=vision.release, verification=VerificationOutcome.SKIPPED),
             usage,
         )
     verified = client.verify_release(vision.release, page_text)
@@ -186,8 +184,8 @@ def extract_release(
         VerificationOutcome.CORRECTED if corrections or notes_change else VerificationOutcome.AGREE
     )
     return (
+        verified.release,
         Extraction(
-            release=verified.release,
             vision_read=vision.release,
             verification=outcome,
             corrections=corrections,
@@ -230,6 +228,7 @@ class Navigator:
         steps = 0
         assets_steps = 0
         extraction: Extraction | None = None
+        release: ReleaseInfo | None = None
         final_url: str | None = None
 
         browser = self._browser_factory()
@@ -349,7 +348,7 @@ class Navigator:
                 page_text = browser.visible_text()
                 trace.save_page_text(page_text)
                 try:
-                    extraction, ex_usage = extract_release(
+                    release, extraction, ex_usage = extract_release(
                         self.client, final_png, page_text, cfg.extraction
                     )
                     usage.add(ex_usage)
@@ -359,12 +358,12 @@ class Navigator:
                     status, status_detail = RunStatus.ERROR, f"extraction failed: {e}"
 
             # -- assets: a separate bounded pass so it can never cost the core fields
-            if status is RunStatus.SUCCESS and extraction is not None and cfg.assets:
+            if status is RunStatus.SUCCESS and release is not None and cfg.assets:
                 assets = collect_assets(self.client, browser, trace, cfg.grounding, self._log)
                 usage.add(assets.usage)
                 assets_steps = assets.steps
                 errors.extend(assets.errors)
-                extraction.release.download_links = assets.links
+                release.download_links = assets.links
                 self._log(
                     f"assets: {len(assets.links)} links in {assets.steps} steps"
                     + (
@@ -382,7 +381,6 @@ class Navigator:
         finally:
             browser.close()
 
-        release = extraction.release if extraction else None
         if release is not None:
             release.repository = normalise_repo(release.repository)
         # The URL is exact; the header text is what the model read off pixels.

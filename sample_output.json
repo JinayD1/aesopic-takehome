@@ -61,66 +61,6 @@
     ]
   },
   "extraction": {
-    "release": {
-      "repository": "openclaw/openclaw",
-      "version": "openclaw 2026.9.8",
-      "tag": "v2026.9.8",
-      "commit": "fc23bc8",
-      "author": "github-actions",
-      "published_at": "2 days ago",
-      "is_prerelease": false,
-      "release_notes": "OpenClaw v2026.9.8\n\n58 commits · 43 pull requests · 21 contributors\n\nChanges included in this release\n\nThe release notes and changelog contain the same content, presented in two formats:\n\n- Release notes — formatted for people, with expandable sections.\n- Changelog — plain Markdown for AI agents and tools.\n\nThanks\n\n@609NFT @aniketkrs @aniruddhaadak80 @EndeavorPioneer @ericcaiwx-star @fuller-stack-dev @hailongguo0530-alt @jasdeepohri-max @miguelpt2026 @NickM83 @obviyus @Patrick-Erichsen @PennyVibe @RomneyDa @scotthuang @steipete @VACInc @vincentkoc @WG-Mojo @xilopaint @yashas-13",
-      "download_links": [
-        {
-          "name": "latest.json",
-          "url": "https://github.com/openclaw/openclaw/releases/download/v2026.9.8/latest.json"
-        },
-        {
-          "name": "OpenClaw-2026.9.8-arm64.dmg",
-          "url": "https://github.com/openclaw/openclaw/releases/download/v2026.9.8/OpenClaw-2026.9.8-arm64.dmg"
-        },
-        {
-          "name": "OpenClaw-2026.9.8-arm64.dSYM.zip",
-          "url": "https://github.com/openclaw/openclaw/releases/download/v2026.9.8/OpenClaw-2026.9.8-arm64.dSYM.zip"
-        },
-        {
-          "name": "OpenClaw-2026.9.8-arm64.zip",
-          "url": "https://github.com/openclaw/openclaw/releases/download/v2026.9.8/OpenClaw-2026.9.8-arm64.zip"
-        },
-        {
-          "name": "openclaw-2026.9.8-dependency-evidence.zip",
-          "url": "https://github.com/openclaw/openclaw/releases/download/v2026.9.8/openclaw-2026.9.8-dependency-evidence.zip"
-        },
-        {
-          "name": "openclaw-2026.9.8-postpublish-evidence.json",
-          "url": "https://github.com/openclaw/openclaw/releases/download/v2026.9.8/openclaw-2026.9.8-postpublish-evidence.json"
-        },
-        {
-          "name": "openclaw-2026.9.8-postpublish-evidence.json.sha256",
-          "url": "https://github.com/openclaw/openclaw/releases/download/v2026.9.8/openclaw-2026.9.8-postpublish-evidence.json.sha256"
-        },
-        {
-          "name": "openclaw-2026.9.8-release-manifest.json",
-          "url": "https://github.com/openclaw/openclaw/releases/download/v2026.9.8/openclaw-2026.9.8-release-manifest.json"
-        },
-        {
-          "name": "openclaw-2026.9.8-release-manifest.json.sha256",
-          "url": "https://github.com/openclaw/openclaw/releases/download/v2026.9.8/openclaw-2026.9.8-release-manifest.json.sha256"
-        },
-        {
-          "name": "openclaw-2026.9.8-stable-main-closeout.json",
-          "url": "https://github.com/openclaw/openclaw/releases/download/v2026.9.8/openclaw-2026.9.8-stable-main-closeout.json"
-        },
-        {
-          "name": "Source code (zip)",
-          "url": "https://github.com/openclaw/openclaw/archive/refs/tags/v2026.9.8.zip"
-        },
-        {
-          "name": "Source code (tar.gz)",
-          "url": "https://github.com/openclaw/openclaw/archive/refs/tags/v2026.9.8.tar.gz"
-        }
-      ]
-    },
     "vision_read": {
       "repository": "openclaw / openclaw",
       "version": "openclaw 2026.9.8",

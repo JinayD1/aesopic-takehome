@@ -152,9 +152,12 @@ class FieldCorrection(BaseModel):
 
 
 class Extraction(BaseModel):
-    """Result of the extraction step, including what verification changed."""
+    """Audit trail of the extraction step: what vision read, and what verification changed.
 
-    release: ReleaseInfo
+    The verified release itself lives at the top level of RunResult as
+    ``latest_release``; it is not repeated here.
+    """
+
     vision_read: ReleaseInfo
     verification: VerificationOutcome
     corrections: list[FieldCorrection] = Field(default_factory=list)
