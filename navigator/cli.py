@@ -10,6 +10,7 @@ be piped. Exit status is 0 only when the run succeeded.
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 from pathlib import Path
 
@@ -62,6 +63,11 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("--slow-mo", type=int, default=0, help="Playwright slow_mo in ms.")
     run.add_argument("--trace-dir", type=Path, default=Path("runs"))
     run.add_argument("--out", type=Path, help="Also write the JSON result to this file.")
+    run.add_argument(
+        "--full",
+        action="store_true",
+        help="Print the full record: pre-verification vision read, token usage, timestamps.",
+    )
     run.add_argument("--quiet", action="store_true", help="No progress on stderr.")
     run.add_argument(
         "--skip-assets",
@@ -105,7 +111,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     result = Navigator(config, log=log).run(goal=goal, start_url=args.url, name_hint=name_hint)
 
-    text = result.model_dump_json(indent=2, exclude_none=True)
+    text = json.dumps(result.to_output(full=args.full), indent=2)
     print(text)
     if args.out:
         args.out.write_text(text + "\n")

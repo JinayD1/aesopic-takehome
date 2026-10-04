@@ -27,7 +27,7 @@ navigate --repo openclaw/openclaw
       "..."
     ]
   },
-  "run": { "status": "success", "steps": 5, "cost_usd": 0.17, "wall_time_s": 41.3, "...": "..." }
+  "run": { "status": "success", "steps": 5, "verification": "agree", "cost_usd": 0.17, "wall_time_s": 41.3, "...": "..." }
 }
 ```
 
@@ -38,7 +38,7 @@ Requires Python ≥ 3.10, [uv](https://docs.astral.sh/uv/) and an Anthropic API 
 ```bash
 make setup                      # venv, deps, Chromium
 cp .env.example .env            # then put ANTHROPIC_API_KEY=... in .env
-make test                       # 57 tests, no network, no key needed
+make test                       # 65 tests, no network, no key needed
 make demo                       # the take-home task -> sample_output.json
 pyproject.toml + uv.lock   dependencies
 ```
@@ -63,11 +63,15 @@ navigate --repo openclaw/openclaw --headed --slow-mo 300
 # the alternatives kept for comparison
 navigate --repo openclaw/openclaw --grounding som         # Set-of-Mark numbered labels instead of coordinates
 navigate --repo openclaw/openclaw --extraction vision     # skip text verification
+navigate --repo openclaw/openclaw --full                  # add the pre-verification vision read, token usage, timestamps
 navigate --repo openclaw/openclaw --skip-assets           # skip the assets pass (saves ~3 steps, ~$0.07)
 navigate --repo openclaw/openclaw --model claude-sonnet-5 # cheaper model
 ```
 
-JSON goes to stdout, progress to stderr, exit code 0 only on success. Every run
+JSON goes to stdout, progress to stderr, exit code 0 only on success. The
+default output is the answer plus a short `run` summary; `--full` prints the
+whole record (the vision read before verification, token usage, timestamps),
+which the trace's `run.json` always contains. Every run
 writes a trace to `runs/<timestamp>_<name>/`: the exact screenshot the model saw
 at each step (`step_NN.png`; badges included in Set-of-Mark mode), a JSON record
 per decision, the final page and the page text used by the verifier.

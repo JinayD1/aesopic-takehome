@@ -7,7 +7,7 @@ the trace on disk, the tests, and the final JSON output all share one schema.
 from __future__ import annotations
 
 from enum import Enum
-from typing import Literal
+from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
@@ -237,3 +237,45 @@ class RunResult(BaseModel):
     extraction: Extraction | None = None
     run: RunMeta
     errors: list[str] = Field(default_factory=list)
+
+    def to_output(self, full: bool = False) -> dict[str, Any]:
+        """The document the CLI prints.
+
+        The compact form (default) is what a consumer wants: the repository,
+        the release, and a short run summary that still says whether the
+        text verification agreed with the vision read and what it changed.
+        ``full`` is the whole record: the pre-verification vision read, token
+        usage and timestamps. The trace's ``run.json`` always holds the full form.
+        """
+        if full:
+            return self.model_dump(mode="json", exclude_none=True)
+        release = (
+            self.latest_release.model_dump(mode="json", exclude_none=True, exclude={"repository"})
+            if self.latest_release is not None
+            else None
+        )
+        meta = self.run.model_dump(mode="json", exclude_none=True)
+        run: dict[str, Any] = {"status": meta["status"]}
+        if "status_detail" in meta:
+            run["status_detail"] = meta["status_detail"]
+        run["steps"] = meta["steps"]
+        if meta.get("assets_steps"):
+            run["assets_steps"] = meta["assets_steps"]
+        if self.extraction is not None:
+            run["verification"] = self.extraction.verification.value
+            if self.extraction.corrections:
+                run["corrections"] = [
+                    c.model_dump(mode="json") for c in self.extraction.corrections
+                ]
+            if self.extraction.notes_corrected and self.extraction.notes_change:
+                run["notes_change"] = self.extraction.notes_change
+        for key in ("model", "grounding", "extraction", "cost_usd", "wall_time_s", "trace_dir"):
+            run[key] = meta[key]
+        out: dict[str, Any] = {
+            "repository": self.repository,
+            "latest_release": release,
+            "run": run,
+        }
+        if self.errors:
+            out["errors"] = self.errors
+        return out

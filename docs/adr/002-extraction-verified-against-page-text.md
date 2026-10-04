@@ -50,7 +50,7 @@ it instead of the entry badged "Latest". Verification cannot fix a wrong
 
 ## Consequences
 
-- Output carries `extraction.verification` (`agree` / `corrected` / `skipped`)
+- Output carries `run.verification` (`agree` / `corrected` / `skipped`)
   and a per-field `corrections` list. Consumers can see when vision was wrong.
 - Extraction costs roughly $0.10 per run instead of $0.02. Acceptable for a
   one-off tool; for volume, trim `innerText` to the region around the release

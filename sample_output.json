@@ -1,7 +1,6 @@
 {
   "repository": "openclaw/openclaw",
   "latest_release": {
-    "repository": "openclaw/openclaw",
     "version": "openclaw 2026.9.8",
     "tag": "v2026.9.8",
     "commit": "fc23bc8",
@@ -60,42 +59,18 @@
       }
     ]
   },
-  "extraction": {
-    "vision_read": {
-      "repository": "openclaw / openclaw",
-      "version": "openclaw 2026.9.8",
-      "tag": "v2026.9.8",
-      "commit": "fc23bc8",
-      "author": "github-actions",
-      "published_at": "2 days ago",
-      "is_prerelease": false,
-      "release_notes": "OpenClaw v2026.9.8\n\n58 commits · 43 pull requests · 21 contributors\n\nChanges included in this release\n\nThe release notes and changelog contain the same content, presented in two formats:\n\n- Release notes — formatted for people, with expandable sections.\n- Changelog — plain Markdown for AI agents and tools.\n\nThanks\n\n@609NFT @aniketkrs @aniruddhaadak80 @EndeavorPioneer @ericcaiwx-star @fuller-stack-dev @hailongguo0530-alt @jasdeepghri_max @miquelpt2026 @NickM83 @obvivus @Patrick_Erichson @PennyVibe @PompeyDa @scotthuang",
-      "download_links": []
-    },
-    "verification": "corrected",
-    "corrections": [],
-    "notes_corrected": true,
-    "notes_change": "5 words replaced, 11 words added, 65 -> 71 words"
-  },
   "run": {
+    "status": "success",
+    "status_detail": "On github.com/openclaw/openclaw/releases, the top entry \"openclaw 2026.9.8\" is badged \"Latest\": released by github-actions 2 days ago, tag v2026.9.8, commit fc23bc8. Notes say 58 commits, 43 pull requests, 21 contributors.",
+    "steps": 5,
+    "assets_steps": 3,
+    "verification": "corrected",
+    "notes_change": "5 words replaced, 11 words added, 65 -> 71 words",
     "model": "claude-opus-5",
     "grounding": "coords",
     "extraction": "verified",
-    "steps": 5,
-    "assets_steps": 3,
-    "status": "success",
-    "status_detail": "On github.com/openclaw/openclaw/releases, the top entry \"openclaw 2026.9.8\" is badged \"Latest\": released by github-actions 2 days ago, tag v2026.9.8, commit fc23bc8. Notes say 58 commits, 43 pull requests, 21 contributors.",
-    "usage": {
-      "input_tokens": 28434,
-      "output_tokens": 4132,
-      "cache_read_input_tokens": 9926,
-      "cache_creation_input_tokens": 1418,
-      "api_calls": 11
-    },
     "cost_usd": 0.2593,
     "wall_time_s": 66.8,
-    "trace_dir": "runs/20261004T202217_openclaw-openclaw",
-    "started_at": "2026-10-04T20:22:17+00:00"
-  },
-  "errors": []
+    "trace_dir": "runs/20261004T202217_openclaw-openclaw"
+  }
 }
