@@ -94,3 +94,10 @@ at the end. Each entry: what happened, why it matters.
   naming the valid range; 14/30 detours; 2 "Sign in" (9) for search (8). The
   "smaller model prefers labels" hypothesis is not supported; the symbolic
   read-a-number step is the fragile part. Sonnet coords: $0.062, 34 s.
+- **Assets bonus, tried and reverted.** Adding "expand the collapsed Assets
+  section before you stop" to the goal made a 10-step, $0.32 run (five scrolls)
+  and the final screenshot was scrolled to the asset list, so tag and commit
+  were off-screen and extracted as null. One screenshot cannot hold both the
+  header and 17 assets. Doing this properly needs a second extraction pass on
+  a second screenshot (or a full-page capture), not a prompt line. Reverted;
+  `download_links` stays empty unless assets happen to be visible.
