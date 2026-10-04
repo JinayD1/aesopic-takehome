@@ -52,6 +52,19 @@ class TestHappyPath:
         assert [c.field for c in result.extraction.corrections] == ["commit"]
         assert browser.closed
 
+    def test_notes_correction_is_reported(self, tmp_path: Path) -> None:
+        from navigator.schemas import ReleaseInfo
+
+        vision = ReleaseInfo(tag="v1", commit="abc1234", release_notes="Thanks @obvivus")
+        verified = ReleaseInfo(tag="v1", commit="abc1234", release_notes="Thanks @obviyus")
+        client = ScriptedClient(list(HAPPY_PATH), vision_read=vision, verified_read=verified)
+        result = _nav(tmp_path, client, FakeBrowser()).run("goal", HOME, "t")
+        assert result.extraction is not None
+        assert result.extraction.corrections == []  # no core field changed
+        assert result.extraction.notes_corrected is True
+        assert result.extraction.verification is VerificationOutcome.CORRECTED
+        assert result.extraction.notes_change == "1 words replaced, 1 words added, 2 -> 2 words"
+
     def test_vision_only_extraction_skips_verification(self, tmp_path: Path) -> None:
         browser, client = FakeBrowser(), ScriptedClient(list(HAPPY_PATH))
         result = _nav(tmp_path, client, browser, extraction="vision").run("goal", HOME, "t")

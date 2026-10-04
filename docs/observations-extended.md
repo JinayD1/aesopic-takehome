@@ -133,6 +133,19 @@ Cheapest headline from the whole project: Sonnet 5 with coordinates was
 well-spaced targets. A page of tiny icon buttons could still favour labels.
 Haiku 4.5 is untested; the harness runs it with one flag.
 
+## 3b. Extraction: the one measured correction
+
+Two openclaw runs on 2026-10-04 are the only cases so far where verification
+changed anything. Both vision reads had every core field right. Both mangled
+the free text: `@jasdeepghri-max` for `@jasdeepohri-max`; `@obvivus`,
+`@Patrick-Erichson`, `@scottbuang` for `@obviyus`, `@Patrick-Erichsen`,
+`@scotthuang`; and both stopped the thanks list at 15 of 21 handles. The
+verified read had all 21, spelled as on the page. These are exactly the
+character confusions predicted in ADR 002 (h/g, y/v, h/b), landing in the
+field with the smallest text. The output reported `agree` because
+release_notes was excluded from the field diff; it now carries
+`notes_corrected` and a word-level change summary.
+
 ## 4. What didn't work, and what it taught me
 
 Every item here came from a real run, is in the commit history, and has a trace.

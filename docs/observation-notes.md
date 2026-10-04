@@ -107,3 +107,8 @@ at the end. Each entry: what happened, why it matters.
   visible text. openclaw: 12/19 listed (17 uploads + 2 source archives) with real download URLs (+3 steps, +$0.07,
   core fields untouched, verification agree). react: 2 source archives, model
   noticed the list was already open. 7 openclaw entries missed below the fold.
+- **Verification earned its keep, in the notes.** Two openclaw runs: vision
+  misspelled 4 handles and truncated the thanks list at 15/21; verifier fixed
+  all of it from page text. Output said "agree" because release_notes was not
+  in the diffed fields. Added notes_corrected + a word-level change summary;
+  outcome is now "corrected" when notes change.

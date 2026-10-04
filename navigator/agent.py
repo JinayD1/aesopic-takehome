@@ -144,6 +144,23 @@ def diff_release(vision: ReleaseInfo, verified: ReleaseInfo) -> list[FieldCorrec
     return out
 
 
+def notes_change_summary(vision: str | None, verified: str | None) -> str | None:
+    """Word-level summary of how verification changed the free-text notes.
+
+    Notes are not listed as a per-field correction because they are long; this
+    says how many words changed so the output never reports 'agree' when the
+    verifier rewrote part of the text.
+    """
+    a = (vision or "").split()
+    b = (verified or "").split()
+    if a == b:
+        return None
+    sa, sb = set(a), set(b)
+    replaced = len(sa - sb)
+    added = len(sb - sa)
+    return f"{replaced} words replaced, {added} words added, {len(a)} -> {len(b)} words"
+
+
 def extract_release(
     client: VisionClient, png: bytes, page_text: str, mode: ExtractionMode
 ) -> tuple[Extraction, Usage]:
@@ -162,13 +179,20 @@ def extract_release(
     verified = client.verify_release(vision.release, page_text)
     usage.add(verified.usage)
     corrections = diff_release(vision.release, verified.release)
-    outcome = VerificationOutcome.CORRECTED if corrections else VerificationOutcome.AGREE
+    notes_change = notes_change_summary(
+        vision.release.release_notes, verified.release.release_notes
+    )
+    outcome = (
+        VerificationOutcome.CORRECTED if corrections or notes_change else VerificationOutcome.AGREE
+    )
     return (
         Extraction(
             release=verified.release,
             vision_read=vision.release,
             verification=outcome,
             corrections=corrections,
+            notes_corrected=notes_change is not None,
+            notes_change=notes_change,
         ),
         usage,
     )

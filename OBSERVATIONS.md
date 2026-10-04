@@ -47,7 +47,13 @@ are 7-hex-char SHAs and version strings, exactly what vision misreads. The
 verifier may only correct strings that exist in the rendered text and reports
 every correction. It costs ~3.5× the base read. I designed a paired experiment
 but spent the budget on grounding, where the outcome was uncertain; a 6-sample
-smoke pass agreed on every field in both arms.
+smoke pass agreed on every core field in both arms. The one measured case where
+verification changed the answer came from the release notes, not the core
+fields: in two openclaw runs the vision read misspelled four contributor
+handles (`@obvivus` for `@obviyus`, `@scottbuang` for `@scotthuang`) and
+truncated the thanks list at 15 of 21 names; the verifier restored all of
+them from the page text. The output had reported `agree`, because only core
+fields were diffed, so it now also reports `notes_corrected`.
 
 **No `goto`; single-turn memory.** A model that can type URLs skips the task.
 Fresh single-turn steps keep cost flat and make the agent's memory a readable

@@ -12,6 +12,7 @@ from navigator.agent import (
     _signature,
     diff_release,
     normalise_repo,
+    notes_change_summary,
     repo_from_url,
 )
 from navigator.schemas import Action, ActionType, ReleaseInfo
@@ -139,3 +140,19 @@ class TestVerifyAssetNames:
         from navigator.assets import verify_names
 
         assert verify_names([], "anything") == ([], [])
+
+
+class TestNotesChangeSummary:
+    def test_identical_is_none(self) -> None:
+        assert notes_change_summary("a b c", "a b c") is None
+
+    def test_misread_handles_are_counted(self) -> None:
+        vision = "Thanks @obvivus @scottbuang"
+        verified = "Thanks @obviyus @scotthuang @steipete"
+        assert notes_change_summary(vision, verified) == (
+            "2 words replaced, 3 words added, 3 -> 4 words"
+        )
+
+    def test_none_inputs(self) -> None:
+        assert notes_change_summary(None, None) is None
+        assert notes_change_summary(None, "x") == "0 words replaced, 1 words added, 0 -> 1 words"

@@ -158,6 +158,9 @@ class Extraction(BaseModel):
     vision_read: ReleaseInfo
     verification: VerificationOutcome
     corrections: list[FieldCorrection] = Field(default_factory=list)
+    # release_notes is free text, so it is summarised rather than listed as a correction
+    notes_corrected: bool = False
+    notes_change: str | None = None
 
 
 # --------------------------------------------------------------------------- #
