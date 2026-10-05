@@ -190,10 +190,11 @@ is on screen; it cannot protect against the wrong thing being on screen.
 - **What fits on screen.** `published_at` is the page's relative text
   ("18 hours ago"). Release notes and download links are what the final
   screenshots hold.
-- **Cost.** ~$0.15 and ~40 s per run on Opus 5 for the core fields, plus
-  ~$0.07 and ~15 s for assets. Sonnet 5 with coordinates measured 30/30 at
-  $0.06 and is the better production default; Opus stays the default here
-  because the experiment and sample output were produced with it.
+- **Cost.** ~$0.06 per run for the core fields on the default, Sonnet 5 with
+  coordinates, which measured 30/30 in the experiment; ~$0.15 and ~40 s on
+  Opus 5; plus ~$0.07 and ~15 s for assets. The grounding data also picks the
+  model: Sonnet 5 for coordinates, Opus 5 for Set-of-Mark, where Sonnet lost
+  3/30. `--model` overrides either.
 - No handling of rate-limit or abuse pages beyond a clean `abort`. Two models,
   three repositories, one day; the intervals in the reports are wide.
 
