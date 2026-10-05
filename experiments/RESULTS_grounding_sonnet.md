@@ -56,7 +56,7 @@ _Generated 2026-10-03T23:35+00:00 from `results/grounding.jsonl` (60 runs)._
 | som | react/react | 2 | loop_detected | repeated '7. click #1009 (Click on Releases section to view latest release details.) -> IN | `/Users/jinay/Documents/aesopic-takehome/experiments/traces/grounding-claude-sonnet-5/som/20261003T232455_react-react-02` |
 | som | react/react | 8 | loop_detected | repeated '6. click #1009 (Click on Releases section to view latest release details) -> INV | `/Users/jinay/Documents/aesopic-takehome/experiments/traces/grounding-claude-sonnet-5/som/20261003T233241_react-react-08` |
 
-## Decision rule (pre-registered in PLAN.md §7.3)
+## Decision rule (pre-registered in PLAN.md §7.3, kept in git history)
 
 Keep Set-of-Mark as default if its task-success rate is ≥ coords and its off-target/misclick rate is lower. If coords wins or ties on success *and* is cheaper, switch and document why.
 

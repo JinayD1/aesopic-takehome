@@ -181,7 +181,7 @@ def grounding_report(rows: list[dict[str, Any]]) -> str:
 
     lines += [
         "",
-        "## Decision rule (pre-registered in PLAN.md §7.3)",
+        "## Decision rule (pre-registered in PLAN.md §7.3, kept in git history)",
         "",
         "Keep Set-of-Mark as default if its task-success rate is ≥ coords and its "
         "off-target/misclick rate is lower. If coords wins or ties on success *and* is "
@@ -287,7 +287,7 @@ def extraction_report(rows: list[dict[str, Any]]) -> str:
 
     lines += [
         "",
-        "## Decision rule (pre-registered in PLAN.md §7.3)",
+        "## Decision rule (pre-registered in PLAN.md §7.3, kept in git history)",
         "",
         "Keep verification as default if it raises record accuracy and correction "
         "precision ≥ 0.9. If vision-only is already ≥ 95% on commit SHA, make "

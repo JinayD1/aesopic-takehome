@@ -77,7 +77,7 @@ at the end. Each entry: what happened, why it matters.
   but answered a nearby badge number (94 vs 92; 82 vs 86) in the dense region
   where the sidebar's Releases badge sits among file-list rows. Each was
   recovered in two extra steps. Coords: 0/90. Cost $0.153 vs $0.158, wall time
-  39.5 s vs 43.0 s. Pre-registered rule (PLAN.md §7.3) says: tie on success and
+  39.5 s vs 43.0 s. Pre-registered rule (PLAN.md §7.3, git history) says: tie on success and
   cheaper -> switch default to coords. The hypothesis that SoM would be more
   accurate was wrong for this model on this site. Caveats: one site, large
   well-spaced targets, one model; SoM's expected advantage (tiny targets,

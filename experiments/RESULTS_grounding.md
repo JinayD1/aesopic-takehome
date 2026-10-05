@@ -52,7 +52,7 @@ _Generated 2026-10-03T23:35+00:00 from `results/grounding.jsonl` (60 runs)._
 
 None.
 
-## Decision rule (pre-registered in PLAN.md §7.3)
+## Decision rule (pre-registered in PLAN.md §7.3, kept in git history)
 
 Keep Set-of-Mark as default if its task-success rate is ≥ coords and its off-target/misclick rate is lower. If coords wins or ties on success *and* is cheaper, switch and document why.
 

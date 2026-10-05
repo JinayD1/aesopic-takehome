@@ -30,7 +30,7 @@ re-run at any time.
 
 ## Why not run the full extraction experiment
 
-The pre-registered design (PLAN.md §7.2) was a paired comparison on ~60
+The pre-registered design (PLAN.md §7.2, git history) was a paired comparison on ~60
 screenshots × 3 repetitions. We ran a 6-sample smoke pass and chose to spend the
 budget on the grounding experiment instead, because the mechanism here is not in
 doubt: text verification can only *add* exactness for strings the page renders,

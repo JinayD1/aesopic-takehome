@@ -25,7 +25,7 @@ demo:             ## the take-home task
 demo-headed:      ## same, with a visible browser
 	$(NAV) --repo openclaw/openclaw --headed --slow-mo 300
 
-experiment-grounding:  ## Set-of-Mark vs coordinates (costs money; see PLAN.md §7)
+experiment-grounding:  ## Set-of-Mark vs coordinates (costs money; see experiments/RESULTS_grounding.md)
 	$(PY) -m experiments.run_grounding --runs 10 --parallel 3
 
 analyze:          ## regenerate experiments/RESULTS_*.md from results/*.jsonl

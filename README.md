@@ -145,7 +145,6 @@ experiments/      oracle snapshots, runners, analysis, RESULTS_*.md, traces of e
 docs/adr/         architecture decision records
 docs/observation-notes.md   raw chronological notes from the build
 OBSERVATIONS.md   the write-up: decisions, experiments, what broke, what is next
-PLAN.md           the plan this was built from, including the pre-registered experiment design
 sample_output.json
 pyproject.toml + uv.lock   dependencies
 ```

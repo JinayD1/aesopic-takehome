@@ -1,7 +1,7 @@
 # ADR 001: Ground clicks with pixel coordinates; keep Set-of-Mark behind a flag
 
 **Status:** accepted (2026-10-03), replicated on a second model the same day. Supersedes the plan's provisional choice of
-Set-of-Mark as default (PLAN.md §5, decision 2).
+Set-of-Mark as default (PLAN.md §5, decision 2; the plan is kept in git history).
 
 ## Context
 
@@ -21,7 +21,7 @@ should be easier than estimating a point, especially for 14 px-tall text links.
 
 ## The experiment
 
-Pre-registered in PLAN.md §7.1 with the decision rule in §7.3 *before* any run:
+Pre-registered in PLAN.md §7.1 (git history) with the decision rule in §7.3 *before* any run:
 
 > Keep SoM as default if its task-success rate is ≥ coords and its wrong-target
 > rate is lower. If coords wins or ties on success and is cheaper, switch.
