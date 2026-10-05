@@ -111,6 +111,10 @@ Sonnet 5 with coordinates hit 100% at 40% of the cost and 13% less wall time.
 ## Consequences
 
 - `NavigatorConfig.grounding` and the CLI default to `coords`.
+- The default model follows the grounding mode (`default_model` in
+  `navigator/llm.py`): Sonnet 5 with coordinates, where it matched Opus 5 at
+  30/30 for 40% of the cost, and Opus 5 with Set-of-Mark, where Sonnet 5 lost
+  3/30 runs to hallucinated badge numbers. `--model` overrides either.
 - Navigation no longer reads the DOM at all by default; the generic scan still
   runs for the trace (so post-hoc click attribution and the wrong-target metric
   keep working) but nothing from it reaches the model.

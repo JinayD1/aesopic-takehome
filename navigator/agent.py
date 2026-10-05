@@ -29,7 +29,7 @@ from . import prompts
 from .assets import collect_assets
 from .browser import VIEWPORT, BrowserSession
 from .grounding import GroundingError, GroundingMode, draw_som, label_at, resolve_click
-from .llm import ModelError, VisionClient, cost_usd
+from .llm import ModelError, VisionClient, cost_usd, default_model
 from .schemas import (
     Action,
     ActionType,
@@ -57,7 +57,8 @@ _MAX_CONSECUTIVE_MODEL_ERRORS = 2
 
 @dataclass
 class NavigatorConfig:
-    model: str = "claude-opus-5"
+    # None -> picked by grounding mode: Sonnet 5 for coords, Opus 5 for Set-of-Mark.
+    model: str | None = None
     grounding: GroundingMode = "coords"
     extraction: ExtractionMode = "verified"
     max_steps: int = 15
@@ -66,6 +67,10 @@ class NavigatorConfig:
     slow_mo_ms: int = 0
     assets: bool = True
     trace_root: Path = field(default_factory=lambda: Path("runs"))
+
+    @property
+    def model_id(self) -> str:
+        return self.model or default_model(self.grounding)
 
 
 BrowserFactory = Callable[[], BrowserSession]
@@ -205,7 +210,7 @@ class Navigator:
         log: Callable[[str], None] | None = None,
     ) -> None:
         self.config = config
-        self.client = client or VisionClient(model=config.model)
+        self.client = client or VisionClient(model=config.model_id)
         self._browser_factory = browser_factory or (
             lambda: BrowserSession(headless=config.headless, slow_mo_ms=config.slow_mo_ms)
         )
@@ -392,7 +397,7 @@ class Navigator:
             latest_release=release,
             extraction=extraction,
             run=RunMeta(
-                model=cfg.model,
+                model=cfg.model_id,
                 grounding=cfg.grounding,
                 extraction=cfg.extraction,
                 steps=steps,
@@ -400,7 +405,7 @@ class Navigator:
                 status=status,
                 status_detail=status_detail,
                 usage=usage,
-                cost_usd=round(cost_usd(cfg.model, usage), 4),
+                cost_usd=round(cost_usd(cfg.model_id, usage), 4),
                 wall_time_s=round(time.perf_counter() - started, 1),
                 trace_dir=str(trace.dir),
                 started_at=started_at,

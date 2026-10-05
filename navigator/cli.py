@@ -39,7 +39,15 @@ def build_parser() -> argparse.ArgumentParser:
     task.add_argument("--prompt", help="Natural-language goal (flexible interface).")
 
     model = p.add_argument_group("model")
-    model.add_argument("--model", default="claude-opus-5", help="Anthropic model id.")
+    model.add_argument(
+        "--model",
+        default=None,
+        help=(
+            "Anthropic model id. Default depends on --grounding: claude-sonnet-5 for coords "
+            "(30/30 in the experiment at 40%% of the cost), claude-opus-5 for som "
+            "(Sonnet lost 3/30 there). See ADR 001."
+        ),
+    )
     model.add_argument(
         "--grounding",
         choices=["som", "coords"],

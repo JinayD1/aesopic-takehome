@@ -19,7 +19,7 @@ navigate --repo openclaw/openclaw
     "tag": "v2026.9.8",
     "commit": "fc23bc8",
     "author": "github-actions",
-    "published_at": "18 hours ago",
+    "published_at": "2 days ago",
     "is_prerelease": false,
     "release_notes": "OpenClaw v2026.9.8 ...",
     "download_links": [
@@ -27,7 +27,7 @@ navigate --repo openclaw/openclaw
       "..."
     ]
   },
-  "run": { "status": "success", "steps": 5, "verification": "agree", "cost_usd": 0.17, "wall_time_s": 41.3, "...": "..." }
+  "run": { "status": "success", "steps": 5, "verification": "agree", "cost_usd": 0.11, "wall_time_s": 55.4, "...": "..." }
 }
 ```
 
@@ -38,7 +38,7 @@ Requires Python ≥ 3.10, [uv](https://docs.astral.sh/uv/) and an Anthropic API 
 ```bash
 make setup                      # venv, deps, Chromium
 cp .env.example .env            # then put ANTHROPIC_API_KEY=... in .env
-make test                       # 65 tests, no network, no key needed
+make test                       # 70 tests, no network, no key needed
 make demo                       # the take-home task -> sample_output.json
 pyproject.toml + uv.lock   dependencies
 ```
@@ -65,7 +65,7 @@ navigate --repo openclaw/openclaw --grounding som         # Set-of-Mark numbered
 navigate --repo openclaw/openclaw --extraction vision     # skip text verification
 navigate --repo openclaw/openclaw --full                  # add the pre-verification vision read, token usage, timestamps
 navigate --repo openclaw/openclaw --skip-assets           # skip the assets pass (saves ~3 steps, ~$0.07)
-navigate --repo openclaw/openclaw --model claude-sonnet-5 # cheaper model
+navigate --repo openclaw/openclaw --model claude-opus-5   # default is Sonnet 5 for coords, Opus 5 for som
 ```
 
 JSON goes to stdout, progress to stderr, exit code 0 only on success. The
@@ -98,7 +98,8 @@ goal ─► screenshot ─► model picks ONE action (click at x,y / type / scro
   Set-of-Mark with three wrong-badge clicks. A replication on Sonnet 5 widened
   the gap: coordinates 30/30, Set-of-Mark 27/30 with three runs stuck asking
   for a badge that did not exist. So coordinates are the default and
-  Set-of-Mark is `--grounding som`.
+  Set-of-Mark is `--grounding som`. The same data picks the default model:
+  Sonnet 5 with coordinates (30/30 at 40% of the cost), Opus 5 with Set-of-Mark.
   → [ADR 001](docs/adr/001-grounding-coordinates-over-set-of-mark.md), [by model](experiments/RESULTS_grounding_by_model.md)
 - **Extraction.** Structured-output read of the final screenshot, then a second
   call that checks each string against the page's rendered text and reports any
@@ -163,8 +164,8 @@ pyproject.toml + uv.lock   dependencies
   shows ("18 hours ago"). The assets pass reads the names visible in one
   screenshot after expanding the list: 12 of the 19 listed for openclaw, since the
   rest sit below the fold.
-- **Cost/latency.** ~$0.15 and ~40 s per run on Opus 5 for the core fields,
-  plus ~$0.07 and ~15 s for the assets pass; ~$0.06 and ~34 s on Sonnet 5 at
-  the same 30/30 success (`--model claude-sonnet-5`).
+- **Cost/latency.** ~$0.06 and ~34 s per run for the core fields on the
+  default model (Sonnet 5 with coordinates, 30/30 in the experiment), ~$0.15
+  and ~40 s on Opus 5, plus ~$0.07 and ~15 s for the assets pass.
 
 See [OBSERVATIONS.md](OBSERVATIONS.md) for the full discussion.

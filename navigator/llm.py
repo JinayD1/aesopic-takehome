@@ -31,6 +31,19 @@ from .schemas import Action, AssetRead, ReleaseInfo, Usage
 
 DEFAULT_MODEL = "claude-opus-5"
 
+# Default model per grounding mode, from the 120-run grounding experiment (ADR 001):
+# with coordinates Sonnet 5 matched Opus 5 at 30/30 for 40% of the cost; with
+# Set-of-Mark Sonnet 5 lost 3/30 runs to hallucinated badge numbers, Opus 5 none.
+DEFAULT_MODEL_BY_GROUNDING: dict[str, str] = {
+    "coords": "claude-sonnet-5",
+    "som": "claude-opus-5",
+}
+
+
+def default_model(grounding: str) -> str:
+    return DEFAULT_MODEL_BY_GROUNDING.get(grounding, DEFAULT_MODEL)
+
+
 # USD per million tokens: (input, output, cache_read, cache_write)
 PRICING: dict[str, tuple[float, float, float, float]] = {
     "claude-opus-5": (5.00, 25.00, 0.50, 6.25),
